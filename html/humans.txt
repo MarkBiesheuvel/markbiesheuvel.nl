@@ -3,11 +3,11 @@
 
 # TEAM
 
-    <name> -- <role> -- <twitter>
+    Mark Biesheuvel - @Mark_Biesheuvel
 
 # THANKS
 
-    <name>
+    initializr.com
 
 # TECHNOLOGY COLOPHON
 
