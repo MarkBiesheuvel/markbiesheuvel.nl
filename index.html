@@ -14,62 +14,74 @@
 </head>
 <body>
 
-<div class="container header">
+<div class="container-fluid header">
+    <div class="container">
 
-    <div class="row">
-        You can mail&nbsp;<a href="mailto:me@markbiesheuvel.nl">me@markbiesheuvel.nl</a>
+        <header class="row">
+
+            <div class="col-md-10 col-md-offset-1 text-right">
+                You can mail&nbsp;<a href="mailto:me@markbiesheuvel.nl">me@markbiesheuvel.nl</a>
+            </div>
+
+            <div class="col-md-10 col-md-offset-1">
+                <hr/>
+            </div>
+
+            <div class="col-sm-10 col-sm-offset-2 jumbotron">
+                <h1>
+                    Utilize the web
+                    <br class="hidden-xs"/>
+                    <small class="hidden-xs">in your advantage</small>
+                </h1>
+            </div>
+
+        </header>
+
     </div>
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="row">
-        <h1>Web Application Developer</h1>
-
-        <p>
-            I'm Mark Biesheuvel and I enjoy developing web applications.
-        </p>
-    </div>
-
 </div>
 
 <div class="container">
 
     <!-- Example row of columns -->
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Coupling front- and back-end</h2>
+    <main class="row">
 
-            <p>
-                What makes a web application great is the ability to keep interacting with the page.
-                A good way to do this is to make the front-end and back-end work together.
-                A click on a button will result in a small interaction with the server and only reload that bit of the
-                page that changed.
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Optimizing performance</h2>
+        <div class="col-md-6 col-md-push-3">
 
-            <p>
-                Knowing when to use what tool/technique is very important when optimizing for performance.
-                Storing the right chunk of data in cache can save computation time while maintaining flexibility.
-                A relational database is great at searching through data sets with many connections between the objects.
-            </p>
+            <div class="panel panel-default">
+                <div class="panel-heading">GitHub</div>
+                <div class="panel-body">
+                    Content
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <h2>Extending frameworks</h2>
 
-            <p>
-                Frameworks like Zend allow developers to build upon a great foundation.
-                This makes it easier to get started on the part of a project that is unique instead of worrying about
-                the parts that are the same across all projects.
-            </p>
+        <div class="col-md-3 col-md-pull-6">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Facebook</div>
+                <div class="panel-body">
+                    Content
+                </div>
+            </div>
         </div>
-    </div>
+
+        <div class="col-md-3">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Soundcloud</div>
+                <div class="panel-body">
+                    Content
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; Mark Biesheuvel 2014</p>
+    </footer>
 
 </div>
-
-<footer>
-    <p>&copy; Mark Biesheuvel 2014</p>
-</footer>
 
 <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

@@ -1,8 +1,17 @@
 
 .header {
 
-    background: url('../img/photo/trees.jpg');
+    background-image: url('../img/photo/trees.jpg');
+    background-size: 100% auto;
 
-    color: white;
+    padding-top: 20px;
+    margin-bottom: 40px;
+}
 
+.header .jumbotron{
+    background: inherit;
+}
+
+.header hr {
+    border-top-color: black;
 }
