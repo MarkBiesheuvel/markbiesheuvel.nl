@@ -66,8 +66,7 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     removeComments: true,
-                    collapseWhitespace: true,
-                    minifyJS: true
+                    collapseWhitespace: true
                 },
                 files: {
                     'dist/index.html': 'src/index.html'
@@ -116,13 +115,13 @@ module.exports = function (grunt) {
             },
 
             other: {
-                files: ['**', '!index.html', '!js/**', '!css/**'],
+                files: ['src/**', '!src/index.html', '!src/js/**', '!src/css/**'],
                 tasks: ['copy'],
                 options: {
                     interrupt: true
                 }
             }
-        },
+        }
 
     });
 
