@@ -70,9 +70,9 @@
         <div class="col-md-3">
 
             <div class="panel panel-default">
-                <div class="panel-heading">Soundcloud</div>
-                <div class="panel-body">
-                    Content
+                <div class="panel-heading">Google Maps</div>
+                <div class="panel-body nopadding">
+                    <img src="img/maps.png" alt=""/>
                 </div>
             </div>
         </div>

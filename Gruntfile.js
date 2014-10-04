@@ -79,6 +79,13 @@ module.exports = function (grunt) {
                     }
                 },
                 dest: 'tmp/github.json'
+            },
+            maps: {
+                src: {
+                    url: 'https://maps.googleapis.com/maps/api/staticmap?size=261x200&zoom=7&markers=color%3Ablue%7Clabel%3AH%7C51.469941%2C5.472258&markers=color%3Ayellow%7Clabel%3AW%7C51.574344%2C5.137818',
+                    method: 'GET'
+                },
+                dest: 'dist/img/maps.png'
             }
         },
 
@@ -193,7 +200,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'copy:dist', 'copy:bootstrap', 'copy:jquery', 'build:html', 'build:js', 'build:css']
+        ['clean:dist', 'clean:tmp', 'curl:maps', 'copy:dist', 'copy:bootstrap', 'copy:jquery', 'build:html', 'build:js', 'build:css']
     );
 
 };
