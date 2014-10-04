@@ -43,8 +43,16 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">GitHub</div>
-                <div id="panel-github" class="panel-body">
-                    Content
+                <div class="panel-body">
+                    <ul>
+                        <% _.each(commits, function(commit){ %>
+                            <li>
+                                <a href="<%- commit.html_url %>" target="_blank">
+                                    <%- commit.commit.message %>
+                                </a>
+                            </li>
+                        <% }); %>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -53,7 +61,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">Facebook</div>
-                <div id="panel-facebook" class="panel-body">
+                <div class="panel-body">
                     Content
                 </div>
             </div>
@@ -63,7 +71,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">Soundcloud</div>
-                <div id="panel-soundcloud" class="panel-body">
+                <div class="panel-body">
                     Content
                 </div>
             </div>
