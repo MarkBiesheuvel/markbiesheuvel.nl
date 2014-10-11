@@ -30,18 +30,6 @@ module.exports = function (grunt) {
                 src: ['**', '!index.html.tpl', '!js/**', '!css/**'],
                 dest: 'dist',
                 expand: true
-            },
-            bootstrap: {
-                cwd: 'node_modules/bootstrap/dist',
-                src: ['css/*.min.css', 'fonts/**', 'js/*.min.js'],
-                dest: 'dist',
-                expand: true
-            },
-            jquery: {
-                cwd: 'node_modules/jquery/dist/cdn',
-                src: ['jquery-2.1.1.min.js'],
-                dest: 'dist/js',
-                expand: true
             }
         },
 
@@ -56,13 +44,14 @@ module.exports = function (grunt) {
         },
 
         // Compass compile for css
-        sass: {
+        less: {
             dist: {
-                files: {
-                    'dist/css/style.min.css': 'src/css/main.scss'
-                },
                 options: {
-                    style: 'compressed'
+                    strictMath: true,
+                    compress: true
+                },
+                files: {
+                    'dist/css/style.min.css': 'src/css/style.less'
                 }
             }
         },
@@ -141,7 +130,7 @@ module.exports = function (grunt) {
 
             // Compile CSS on change
             css: {
-                files: 'src/css/**/*.scss',
+                files: 'src/css/**/*.less',
                 tasks: ['build:css'],
                 options: {
                     interrupt: true
@@ -194,13 +183,13 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build:css',
         'Compile CSS',
-        ['sass:dist']
+        ['less:dist']
     );
 
     grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'curl:maps', 'copy:dist', 'copy:bootstrap', 'copy:jquery', 'build:html', 'build:js', 'build:css']
+        ['clean:dist', 'clean:tmp', 'curl:maps', 'copy:dist', 'build:html', 'build:js', 'build:css']
     );
 
 };

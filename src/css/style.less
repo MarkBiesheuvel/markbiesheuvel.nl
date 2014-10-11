@@ -1,0 +1,66 @@
+// Variables
+@bootstrap: "../../node_modules/bootstrap/less";
+
+// Core variables and mixins
+@import "@{bootstrap}/variables.less";
+@import "@{bootstrap}/mixins.less";
+
+// Reset and dependencies
+@import "@{bootstrap}/normalize.less";
+@import "@{bootstrap}/print.less";
+@import "@{bootstrap}/glyphicons.less";
+
+// Core CSS
+@import "@{bootstrap}/scaffolding.less";
+@import "@{bootstrap}/type.less";
+@import "@{bootstrap}/code.less";
+@import "@{bootstrap}/grid.less";
+@import "@{bootstrap}/tables.less";
+@import "@{bootstrap}/forms.less";
+@import "@{bootstrap}/buttons.less";
+
+// Components
+@import "@{bootstrap}/jumbotron.less";
+@import "@{bootstrap}/list-group.less";
+@import "@{bootstrap}/panels.less";
+
+// Utility classes
+@import "@{bootstrap}/utilities.less";
+@import "@{bootstrap}/responsive-utilities.less";
+
+#header {
+
+  background-image: url('../img/trees.jpg');
+  background-size: 100% auto;
+
+  padding-top: 20px;
+  margin-bottom: 40px;
+
+  color: white;
+  text-shadow: 2px 2px 4px #3c3c3c;
+}
+
+.jumbotron {
+  background: inherit;
+}
+
+h1 small {
+  color: inherit;
+}
+
+#header hr {
+  border: 0;
+  display: block;
+  background: white;
+  height: 1px;
+  box-shadow: 1px 1px 2px #3c3c3c;
+}
+
+#header a {
+  color: white;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
