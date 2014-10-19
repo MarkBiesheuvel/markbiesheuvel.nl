@@ -70,8 +70,8 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">Google Maps</div>
-                <div class="panel-body nopadding">
-                    <img src="img/maps.png" alt=""/>
+                <div class="" id="maps-container">
+                    <img src="img/maps.png" id="maps-img" alt=""/>
                 </div>
             </div>
         </div>

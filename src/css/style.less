@@ -28,6 +28,12 @@
 @import "@{bootstrap}/utilities.less";
 @import "@{bootstrap}/responsive-utilities.less";
 
+@screen-sm-min: 680px;
+@container-tablet: ((620px + @grid-gutter-width));
+
+//@screen-md-min: 992px;
+//@screen-lg-min: 1200px;
+
 #header {
 
   background-image: url('../img/trees.jpg');
@@ -39,6 +45,13 @@
   color: white;
   text-shadow: 2px 2px 4px #3c3c3c;
 }
+
+@media(max-width: 514px){
+  #header {
+    background-size: auto 100%;
+  }
+}
+
 
 .jumbotron {
   background: inherit;
@@ -60,7 +73,11 @@ h1 small {
   color: white;
 }
 
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
+#maps-container {
+  overflow: hidden;
+}
+
+#maps-img {
+  margin-left: -320px;
+  padding-left: 50%;
 }
