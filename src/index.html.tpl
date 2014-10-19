@@ -7,7 +7,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- link rel="prefetch" href="img/trees.jpg" -->
     <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
@@ -43,7 +42,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">GitHub</div>
                 <div class="panel-body">
-                    <ul>
+                    <ul class="list-text-overflow" id="github-commits">
                         <% _.each(commits, function(commit){ %>
                             <li>
                                 <a href="<%- commit.html_url %>" target="_blank">
@@ -76,6 +75,14 @@
             </div>
         </div>
 
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Commit</div>
+                <div class="panel-body" id="github-details">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -83,6 +90,9 @@
     </footer>
 
 </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/script.min.js"></script>
 
 </body>
 </html>
