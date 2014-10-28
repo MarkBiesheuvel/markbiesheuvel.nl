@@ -124,7 +124,8 @@ module.exports = function (grunt) {
                 files: ['src/js/**/*.js'],
                 tasks: ['build:js'],
                 options: {
-                    interrupt: true
+                    interrupt: true,
+                    livereload: true
                 }
             },
 
@@ -133,7 +134,8 @@ module.exports = function (grunt) {
                 files: 'src/css/**/*.less',
                 tasks: ['build:css'],
                 options: {
-                    interrupt: true
+                    interrupt: true,
+                    livereload: true
                 }
             },
 
@@ -142,7 +144,8 @@ module.exports = function (grunt) {
                 files: 'src/index.html.tpl',
                 tasks: ['build:html'],
                 options: {
-                    interrupt: true
+                    interrupt: true,
+                    livereload: true
                 }
             },
 
@@ -150,7 +153,8 @@ module.exports = function (grunt) {
                 files: ['src/**', '!src/index.html.tpl', '!src/js/**', '!src/css/**'],
                 tasks: ['copy'],
                 options: {
-                    interrupt: true
+                    interrupt: true,
+                    livereload: true
                 }
             }
         }
@@ -170,7 +174,6 @@ module.exports = function (grunt) {
             }
 
             grunt.task.run(['template:dist', 'htmlmin:dist']);
-
         }
     );
 
