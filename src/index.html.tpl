@@ -7,7 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/style.min.css">
+    <style type="text/css">
+        <%= css %>
+    </style>
 </head>
 <body>
 
@@ -15,7 +17,7 @@
 
     <header class="row">
         <div class="col-md-3">
-            <img src="img/photo.jpg" class="img-responsive img-rounded" alt="Mark Biesheuvel">
+            <img src="data:image/png;base64,<%= photo %>" class="img-responsive img-rounded" alt="Mark Biesheuvel">
         </div>
         <div class="col-md-9">
             <h1>Mark Biesheuvel</h1>

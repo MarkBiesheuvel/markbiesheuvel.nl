@@ -24,28 +24,15 @@ module.exports = function (grunt) {
         jshint: {
             gruntfile: {
                 src: ['Gruntfile.js']
-            },
-            dist: {
-                src: ['src/js/*.js']
             }
         },
 
         copy: {
             dist: {
                 cwd: 'src',
-                src: ['**', '!index.html.tpl', '!js/**', '!css/**'],
+                src: ['**', '!index.html.tpl', '!img/**', '!css/**'],
                 dest: 'dist',
                 expand: true
-            }
-        },
-
-        uglify: {
-            dist: {
-                src: ['src/js/**/*.js'],
-                dest: 'dist/js/script.min.js',
-                options: {
-                    preserveComments: false
-                }
             }
         },
 
@@ -57,7 +44,15 @@ module.exports = function (grunt) {
                     compress: true
                 },
                 files: {
-                    'dist/css/style.min.css': 'src/css/style.less'
+                    'tmp/style.min.css': 'src/css/style.less'
+                }
+            }
+        },
+
+        base64: {
+            dist: {
+                files: {
+                    'tmp/photo.b64': 'src/img/photo.jpg'
                 }
             }
         },
@@ -80,6 +75,8 @@ module.exports = function (grunt) {
                     data: function () {
 
                         var data = {
+                            photo: grunt.file.read('tmp/photo.b64'),
+                            css: grunt.file.read('tmp/style.min.css'),
                             repos: grunt.file.readJSON('tmp/github/repos.json')
                         };
 
@@ -137,7 +134,7 @@ module.exports = function (grunt) {
             // Compile CSS on change
             css: {
                 files: 'src/css/**/*.less',
-                tasks: ['build:css'],
+                tasks: ['build:css', 'build:html'],
                 options: {
                     interrupt: true,
                     livereload: true
@@ -227,12 +224,6 @@ module.exports = function (grunt) {
     );
 
     grunt.registerTask(
-        'build:js',
-        'Validate and compress Javascript',
-        ['jshint:dist', 'uglify:dist']
-    );
-
-    grunt.registerTask(
         'build:css',
         'Compile CSS',
         ['less:dist']
@@ -241,7 +232,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'copy:dist', 'build:html', 'build:js', 'build:css']
+        ['clean:dist', 'clean:tmp', 'copy:dist', 'base64:dist', 'build:css', 'build:html']
     );
 
 };

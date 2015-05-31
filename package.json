@@ -18,7 +18,8 @@
     "load-grunt-tasks": "~0.4.0",
     "grunt-curl": "~2.0.3",
     "grunt-template": "~0.2.3",
-    "grunt-contrib-less": "~0.11.4"
+    "grunt-contrib-less": "~0.11.4",
+    "grunt-base64": "~0.1.0"
   },
   "dependencies": {
     "bootstrap": "~3.2.0"
