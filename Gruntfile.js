@@ -1,5 +1,11 @@
 module.exports = function (grunt) {
 
+    var githubHeaders = {
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'development@markbiesheuvel.nl',
+        'Time-Zone': 'Europe/Amsterdam'
+    }
+
     // Project configuration.
     grunt.initConfig({
 
@@ -58,23 +64,13 @@ module.exports = function (grunt) {
 
         // Fetch data from APIs
         curl: {
-            github: {
+            githubRepos: {
                 src: {
-                    url: 'https://api.github.com/repos/MarkBiesheuvel/markbiesheuvel.nl/commits?page=1&per_page=10',
+                    url: 'https://api.github.com/users/MarkBiesheuvel/repos?sort=updated&page=1&per_page=4',
                     method: 'GET',
-                    headers: {
-                        'Accept': 'application/vnd.github.v3+json',
-                        'User-Agent': 'development@markbiesheuvel.nl'
-                    }
+                    headers: githubHeaders
                 },
-                dest: 'tmp/github.json'
-            },
-            maps: {
-                src: {
-                    url: 'https://maps.googleapis.com/maps/api/staticmap?size=640x200&zoom=7&markers=color%3Ablue%7Clabel%3AH%7C51.469941%2C5.472258&markers=color%3Ayellow%7Clabel%3AW%7C51.574344%2C5.137818',
-                    method: 'GET'
-                },
-                dest: 'dist/img/maps.png'
+                dest: 'tmp/github/repos.json'
             }
         },
 
@@ -82,9 +78,18 @@ module.exports = function (grunt) {
             dist: {
                 options: {
                     data: function () {
-                        return {
-                            commits: grunt.file.readJSON('tmp/github.json')
+
+                        var data = {
+                            repos: grunt.file.readJSON('tmp/github/repos.json')
                         };
+
+                        data.repos.map(function(repo) {
+                            repo.commits = grunt.file.readJSON('tmp/github/repos/' + repo.id + '.json');
+
+                            return repo;
+                        });
+
+                        return data;
                     }
                 },
                 files: {
@@ -160,13 +165,57 @@ module.exports = function (grunt) {
     // Load the plugins
     require('load-grunt-tasks')(grunt);
 
+    grunt.registerTask('curl:githubCommits',
+        'Download commits for each repository',
+        function () {
+
+            var repos = grunt.file.readJSON('tmp/github/repos.json');
+
+            var config = {
+                curl: {}
+            };
+            var tasks = [];
+
+            repos.forEach(function (repo, i) {
+
+                var taskName = 'githubCommits' + repo.id;
+                var url = repo.commits_url;
+
+                url = url.replace('{/sha}', '');
+                url += '?page=1&per_page=3';
+
+                config.curl[taskName] = {
+                    src: {
+                        url: url,
+                        method: 'GET',
+                        headers: githubHeaders
+                    },
+                    dest: 'tmp/github/repos/' + repo.id + '.json'
+                };
+
+                tasks.push('curl:' + taskName);
+
+            });
+
+            console.log(config);
+
+            grunt.config.merge(config);
+            grunt.task.run(tasks);
+
+        }
+    );
+
     grunt.registerTask(
         'build:html',
         'Compile template to HTML and compress',
         function () {
 
-            if (!grunt.file.exists('tmp/github.json')) {
-                grunt.task.run('curl:github');
+            if (!grunt.file.exists('tmp/github/repos.json')) {
+                grunt.task.run('curl:githubRepos');
+            }
+
+            if (!grunt.file.exists('tmp/github/repos/')) {
+                grunt.task.run('curl:githubCommits');
             }
 
             grunt.task.run(['template:dist', 'htmlmin:dist']);
@@ -189,7 +238,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'curl:maps', 'copy:dist', 'build:html', 'build:js', 'build:css']
+        ['clean:dist', 'clean:tmp', 'copy:dist', 'build:html', 'build:js', 'build:css']
     );
 
 };

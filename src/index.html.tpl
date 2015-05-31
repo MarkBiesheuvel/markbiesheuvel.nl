@@ -11,88 +11,89 @@
 </head>
 <body>
 
-<div class="container-fluid" id="header">
-    <div class="container">
-
-        <header class="row">
-
-            <div class="col-md-10 col-md-offset-1 text-right">
-                <h4>You can mail&nbsp;<a href="mailto:me@markbiesheuvel.nl">me@markbiesheuvel.nl</a></h4>
-            </div>
-
-            <div class="col-md-10 col-md-offset-1">
-                <hr/>
-            </div>
-
-            <div class="col-sm-10 col-sm-offset-2 jumbotron">
-                <h1>Utilize the web</h1>
-            </div>
-
-        </header>
-
-    </div>
-</div>
-
 <div class="container">
 
-    <main class="row">
-
-        <div class="col-md-6 col-md-push-3">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">GitHub</div>
-                <div class="panel-body">
-                    <ul class="list-text-overflow" id="github-commits">
-                        <% _.each(commits, function(commit){ %>
-                            <li>
-                                <a href="<%- commit.html_url %>" target="_blank">
-                                    <%- commit.commit.message %>
-                                </a>
-                            </li>
-                        <% }); %>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-md-pull-6">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Facebook</div>
-                <div class="panel-body">
-                    Content
-                </div>
-            </div>
-        </div>
-
+    <header class="row">
         <div class="col-md-3">
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Google Maps</div>
-                <div class="" id="maps-container">
-                    <img src="img/maps.png" id="maps-img" alt=""/>
-                </div>
-            </div>
+            <img src="img/photo.jpg" class="img-responsive img-rounded" alt="Mark Biesheuvel">
         </div>
-
-        <div class="col-sm-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Commit</div>
-                <div class="panel-body" id="github-details">
-                    &nbsp;
-                </div>
-            </div>
+        <div class="col-md-9">
+            <h1>Mark Biesheuvel</h1>
+            <p>
+                <strong>E-mail:</strong> <a href="mailto:mail@markbiesheuvel">mail@markbiesheuvel.nl</a><br>
+                <strong>Facebook:</strong> <a href="https://www.facebook.com/mark.biesheuvel" target="_blank">https://www.facebook.com/mark.biesheuvel</a><br>
+                <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/profile/view?id=116319239" target="_blank">https://www.linkedin.com/profile/view?id=116319239</a><br>
+                <strong>GitHub:</strong> <a href="https://github.com/MarkBiesheuvel" target="_blank">https://github.com/MarkBiesheuvel</a><br>
+            </p>
         </div>
-    </main>
+    </header>
 
-    <footer>
-        <p>&copy; Mark Biesheuvel 2014</p>
-    </footer>
+    <section class="row">
+        <div class="col-md-3">
+            <h2 class="section-title">Work experience</h2>
+        </div>
+        <div class="col-md-9">
+            <h3><a href="https://amazingcompany.eu/quecom" target="_blank">Quecom</a> <small>Web application with shop, sales reports, performance dashboards and more</small></h3>
+            <ul>
+                <li>Improved release procedure to avoid system halting errors</li>
+                <li>Restructured cache usage of ACL to reduce memory usage per request by 80%</li>
+                <li>Added numerous new features: product relations, bundle offers, filters based on product features
+                    and more
+                </li>
+                <li>Integration with VoIP provider via Chrome browser extension</li>
+                <li>Use of Clockwork SMS API to send notifications to customers</li>
+                <li>Daily imports from SAP and exports to client base</li>
+            </ul>
+            <h3>QAdmin <small>In-house web application for administration</small></h3>
+            <ul>
+                <li>Added performance dashboard based on invoice and worked hour</li>
+                <li>Improved invoice/billing module</li>
+            </ul>
+            <h3><a href="http://redusystems.com" target="_blank">Mardenkro</a> <small>Producer of removable coatings for green houses with international market</small></h3>
+            <ul>
+                <li>Developed on top of an existing CMS</li>
+                <li>Website in 14 different countries and 6 different languages</li>
+                <li>Centralized content usable across all different countries/languages</li>
+            </ul>
+            <!--
+            <h3>QForma Hosting</h3>
+            <ul>
+                <li>Attended AWSome day to get familiar with AWS</li>
+                <li>Researched oppurtinities for automated deployment, load balancing, back-ups and more</li>
+                <li>Gave advice to mangment on what to use/where to go with AWS</li>
+            </ul>
+            -->
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="col-md-3">
+            <h2 class="section-title">GitHub</h2>
+        </div>
+        <div class="col-md-9">
+            <% _.each(repos, function(repo){ %>
+            <h3>
+                <a href="<%- repo.html_url %>" target="_blank">
+                    <%- repo.name %>
+                </a>
+                <small>
+                    <%- repo.description %>
+                </small>
+            </h3>
+            <ul>
+                <% _.each(repo.commits, function(commit){ %>
+                <li>
+                    <a href="<%- commit.html_url %>" target="_blank">
+                        <%- commit.commit.message %>
+                    </a>
+                </li>
+                <% }); %>
+            </ul>
+            <% }); %>
+        </div>
+    </section>
 
 </div>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="js/script.min.js"></script>
 
 </body>
 </html>
