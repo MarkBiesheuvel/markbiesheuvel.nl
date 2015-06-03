@@ -17,10 +17,12 @@
 
     <header class="row">
         <div class="col-md-3">
-            <img src="data:image/png;base64,<%= photo %>" class="img-responsive img-rounded" alt="Mark Biesheuvel">
+            <img src="data:image/png;base64,<%= photo %>" id="photo" class="img-responsive img-rounded"
+                 alt="Mark Biesheuvel">
         </div>
         <div class="col-md-9">
             <h1>Mark Biesheuvel</h1>
+
             <p>
                 <strong>E-mail:</strong> <a href="mailto:mail@markbiesheuvel">mail@markbiesheuvel.nl</a><br>
                 <strong>Facebook:</strong> <a href="https://www.facebook.com/mark.biesheuvel" target="_blank">https://www.facebook.com/mark.biesheuvel</a><br>
@@ -35,7 +37,9 @@
             <h2 class="section-title">Work experience</h2>
         </div>
         <div class="col-md-9">
-            <h3><a href="https://amazingcompany.eu/quecom" target="_blank">Quecom</a> <small>Web application with shop, sales reports, performance dashboards and more</small></h3>
+            <h3><a href="https://amazingcompany.eu/quecom" target="_blank">Quecom</a>
+                <small>Web application with shop, sales reports, performance dashboards and more</small>
+            </h3>
             <ul>
                 <li>Improved release procedure to avoid system halting errors</li>
                 <li>Restructured cache usage of ACL to reduce memory usage per request by 80%</li>
@@ -46,12 +50,16 @@
                 <li>Use of Clockwork SMS API to send notifications to customers</li>
                 <li>Daily imports from SAP and exports to client base</li>
             </ul>
-            <h3>QAdmin <small>In-house web application for administration</small></h3>
+            <h3>QAdmin
+                <small>In-house web application for administration</small>
+            </h3>
             <ul>
                 <li>Added performance dashboard based on invoice and worked hour</li>
                 <li>Improved invoice/billing module</li>
             </ul>
-            <h3><a href="http://redusystems.com" target="_blank">Mardenkro</a> <small>Producer of removable coatings for green houses with international market</small></h3>
+            <h3><a href="http://redusystems.com" target="_blank">Mardenkro</a>
+                <small>Producer of removable coatings for green houses with international market</small>
+            </h3>
             <ul>
                 <li>Developed on top of an existing CMS</li>
                 <li>Website in 14 different countries and 6 different languages</li>
@@ -85,9 +93,11 @@
             <ul>
                 <% _.each(repo.commits, function(commit){ %>
                 <li>
+                    <!-- TODO: add icon with link to specific commit
                     <a href="<%- commit.html_url %>" target="_blank">
-                        <%- commit.commit.message %>
                     </a>
+                    -->
+                    <%- commit.commit.message %>
                 </li>
                 <% }); %>
             </ul>
@@ -96,6 +106,10 @@
     </section>
 
 </div>
+
+<script type="application/javascript">
+    <%= javascript %>
+</script>
 
 </body>
 </html>

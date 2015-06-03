@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         'Accept': 'application/vnd.github.v3+json',
         'User-Agent': 'development@markbiesheuvel.nl',
         'Time-Zone': 'Europe/Amsterdam'
-    }
+    };
 
     // Project configuration.
     grunt.initConfig({
@@ -24,15 +24,28 @@ module.exports = function (grunt) {
         jshint: {
             gruntfile: {
                 src: ['Gruntfile.js']
+            },
+            dist: {
+                src: ['src/js/*.js']
             }
         },
 
         copy: {
             dist: {
                 cwd: 'src',
-                src: ['**', '!index.html.tpl', '!img/**', '!css/**'],
+                src: ['**', '!index.html.tpl', '!img/**', '!css/**', '!js/**'],
                 dest: 'dist',
                 expand: true
+            }
+        },
+
+        uglify: {
+            dist: {
+                src: ['src/js/**/*.js'],
+                dest: 'tmp/script.min.js',
+                options: {
+                    preserveComments: false
+                }
             }
         },
 
@@ -49,10 +62,33 @@ module.exports = function (grunt) {
             }
         },
 
+        image_resize: {
+            lossless: {
+                options: {
+                    width: 263,
+                    height: 263,
+                    quality: 1
+                },
+                files: {
+                    'dist/img/photo.jpg': 'src/img/photo.jpg'
+                }
+            },
+            compressed: {
+                options: {
+                    width: 263,
+                    height: 263,
+                    quality: 0
+                },
+                files: {
+                    'tmp/photo.jpg': 'src/img/photo.jpg'
+                }
+            }
+        },
+
         base64: {
             dist: {
                 files: {
-                    'tmp/photo.b64': 'src/img/photo.jpg'
+                    'tmp/photo.b64': 'tmp/photo.jpg'
                 }
             }
         },
@@ -61,7 +97,7 @@ module.exports = function (grunt) {
         curl: {
             githubRepos: {
                 src: {
-                    url: 'https://api.github.com/users/MarkBiesheuvel/repos?sort=updated&page=1&per_page=4',
+                    url: 'https://api.github.com/users/MarkBiesheuvel/repos?sort=pushed&page=1&per_page=4',
                     method: 'GET',
                     headers: githubHeaders
                 },
@@ -77,6 +113,7 @@ module.exports = function (grunt) {
                         var data = {
                             photo: grunt.file.read('tmp/photo.b64'),
                             css: grunt.file.read('tmp/style.min.css'),
+                            javascript: grunt.file.read('tmp/script.min.js'),
                             repos: grunt.file.readJSON('tmp/github/repos.json')
                         };
 
@@ -124,7 +161,7 @@ module.exports = function (grunt) {
             // Validate and compress Javascript on change
             js: {
                 files: ['src/js/**/*.js'],
-                tasks: ['build:js'],
+                tasks: ['build:js', 'build:html'],
                 options: {
                     interrupt: true,
                     livereload: true
@@ -152,7 +189,7 @@ module.exports = function (grunt) {
             },
 
             other: {
-                files: ['src/**', '!src/index.html.tpl', '!src/js/**', '!src/css/**'],
+                files: ['src/**', '!src/index.html.tpl', '!src/js/**', '!src/css/**', '!src/img/**'],
                 tasks: ['copy'],
                 options: {
                     interrupt: true,
@@ -230,9 +267,21 @@ module.exports = function (grunt) {
     );
 
     grunt.registerTask(
+        'build:js',
+        'Compile CSS',
+        ['jshint:dist', 'uglify:dist']
+    );
+
+    grunt.registerTask(
+        'build:img',
+        'Resize and compress images',
+        ['image_resize:lossless', 'image_resize:compressed', 'base64:dist']
+    );
+
+    grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'copy:dist', 'base64:dist', 'build:css', 'build:html']
+        ['clean:dist', 'clean:tmp', 'build:img', 'build:js', 'build:css', 'build:html', 'copy:dist']
     );
 
 };
