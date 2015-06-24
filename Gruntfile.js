@@ -33,7 +33,7 @@ module.exports = function (grunt) {
         copy: {
             dist: {
                 cwd: 'src',
-                src: ['**', '!index.html.tpl', '!img/**', '!css/**', '!js/**'],
+                src: ['**', '.htaccess', '!index.html.tpl', '!img/**', '!css/**', '!js/**'],
                 dest: 'dist',
                 expand: true
             }
@@ -65,9 +65,9 @@ module.exports = function (grunt) {
         image_resize: {
             lossless: {
                 options: {
-                    width: 263,
-                    height: 263,
-                    quality: 1
+                    width: 262,
+                    height: 262,
+                    quality: 1.0
                 },
                 files: {
                     'dist/img/photo.jpg': 'src/img/photo.jpg'
@@ -75,9 +75,9 @@ module.exports = function (grunt) {
             },
             compressed: {
                 options: {
-                    width: 263,
-                    height: 263,
-                    quality: 0
+                    width: 262,
+                    height: 262,
+                    quality: 0.0
                 },
                 files: {
                     'tmp/photo.jpg': 'src/img/photo.jpg'
@@ -97,7 +97,7 @@ module.exports = function (grunt) {
         curl: {
             githubRepos: {
                 src: {
-                    url: 'https://api.github.com/users/MarkBiesheuvel/repos?sort=pushed&page=1&per_page=4',
+                    url: 'https://api.github.com/users/MarkBiesheuvel/repos?sort=pushed&page=1&per_page=3',
                     method: 'GET',
                     headers: githubHeaders
                 },
@@ -189,7 +189,7 @@ module.exports = function (grunt) {
             },
 
             other: {
-                files: ['src/**', '!src/index.html.tpl', '!src/js/**', '!src/css/**', '!src/img/**'],
+                files: ['src/**', 'src/.htaccess', '!src/index.html.tpl', '!src/js/**', '!src/css/**', '!src/img/**'],
                 tasks: ['copy'],
                 options: {
                     interrupt: true,

@@ -1,0 +1,7 @@
+<IfModule mod_expires.c>
+  <FilesMatch "\.(js|css|gif|jpe?g|png|xap|htc|flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav|swf|xml|txt|html?)(\?v=[0-9]+)?$">
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+    Header append Cache-Control "public"
+  </FilesMatch>
+</IfModule>
