@@ -16,11 +16,11 @@
 <div class="container">
 
     <header class="row">
-        <div class="col-md-3">
+        <div class="col-md-1">
             <img src="data:image/png;base64,<%= photo %>" id="photo" class="img-responsive img-rounded"
                  alt="Mark Biesheuvel">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-3">
             <h1>Mark Biesheuvel</h1>
 
             <dl class="dl-horizontal">
@@ -39,10 +39,10 @@
     <hr>
 
     <section class="row">
-        <div class="col-md-3">
+        <div class="col-md-1">
             <h2 class="section-title">Work experience</h2>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-3">
 
             <h3><strong>QForma 2012 - present</strong></h3>
 
@@ -80,10 +80,10 @@
     <hr>
 
     <section class="row">
-        <div class="col-md-3">
+        <div class="col-md-1">
             <h2 class="section-title">GitHub</h2>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-3">
 
             <h3><strong>Recent commits</strong></h3>
 
