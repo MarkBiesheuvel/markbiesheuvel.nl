@@ -6,6 +6,8 @@ module.exports = function (grunt) {
         'Time-Zone': 'Europe/Amsterdam'
     };
 
+    var photoSize = 262; // 262px square
+
     // Project configuration.
     grunt.initConfig({
 
@@ -65,8 +67,8 @@ module.exports = function (grunt) {
         image_resize: {
             lossless: {
                 options: {
-                    width: 262,
-                    height: 262,
+                    width: photoSize,
+                    height: photoSize,
                     quality: 1.0
                 },
                 files: {
@@ -75,8 +77,8 @@ module.exports = function (grunt) {
             },
             compressed: {
                 options: {
-                    width: 262,
-                    height: 262,
+                    width: photoSize * 0.5,
+                    height: photoSize * 0.5,
                     quality: 0.0
                 },
                 files: {
@@ -114,7 +116,8 @@ module.exports = function (grunt) {
                             photo: grunt.file.read('tmp/photo.b64'),
                             css: grunt.file.read('tmp/style.min.css'),
                             javascript: grunt.file.read('tmp/script.min.js'),
-                            repos: grunt.file.readJSON('tmp/github/repos.json')
+                            repos: grunt.file.readJSON('tmp/github/repos.json'),
+                            photoSize: photoSize
                         };
 
                         data.repos.map(function(repo) {

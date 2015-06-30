@@ -17,7 +17,11 @@
 
     <header class="row">
         <div class="col-md-1">
-            <img src="data:image/png;base64,<%= photo %>" id="photo" class="img-responsive img-rounded"
+            <img src="data:image/png;base64,<%= photo %>"
+                 width="<%= photoSize %>"
+                 height="<%= photoSize %>"
+                 id="photo"
+                 class="img-responsive img-rounded"
                  alt="Mark Biesheuvel">
         </div>
         <div class="col-md-3">
@@ -29,7 +33,7 @@
                 <dt>Facebook</dt>
                 <dd><a href="https://www.facebook.com/mark.biesheuvel" target="_blank">https://www.facebook.com/mark.biesheuvel</a></dd>
                 <dt>LinkedIn</dt>
-                <dd><a href="https://www.linkedin.com/profile/view?id=116319239" target="_blank">https://www.linkedin.com/profile/view?id=116319239</a></dd>
+                <dd><a href="https://nl.linkedin.com/in/markbiesheuvel" target="_blank">https://nl.linkedin.com/in/markbiesheuvel</a></dd>
                 <dt>GitHub</dt>
                 <dd><a href="https://github.com/MarkBiesheuvel" target="_blank">https://github.com/MarkBiesheuvel</a></dd>
             </dl>
