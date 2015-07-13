@@ -21,7 +21,10 @@
     "grunt-contrib-less": "~0.11.4",
     "grunt-base64": "~0.1.0",
     "grunt-image-resize": "~1.0.0",
-    "grunt-contrib-compress": "~0.13.0"
+    "grunt-contrib-compress": "~0.13.0",
+    "grunt-uncss": "~0.4.3",
+    "grunt-processhtml": "~0.3.8",
+    "grunt-contrib-cssmin": "~0.12.3"
   },
   "dependencies": {
     "bootstrap": "~3.2.0"

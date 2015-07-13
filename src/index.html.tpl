@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style type="text/css">
-        <%= css %>
-    </style>
+    <!-- build:css inline minified.css -->
+    <link rel="stylesheet" href="compiled.css">
+    <!-- /build -->
 </head>
 <body>
 
@@ -113,9 +113,8 @@
 
 </div>
 
-<script type="application/javascript">
-    <%= javascript %>
-</script>
+<!-- build:js inline script.min.js -->
+<!-- /build -->
 
 </body>
 </html>

@@ -55,11 +55,26 @@ module.exports = function (grunt) {
         less: {
             dist: {
                 options: {
-                    strictMath: true,
-                    compress: true
+                    strictMath: true
                 },
                 files: {
-                    'tmp/style.min.css': 'src/css/style.less'
+                    'tmp/compiled.css': 'src/css/style.less'
+                }
+            }
+        },
+
+        uncss: {
+            dist: {
+                files: {
+                    'tmp/tidy.css': ['tmp/index1.html']
+                }
+            }
+        },
+
+        cssmin: {
+            dist: {
+                files: {
+                    'tmp/minified.css': ['tmp/tidy.css']
                 }
             }
         },
@@ -77,8 +92,8 @@ module.exports = function (grunt) {
             },
             compressed: {
                 options: {
-                    width: photoSize * 0.5,
-                    height: photoSize * 0.5,
+                    width: photoSize * 0.25,
+                    height: photoSize * 0.25,
                     quality: 0.0
                 },
                 files: {
@@ -133,8 +148,6 @@ module.exports = function (grunt) {
 
                         var data = {
                             photo: grunt.file.read('tmp/photo.b64'),
-                            css: grunt.file.read('tmp/style.min.css'),
-                            javascript: grunt.file.read('tmp/script.min.js'),
                             repos: grunt.file.readJSON('tmp/github/repos.json'),
                             photoSize: photoSize
                         };
@@ -149,7 +162,15 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    'tmp/index.html': ['src/index.html.tpl']
+                    'tmp/index1.html': ['src/index.html.tpl']
+                }
+            }
+        },
+
+        processhtml: {
+            dist: {
+                files: {
+                    'tmp/index2.html': ['tmp/index1.html']
                 }
             }
         },
@@ -162,7 +183,7 @@ module.exports = function (grunt) {
                     collapseWhitespace: true
                 },
                 files: {
-                    'dist/index.html': 'tmp/index.html'
+                    'dist/index.html': 'tmp/index2.html'
                 }
             }
         },
@@ -266,7 +287,7 @@ module.exports = function (grunt) {
     );
 
     grunt.registerTask(
-        'build:html',
+        'build:html+css+js',
         'Compile template to HTML and compress',
         function () {
 
@@ -278,20 +299,19 @@ module.exports = function (grunt) {
                 grunt.task.run('curl:githubCommits');
             }
 
-            grunt.task.run(['template:dist', 'htmlmin:dist']);
+            grunt.task.run([
+                'template:dist',
+
+                'less:dist',
+                'uncss:dist',
+                'cssmin:dist',
+
+                'uglify:dist',
+
+                'processhtml:dist',
+                'htmlmin:dist'
+            ]);
         }
-    );
-
-    grunt.registerTask(
-        'build:css',
-        'Compile CSS',
-        ['less:dist']
-    );
-
-    grunt.registerTask(
-        'build:js',
-        'Compile CSS',
-        ['jshint:dist', 'uglify:dist']
     );
 
     grunt.registerTask(
@@ -303,7 +323,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'build:img', 'build:js', 'build:css', 'build:html', 'copy:dist', 'compress:dist']
+        ['clean:dist', 'clean:tmp', 'build:img', 'build:html+css+js', 'copy:dist', 'compress:dist']
     );
 
 };
