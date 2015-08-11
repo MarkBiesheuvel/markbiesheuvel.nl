@@ -9,5 +9,5 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTP_HOST} !^(dev\.)?markbiesheuvel\.nl$
-  RewriteRule ^(.*)$ http://markbiesheuvel.nl/$1 [R=302,L]
+  RewriteRule ^(.*)$ http://markbiesheuvel.nl/$1 [R=301,L]
 </IfModule>
