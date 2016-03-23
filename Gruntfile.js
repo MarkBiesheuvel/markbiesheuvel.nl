@@ -110,25 +110,6 @@ module.exports = function (grunt) {
             }
         },
 
-        compress: {
-            dist: {
-                options: {
-                    mode: 'gzip',
-                    level: 9
-                },
-                files: [
-                    {
-                        expand: true,
-                        src: ['dist/**', '!dist/.htaccess', '!dist/**/*.gz'],
-                        filter: 'isFile',
-                        ext: function(current){
-                            return current + '.gz';
-                        }
-                    }
-                ]
-            }
-        },
-
         // Fetch data from APIs
         curl: {
             githubRepos: {
@@ -323,7 +304,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'build:img', 'build:html+css+js', 'copy:dist', 'compress:dist']
+        ['clean:dist', 'clean:tmp', 'build:img', 'build:html+css+js', 'copy:dist']
     );
 
 };
