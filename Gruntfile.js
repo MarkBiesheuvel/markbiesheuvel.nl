@@ -412,7 +412,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'build:img', 'build:html+css+js', 'copy:dist']
+        ['clean:dist', 'clean:tmp', 'build:img', 'build:html+css+js', 'build:badges', 'copy:dist']
     );
 
 };
