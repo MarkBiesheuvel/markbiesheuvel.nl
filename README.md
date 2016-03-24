@@ -17,3 +17,7 @@ To make a clean build
 To automatically rebuild while making changes to the source
 
     grunt watch
+    
+To deploy the site
+
+    git push

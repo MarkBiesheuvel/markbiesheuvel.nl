@@ -3,14 +3,13 @@
 
 # TEAM
 
-    Mark Biesheuvel - @Mark_Biesheuvel
+    Mark Biesheuvel
+    @Mark_Biesheuvel
+    mail@markbiesheuvel.nl
 
-# THANKS
+# THANKS / TECHNOLOGY
 
-    initializr.com
-
-# TECHNOLOGY COLOPHON
-
-    HTML5, CSS3
-    jQuery, Modernizr,
-    jQuery Widow Fix
+    http://getbootstrap.com/
+    http://gruntjs.com/
+    https://travis-ci.org/
+    https://aws.amazon.com/

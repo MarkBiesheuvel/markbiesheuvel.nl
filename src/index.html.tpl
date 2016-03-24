@@ -4,8 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Mark Biesheuvel | Web application developer</title>
-    <meta name="description" content="">
+    <meta name="author" content="Mark Biesheuvel">
+    <meta name="description" content="Resume of Mark Biesheuvel, web application developer">
+    <meta name="keywords" content="developer,mark,biesheuvel,web,application,api,performance">grunt
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#333">
+    <meta property="og:title" content="Mark Biesheuvel">
+    <meta property="og:url" content="https://markbiesheuvel.nl">
+    <meta property="og:type" content="profile">
+    <meta property="og:image" content="https://markbiesheuvel.nl/img/photo.jpg">
+    <meta property="og:description" content="Resume of Mark Biesheuvel, web application developer">
+    <link rel="canonical" href="https://markbiesheuvel.nl"/>
 
     <!-- build:css inline minified.css -->
     <link rel="stylesheet" href="compiled.css">
@@ -29,13 +38,29 @@
 
             <dl class="dl-horizontal">
                 <dt>E-mail</dt>
-                <dd><a href="mailto:mail@markbiesheuvel">mail@markbiesheuvel.nl</a></dd>
+                <dd>
+                    <a href="mailto:mail@markbiesheuvel">
+                        mail@markbiesheuvel.nl
+                    </a>
+                </dd>
                 <dt>Facebook</dt>
-                <dd><a href="https://www.facebook.com/mark.biesheuvel" target="_blank">https://www.facebook.com/mark.biesheuvel</a></dd>
+                <dd>
+                    <a href="https://www.facebook.com/mark.biesheuvel" target="_blank">
+                        https://www.facebook.com/mark.biesheuvel
+                    </a>
+                </dd>
                 <dt>LinkedIn</dt>
-                <dd><a href="https://nl.linkedin.com/in/markbiesheuvel" target="_blank">https://nl.linkedin.com/in/markbiesheuvel</a></dd>
+                <dd>
+                    <a href="https://nl.linkedin.com/in/markbiesheuvel" target="_blank">
+                        https://nl.linkedin.com/in/markbiesheuvel
+                    </a>
+                </dd>
                 <dt>GitHub</dt>
-                <dd><a href="https://github.com/MarkBiesheuvel" target="_blank">https://github.com/MarkBiesheuvel</a></dd>
+                <dd>
+                    <a href="https://github.com/MarkBiesheuvel" target="_blank">
+                        https://github.com/MarkBiesheuvel
+                    </a>
+                </dd>
             </dl>
         </div>
     </header>
