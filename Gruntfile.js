@@ -131,6 +131,7 @@ module.exports = function (grunt) {
                     data: function () {
 
                         var data = {
+                            photo: grunt.file.read('tmp/photo.b64'),
                             photoSize: photoSize
                         };
 
@@ -334,7 +335,7 @@ module.exports = function (grunt) {
 
             grunt.task.run('image_resize:badges');
         }
-    )
+    );
 
     grunt.registerTask(
         'build:img',

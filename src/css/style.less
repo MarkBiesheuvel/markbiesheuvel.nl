@@ -10,18 +10,15 @@
 
 // Reset and dependencies
 @import "@{bootstrap}/normalize.less";
-// @import "@{bootstrap}/print.less";
-// @import "@{bootstrap}/glyphicons.less";
 
 // Core CSS
 @import "@{bootstrap}/scaffolding.less";
 @import "@{bootstrap}/type.less";
 @import "@{bootstrap}/grid.less";
-
+@import "@{bootstrap}/tables.less";
 
 // Utility classes
 @import "@{bootstrap}/utilities.less";
-// @import "@{bootstrap}/responsive-utilities.less";
 
 header {
   padding-top: (@padding-large-vertical * 3);
@@ -33,3 +30,29 @@ header {
   color: #fff;
   padding: @padding-large-vertical @padding-large-horizontal;
 }
+
+.grades {
+
+  td, th {
+    text-align: center;
+
+    &:nth-child(1) {
+      text-align: left;
+    }
+  }
+
+  td {
+    &:nth-child(3) {
+      color: @brand-success;
+
+      &:empty:before {
+        color: @gray-light;
+        content: "n/a";
+      }
+    }
+  }
+}
+blockquote {
+  font-size: @font-size-base;
+}
+

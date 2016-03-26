@@ -73,9 +73,13 @@
         </div>
         <div class="col-md-3">
 
-            <h3><strong>QForma 2012 - present</strong></h3>
+            <h3>
+                <strong><a href="http://qforma.nl">QForma</a></strong>
+                <small>2012 - present</small>
+            </h3>
 
-            <h4><a href="https://amazingcompany.eu/quecom" target="_blank">Quecom</a>
+            <h4>
+                <a href="https://amazingcompany.eu/quecom" target="_blank">Quecom</a>
                 <small>Web application with shop, sales reports, performance dashboards and more</small>
             </h4>
             <ul>
@@ -88,14 +92,16 @@
                 <li>Use of Clockwork SMS API to send notifications to customers</li>
                 <li>Daily imports from SAP and exports to client base</li>
             </ul>
-            <h4>QAdmin
+            <h4>
+                QAdmin
                 <small>In-house web application for administration</small>
             </h4>
             <ul>
                 <li>Added performance dashboard based on invoice and worked hour</li>
                 <li>Improved invoice/billing module</li>
             </ul>
-            <h4><a href="http://redusystems.com" target="_blank">Mardenkro</a>
+            <h4>
+                <a href="http://redusystems.com" target="_blank">Mardenkro</a>
                 <small>Producer of removable coatings for green houses with international market</small>
             </h4>
             <ul>
@@ -103,6 +109,266 @@
                 <li>Website in 14 different countries and 6 different languages</li>
                 <li>Centralized content usable across all different countries/languages</li>
             </ul>
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="col-md-1">
+            <h2 class="section-title">Education</h2>
+        </div>
+        <div class="col-md-3">
+
+            <h3>
+                <strong>Eindhoven University of Technology</strong>
+                <small>2009 - 2012</small>
+            </h3>
+
+            <table class="table grades">
+                <thead>
+                <tr>
+                    <th>Subject</th>
+                    <!--<th>ECTS credits</th>-->
+                    <th>Grade</th>
+                    <th>Passed Honors-Star* exam?</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Ethics and Law</td>
+                    <!--<td>3</td>-->
+                    <td>6</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Basic mathematics</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Introduction to programming</td>
+                    <!--<td>3</td>-->
+                    <td>9</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Computer systems</td>
+                    <!--<td>6</td>-->
+                    <td>8</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Logic and set theory</td>
+                    <!--<td>6</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Analysis 1</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Object Oriented programming</td>
+                    <!--<td>3</td>-->
+                    <td>9</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Linear algebra</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Automata and process theory</td>
+                    <!--<td>6</td>-->
+                    <td>9</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Analysis 2</td>
+                    <!--<td>3</td>-->
+                    <td>7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Human-technology interaction</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Data structures</td>
+                    <!--<td>6</td>-->
+                    <td>7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Programming methods</td>
+                    <!--<td>6</td>-->
+                    <td>7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Design-based learning 1.1</td>
+                    <!--<td>3</td>-->
+                    <td>7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Design based learning 1.2</td>
+                    <!--<td>3</td>-->
+                    <td>10</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Datamodeling and databases</td>
+                    <!--<td>6</td>-->
+                    <td>9</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Operating systems</td>
+                    <!--<td>6</td>-->
+                    <td>6</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Discrete structures</td>
+                    <!--<td>6</td>-->
+                    <td>7</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Software specification</td>
+                    <!--<td>6</td>-->
+                    <td>7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Probability theory</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Distributed algorithms</td>
+                    <!--<td>3</td>-->
+                    <td>6</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Computer graphics</td>
+                    <!--<td>3</td>-->
+                    <td>7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Business information systems</td>
+                    <!--<td>6</td>-->
+                    <td>7</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Computer networks</td>
+                    <!--<td>3</td>-->
+                    <td>7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Statistics</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Algorithms</td>
+                    <!--<td>6</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Design-based learning 2.1</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Design-based learning 2.2</td>
+                    <!--<td>3</td>-->
+                    <td>7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Design-based learning 2.3</td>
+                    <!--<td>3</td>-->
+                    <td>9</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Functional programming</td>
+                    <!--<td>3</td>-->
+                    <td>9</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Software engineering</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Web technology</td>
+                    <!--<td>3</td>-->
+                    <td>8</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Software engineering project</td>
+                    <!--<td>12</td>-->
+                    <td>8</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Datamining and knowledge systems</td>
+                    <!--<td>3</td>-->
+                    <td>7</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Software testing</td>
+                    <!--<td>3</td>-->
+                    <td>9</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>University course big images</td>
+                    <!--<td>3</td>-->
+                    <td>6</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Minor Industrial Design</td>
+                    <!--<td>27</td>-->
+                    <td>Promotion</td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <blockquote>
+                * The Honors-Star program is a program within the disipline of the student and the program requires the
+                student to perform educational activities with greater depth, this includes extra exam questions during
+                exams of regular courses and performaing projects with greater depth.
+            </blockquote>
         </div>
     </section>
 
