@@ -1,11 +1,5 @@
 module.exports = function (grunt) {
 
-    var githubHeaders = {
-        'Accept': 'application/vnd.github.v3+json',
-        'User-Agent': 'development@markbiesheuvel.nl',
-        'Time-Zone': 'Europe/Amsterdam'
-    };
-
     var photoSize = 262; // 262px square
     var badgeSize = 90;
 
@@ -122,14 +116,6 @@ module.exports = function (grunt) {
 
         // Fetch data from APIs
         curl: {
-            githubRepos: {
-                src: {
-                    url: 'https://api.github.com/users/MarkBiesheuvel/repos?sort=pushed&page=1&per_page=3',
-                    method: 'GET',
-                    headers: githubHeaders
-                },
-                dest: 'tmp/github/repos.json'
-            },
             backpackGroups: {
                 src: {
                     url: 'https://backpack.openbadges.org/displayer/274141/groups.json',
@@ -145,16 +131,8 @@ module.exports = function (grunt) {
                     data: function () {
 
                         var data = {
-                            photo: grunt.file.read('tmp/photo.b64'),
-                            repos: grunt.file.readJSON('tmp/github/repos.json'),
                             photoSize: photoSize
                         };
-
-                        data.repos.map(function (repo) {
-                            repo.commits = grunt.file.readJSON('tmp/github/repos/' + repo.id + '.json');
-
-                            return repo;
-                        });
 
                         return data;
                     }
@@ -244,43 +222,6 @@ module.exports = function (grunt) {
     // Load the plugins
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('curl:githubCommits',
-        'Download commits for each repository',
-        function () {
-
-            var repos = grunt.file.readJSON('tmp/github/repos.json');
-
-            var config = {
-                curl: {}
-            };
-            var tasks = [];
-
-            repos.forEach(function (repo, i) {
-
-                var taskName = 'githubCommits' + repo.id;
-                var url = repo.commits_url;
-
-                url = url.replace('{/sha}', '');
-                url += '?page=1&per_page=3';
-
-                config.curl[taskName] = {
-                    src: {
-                        url: url,
-                        method: 'GET',
-                        headers: githubHeaders
-                    },
-                    dest: 'tmp/github/repos/' + repo.id + '.json'
-                };
-
-                tasks.push('curl:' + taskName);
-            });
-
-            grunt.config.merge(config);
-            grunt.task.run(tasks);
-
-        }
-    );
-
     grunt.registerTask('curl:backpackBadges',
         'Download badges for each collection',
         function () {
@@ -359,14 +300,6 @@ module.exports = function (grunt) {
         'Compile template to HTML and compress',
         function () {
 
-            if (!grunt.file.exists('tmp/github/repos.json')) {
-                grunt.task.run('curl:githubRepos');
-            }
-
-            if (!grunt.file.exists('tmp/github/repos/')) {
-                grunt.task.run('curl:githubCommits');
-            }
-
             grunt.task.run([
                 'template:dist',
 
@@ -412,7 +345,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'build:img', 'build:html+css+js', 'build:badges', 'copy:dist']
+        ['clean:dist', 'clean:tmp', 'build:img', 'build:html+css+js', 'copy:dist']
     );
 
 };

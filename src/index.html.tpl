@@ -6,7 +6,7 @@
     <title>Mark Biesheuvel | Web application developer</title>
     <meta name="author" content="Mark Biesheuvel">
     <meta name="description" content="Resume of Mark Biesheuvel, web application developer">
-    <meta name="keywords" content="developer,mark,biesheuvel,web,application,api,performance">grunt
+    <meta name="keywords" content="developer,mark,biesheuvel,web,application,api,performance,grunt">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#333">
     <meta property="og:title" content="Mark Biesheuvel">
@@ -103,36 +103,6 @@
                 <li>Website in 14 different countries and 6 different languages</li>
                 <li>Centralized content usable across all different countries/languages</li>
             </ul>
-        </div>
-    </section>
-
-    <hr>
-
-    <section class="row">
-        <div class="col-md-1">
-            <h2 class="section-title">GitHub</h2>
-        </div>
-        <div class="col-md-3">
-
-            <h3><strong>Recent commits</strong></h3>
-
-            <% _.each(repos, function(repo){ %>
-            <h4>
-                <a href="<%- repo.html_url %>" target="_blank">
-                    <%- repo.name %>
-                </a>
-                <small>
-                    <%- repo.description %>
-                </small>
-            </h4>
-            <ul>
-                <% _.each(repo.commits, function(commit){ %>
-                <li>
-                    <%- commit.commit.message %>
-                </li>
-                <% }); %>
-            </ul>
-            <% }); %>
         </div>
     </section>
 
