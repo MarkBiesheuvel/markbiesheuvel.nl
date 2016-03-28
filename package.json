@@ -24,7 +24,8 @@
     "grunt-processhtml": "*",
     "grunt-template": "*",
     "grunt-uncss": "*",
-    "load-grunt-tasks": "*"
+    "load-grunt-tasks": "*",
+    "slug": "*"
   },
   "dependencies": {
     "bootstrap": "*"

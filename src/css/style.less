@@ -1,24 +1,21 @@
-// Variables
-@bootstrap: "../../node_modules/bootstrap/less";
-
 // Core variables and mixins
-@import "@{bootstrap}/variables.less";
-@import "@{bootstrap}/mixins.less";
+@import "variables.less";
+@import "mixins.less";
 
 // Overrides
 @grid-columns: 4;
 
 // Reset and dependencies
-@import "@{bootstrap}/normalize.less";
+@import "normalize.less";
 
 // Core CSS
-@import "@{bootstrap}/scaffolding.less";
-@import "@{bootstrap}/type.less";
-@import "@{bootstrap}/grid.less";
-@import "@{bootstrap}/tables.less";
+@import "scaffolding.less";
+@import "type.less";
+@import "grid.less";
+@import "tables.less";
 
 // Utility classes
-@import "@{bootstrap}/utilities.less";
+@import "utilities.less";
 
 header {
   padding-top: (@padding-large-vertical * 3);
@@ -52,7 +49,3 @@ header {
     }
   }
 }
-blockquote {
-  font-size: @font-size-base;
-}
-

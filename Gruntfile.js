@@ -50,7 +50,8 @@ module.exports = function (grunt) {
         less: {
             dist: {
                 options: {
-                    strictMath: true
+                    strictMath: true,
+                    paths: ['node_modules/bootstrap/less', 'src/css']
                 },
                 files: {
                     'tmp/compiled.css': 'src/css/style.less'
@@ -259,8 +260,11 @@ module.exports = function (grunt) {
     grunt.registerTask('curl:backpackImages',
         '', function () {
 
+            return; // Included in repo now
+
             var path = require('path');
             var fs = require('fs');
+            var slug = require('slug');
 
             var groups = fs.readdirSync('tmp/backpack/groups');
 
@@ -269,22 +273,25 @@ module.exports = function (grunt) {
             };
             var tasks = [];
 
-            groups.forEach(function (group, i) {
+            groups.forEach(function (group) {
 
                 var badges = grunt.file.readJSON('tmp/backpack/groups/' + group).badges;
 
-                badges.forEach(function (badge, j) {
+                badges.forEach(function (badge) {
 
-                    var taskName = 'backpackImages' + i + '-' + j;
-                    var url = badge.imageUrl;
-                    var file = path.basename(url);
+                    var badge = badge.assertion.badge;
+                    var name = slug(badge.name.replace(/\s*completed?\s*/i, '').toLowerCase());
+
+                    var taskName = 'backpackImages-' + name;
+                    var url = badge.image;
+                    var ext = path.extname(url);
 
                     config.curl[taskName] = {
                         src: {
                             url: url,
                             method: 'GET',
                         },
-                        dest: 'tmp/backpack/images/' + file
+                        dest: 'src/img/backpack/' + name + ext
                     };
 
                     tasks.push('curl:' + taskName);
@@ -317,7 +324,7 @@ module.exports = function (grunt) {
     );
 
     grunt.registerTask(
-        'build:badges',
+        'build:backpack',
         'Download and resize badges',
         function () {
 

@@ -363,12 +363,6 @@
                 </tr>
                 </tbody>
             </table>
-
-            <blockquote>
-                * The Honors-Star program is a program within the disipline of the student and the program requires the
-                student to perform educational activities with greater depth, this includes extra exam questions during
-                exams of regular courses and performaing projects with greater depth.
-            </blockquote>
         </div>
     </section>
 
