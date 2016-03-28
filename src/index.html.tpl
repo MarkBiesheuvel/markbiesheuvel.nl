@@ -18,7 +18,9 @@
 
     <!-- build:css inline minified.css -->
     <link rel="stylesheet" href="compiled.css">
+    <link rel="stylesheet" href="sprites.css">
     <!-- /build -->
+
 </head>
 <body>
 
@@ -69,13 +71,13 @@
 
     <section class="row">
         <div class="col-md-1">
-            <h2 class="section-title">Work experience</h2>
+            <h2 class="section-title">Employment</h2>
         </div>
         <div class="col-md-3">
 
             <h3>
-                <strong><a href="http://qforma.nl">QForma</a></strong>
-                <small>2012 - present</small>
+                <strong><a href="http://qforma.nl/" target="_blank">QForma</a></strong>
+                <small>September 2012 - present</small>
             </h3>
 
             <h4>
@@ -101,7 +103,7 @@
                 <li>Improved invoice/billing module</li>
             </ul>
             <h4>
-                <a href="http://redusystems.com" target="_blank">Mardenkro</a>
+                <a href="http://redusystems.com/" target="_blank">Mardenkro</a>
                 <small>Producer of removable coatings for green houses with international market</small>
             </h4>
             <ul>
@@ -114,14 +116,66 @@
 
     <section class="row">
         <div class="col-md-1">
+            <h2 class="section-title">Courses</h2>
+        </div>
+        <div class="col-md-3">
+            <h3><strong><a href="https://www.codeschool.com/" target="_blank">Codeschool</a></strong></h3>
+
+            <h4>JavaScript</h4>
+            <div class="icons">
+                <div class="icon-javascript-road-trip-part-1"></div>
+                <div class="icon-javascript-road-trip-part-2"></div>
+                <div class="icon-javascript-road-trip-part-3"></div>
+                <div class="icon-javascript-best-practices"></div>
+                <div class="icon-es2015-the-shape-of-javascript-to-come"></div>
+                <div class="icon-real-time-web-with-nodejs"></div>
+                <div class="icon-anatomy-of-backbonejs"></div>
+                <div class="icon-anatomy-of-backbonejs-part-2"></div>
+                <div class="icon-try-jquery"></div>
+                <div class="icon-jquery-the-return-flight"></div>
+                <div class="icon-jquery-air-first-flight"></div>
+                <div class="icon-jquery-air-captains-log"></div>
+            </div>
+
+            <h4>Databases</h4>
+            <div class="icons">
+                <div class="icon-try-sql"></div>
+                <div class="icon-the-sequel-to-sql"></div>
+                <div class="icon-the-magical-marvels-of-mongodb"></div>
+            </div>
+
+            <h4>Git</h4>
+            <div class="icons">
+                <div class="icon-try-git"></div>
+                <div class="icon-git-real"></div>
+                <div class="icon-git-real-2"></div>
+                <div class="icon-mastering-github"></div>
+            </div>
+
+            <h4>CSS and Sass</h4>
+            <div class="icons">
+                <div class="icon-css-cross-country"></div>
+                <div class="icon-assembling-sass"></div>
+                <div class="icon-assembling-sass-part-2"></div>
+                <div class="icon-functional-html5-and-css3"></div>
+                <div class="icon-front-end-formations"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="row">
+        <div class="col-md-1">
             <h2 class="section-title">Education</h2>
         </div>
         <div class="col-md-3">
 
             <h3>
                 <strong>Eindhoven University of Technology</strong>
-                <small>2009 - 2012</small>
+                <small>September 2009 - August 2012</small>
             </h3>
+
+            <h4>Computer Science and Engineering, Bachelor degree</h4>
 
             <table class="table grades">
                 <thead>

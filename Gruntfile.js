@@ -59,6 +59,16 @@ module.exports = function (grunt) {
             }
         },
 
+        sprite: {
+            dist: {
+                src: 'tmp/backpack/images/*.*',
+                dest: 'dist/img/spritesheet.png',
+                imgPath: 'img/spritesheet.png',
+                destCss: 'tmp/sprites.css',
+                algorithmOpts: {sort: false}
+            }
+        },
+
         uncss: {
             dist: {
                 files: {
@@ -96,14 +106,15 @@ module.exports = function (grunt) {
                     'tmp/photo.jpg': 'src/img/photo.jpg'
                 }
             },
-            badges: {
+            backpack: {
                 options: {
                     width: badgeSize,
                     height: badgeSize,
-                    quality: 1.0
+                    quality: 1.0,
+                    crop: true
                 },
-                src: 'tmp/backpack/images/*.*',
-                dest: 'dist/img/badge/'
+                src: 'src/img/backpack/*.*',
+                dest: 'tmp/backpack/images/'
             }
         },
 
@@ -182,7 +193,7 @@ module.exports = function (grunt) {
             // Validate and compress Javascript on change
             js: {
                 files: ['src/js/**/*.js'],
-                tasks: ['build:js', 'build:html'],
+                tasks: ['build:html+css+js'],
                 options: {
                     interrupt: true,
                     livereload: true
@@ -192,7 +203,7 @@ module.exports = function (grunt) {
             // Compile CSS on change
             css: {
                 files: 'src/css/**/*.less',
-                tasks: ['build:css', 'build:html'],
+                tasks: ['build:html+css+js'],
                 options: {
                     interrupt: true,
                     livereload: true
@@ -202,7 +213,7 @@ module.exports = function (grunt) {
             // Compile and compress HTML on change
             html: {
                 files: 'src/index.html.tpl',
-                tasks: ['build:html'],
+                tasks: ['build:html+css+js'],
                 options: {
                     interrupt: true,
                     livereload: true
@@ -309,6 +320,7 @@ module.exports = function (grunt) {
         function () {
 
             grunt.task.run([
+
                 'template:dist',
 
                 'less:dist',
@@ -351,9 +363,15 @@ module.exports = function (grunt) {
     );
 
     grunt.registerTask(
+        'build:backpack',
+        '',
+        ['image_resize:backpack', 'sprite:dist',]
+    )
+
+    grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'build:img', 'build:html+css+js', 'copy:dist']
+        ['clean:dist', 'clean:tmp', 'build:img', 'build:backpack', 'build:html+css+js', 'copy:dist']
     );
 
 };
