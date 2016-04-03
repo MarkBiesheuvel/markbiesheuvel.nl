@@ -62,9 +62,9 @@ module.exports = function (grunt) {
         sprite: {
             dist: {
                 src: 'tmp/backpack/images/*.*',
-                dest: 'dist/img/spritesheet.png',
-                imgPath: 'img/spritesheet.png',
-                destCss: 'tmp/sprites.css',
+                dest: 'dist/spritesheet.png',
+                destCss: 'tmp/spitesheet.css',
+                imgPath: 'spritesheet.png',
                 algorithmOpts: {sort: false}
             }
         },
@@ -72,7 +72,7 @@ module.exports = function (grunt) {
         uncss: {
             dist: {
                 files: {
-                    'tmp/tidy.css': ['tmp/index1.html']
+                    'tmp/tidy.css': 'tmp/index1.html'
                 }
             }
         },
@@ -80,7 +80,7 @@ module.exports = function (grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'tmp/minified.css': ['tmp/tidy.css']
+                    'tmp/minified.css': 'tmp/tidy.css'
                 }
             }
         },
@@ -93,7 +93,7 @@ module.exports = function (grunt) {
                     quality: 1.0
                 },
                 files: {
-                    'dist/img/photo.jpg': 'src/img/photo.jpg'
+                    'dist/photo.jpg': 'src/img/photo.jpg'
                 }
             },
             compressed: {

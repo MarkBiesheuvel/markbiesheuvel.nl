@@ -18,9 +18,8 @@
 
     <!-- build:css inline minified.css -->
     <link rel="stylesheet" href="compiled.css">
-    <link rel="stylesheet" href="sprites.css">
+    <link rel="stylesheet" href="spitesheet.css">
     <!-- /build -->
-
 </head>
 <body>
 
@@ -119,46 +118,58 @@
             <h2 class="section-title">Courses</h2>
         </div>
         <div class="col-md-3">
+
+            <h3><strong><a href="https://qwiklabs.com/">Qwiklabs</a></strong></h3>
+
+            <h4>AWS</h4>
+            <div class="icons">
+                <div class="icon-solutions-architect-associate" title="Solutions Architext, Associate"></div>
+                <div class="icon-websites-and-web-apps" title="Websites & Web Apps"></div>
+                <div class="icon-digital-media" title="Digital Media"></div>
+                <div class="icon-compute-and-netwerking" title="Compute & Networking"></div>
+                <div class="icon-big-data-on-aws" title="Big Data on AWS"></div>
+            </div>
+
             <h3><strong><a href="https://www.codeschool.com/" target="_blank">Codeschool</a></strong></h3>
 
             <h4>JavaScript</h4>
             <div class="icons">
-                <div class="icon-javascript-road-trip-part-1"></div>
-                <div class="icon-javascript-road-trip-part-2"></div>
-                <div class="icon-javascript-road-trip-part-3"></div>
-                <div class="icon-javascript-best-practices"></div>
-                <div class="icon-es2015-the-shape-of-javascript-to-come"></div>
-                <div class="icon-real-time-web-with-nodejs"></div>
-                <div class="icon-anatomy-of-backbonejs"></div>
-                <div class="icon-anatomy-of-backbonejs-part-2"></div>
-                <div class="icon-try-jquery"></div>
-                <div class="icon-jquery-the-return-flight"></div>
-                <div class="icon-jquery-air-first-flight"></div>
-                <div class="icon-jquery-air-captains-log"></div>
+                <div class="icon-javascript-road-trip-part-1" title="JavaScript Road Trip Part 1"></div>
+                <div class="icon-javascript-road-trip-part-2" title="JavaScript Road Trip Part 2"></div>
+                <div class="icon-javascript-road-trip-part-3" title="JavaScript Road Trip Part 3"></div>
+                <div class="icon-javascript-best-practices" title="JavaScript Best Practices"></div>
+                <div class="icon-es2015-the-shape-of-javascript-to-come" title="ES2015: The Shape of JavaScript to Come"></div>
+                <div class="icon-real-time-web-with-nodejs" title="Real-time Web with Node.js"></div>
+                <div class="icon-anatomy-of-backbonejs" title="Anatomy of Backbone.js"></div>
+                <div class="icon-anatomy-of-backbonejs-part-2" title="Anatomy of Backbone.js Part 2"></div>
+                <div class="icon-try-jquery" title="Try jQuery"></div>
+                <div class="icon-jquery-the-return-flight" title="jQuery: The Return Flight"></div>
+                <div class="icon-jquery-air-first-flight" title="jQuery Air: First Flight"></div>
+                <div class="icon-jquery-air-captains-log" title="jQuery Air: Captains Log"></div>
             </div>
 
             <h4>Databases</h4>
             <div class="icons">
-                <div class="icon-try-sql"></div>
-                <div class="icon-the-sequel-to-sql"></div>
-                <div class="icon-the-magical-marvels-of-mongodb"></div>
+                <div class="icon-try-sql" title="Try SQL"></div>
+                <div class="icon-the-sequel-to-sql" title="The Sequel to SQL"></div>
+                <div class="icon-the-magical-marvels-of-mongodb" title="The Magical Marvels of MongoDB"></div>
             </div>
 
             <h4>Git</h4>
             <div class="icons">
-                <div class="icon-try-git"></div>
-                <div class="icon-git-real"></div>
-                <div class="icon-git-real-2"></div>
-                <div class="icon-mastering-github"></div>
+                <div class="icon-try-git" title="Try Git"></div>
+                <div class="icon-git-real" title="Git Real"></div>
+                <div class="icon-git-real-2" title="Git Real 2"></div>
+                <div class="icon-mastering-github" title="Mastering GitHub"></div>
             </div>
 
             <h4>CSS and Sass</h4>
             <div class="icons">
-                <div class="icon-css-cross-country"></div>
-                <div class="icon-assembling-sass"></div>
-                <div class="icon-assembling-sass-part-2"></div>
-                <div class="icon-functional-html5-and-css3"></div>
-                <div class="icon-front-end-formations"></div>
+                <div class="icon-css-cross-country" title="CSS Cross-Country"></div>
+                <div class="icon-assembling-sass" title="Assembling Sass"></div>
+                <div class="icon-assembling-sass-part-2" title="Assembling Sass Part 2"></div>
+                <div class="icon-functional-html5-and-css3" title="Functional HTML5 & CSS3"></div>
+                <div class="icon-front-end-formations" title="Front-end Formations"></div>
             </div>
 
         </div>
@@ -424,6 +435,5 @@
 
 <!-- build:js inline script.min.js -->
 <!-- /build -->
-
 </body>
 </html>
