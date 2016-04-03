@@ -69,6 +69,32 @@
     <hr>
 
     <section class="row">
+
+        <div class="col-md-1">
+            <h2 class="section-title">Statistics</h2>
+        </div>
+        <div class="col-md-3">
+            <h3>Time metrics of current request</h3>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Time since previous metric</th>
+                    <th>Time since start of request</th>
+                </tr>
+                </thead>
+                <tbody id="timing-stats">
+                <tr>
+                    <td>fetch</td>
+                    <td>0 ms</td>
+                    <td>0 ms</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
         <div class="col-md-1">
             <h2 class="section-title">Employment</h2>
         </div>
@@ -138,7 +164,8 @@
                 <div class="icon-javascript-road-trip-part-2" title="JavaScript Road Trip Part 2"></div>
                 <div class="icon-javascript-road-trip-part-3" title="JavaScript Road Trip Part 3"></div>
                 <div class="icon-javascript-best-practices" title="JavaScript Best Practices"></div>
-                <div class="icon-es2015-the-shape-of-javascript-to-come" title="ES2015: The Shape of JavaScript to Come"></div>
+                <div class="icon-es2015-the-shape-of-javascript-to-come"
+                     title="ES2015: The Shape of JavaScript to Come"></div>
                 <div class="icon-real-time-web-with-nodejs" title="Real-time Web with Node.js"></div>
                 <div class="icon-anatomy-of-backbonejs" title="Anatomy of Backbone.js"></div>
                 <div class="icon-anatomy-of-backbonejs-part-2" title="Anatomy of Backbone.js Part 2"></div>
