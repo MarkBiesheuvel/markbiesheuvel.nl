@@ -63,7 +63,7 @@ module.exports = function (grunt) {
             dist: {
                 src: 'tmp/backpack/images/*.*',
                 dest: 'dist/spritesheet.png',
-                destCss: 'tmp/spitesheet.css',
+                destCss: 'tmp/spritesheet.css',
                 imgPath: 'spritesheet.png',
                 algorithmOpts: {sort: false}
             }
@@ -80,7 +80,8 @@ module.exports = function (grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'tmp/minified.css': 'tmp/tidy.css'
+                    'tmp/minified.css': 'tmp/tidy.css',
+                    'dist/spritesheet.css': 'tmp/spritesheet.css'
                 }
             }
         },
@@ -290,7 +291,7 @@ module.exports = function (grunt) {
 
                 badges.forEach(function (badge) {
 
-                    var badge = badge.assertion.badge;
+                    badge = badge.assertion.badge;
                     var name = slug(badge.name.replace(/\s*completed?\s*/i, '').toLowerCase());
 
                     var taskName = 'backpackImages-' + name;
@@ -366,7 +367,7 @@ module.exports = function (grunt) {
         'build:backpack',
         '',
         ['image_resize:backpack', 'sprite:dist',]
-    )
+    );
 
     grunt.registerTask(
         'build',
