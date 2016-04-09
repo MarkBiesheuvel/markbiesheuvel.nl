@@ -70,27 +70,20 @@
     <section class="row">
 
         <div class="col-md-1">
-            <h2 class="section-title">Statistics</h2>
+            <h2 class="section-title">CURRENT REQUEST</h2>
         </div>
         <div class="col-md-3">
-            <h3>Time metrics of current request</h3>
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Metric</th>
-                    <th>Time since previous metric</th>
-                    <th>Time since start of request</th>
-                </tr>
-                </thead>
-                <tbody id="timing-stats">
-                <tr>
-                    <td>fetch</td>
-                    <td>0 ms</td>
-                    <td>0 ms</td>
-                </tr>
-                </tbody>
-            </table>
+            <p>
+                Page speed is very important in this mobile age. Here is a canvas drawing of how fast this page
+                loaded. These statistics are from your own browsers <code>window.performance.timing</code>.
+            </p>
+
+            <p>
+                The scale of this graph is fixed to 1 second to give beter comparison between reloads.
+            </p>
+
+            <canvas id="canvas" style="width:100%;height:220px"></canvas>
 
         </div>
     </section>

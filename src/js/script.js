@@ -1,7 +1,9 @@
 (function (document, window) {
 
-    // Lazy load image
-    document.getElementById('photo').src = 'photo.jpg';
+    // Lazy load image\
+    window.addEventListener('load', function () {
+        document.getElementById('photo').src = 'photo.jpg';
+    });
 
     // Lazy load badges
 
@@ -51,8 +53,10 @@
         for (var id in badges) {
             var element = document.getElementById(id);
             var html = '';
+            var title;
             for (var icon in badges[id]) {
-                html += '<div class="' + icon + '"></div>';
+                title = badges[id][icon];
+                html += '<div class="' + icon + '" title="' + title + '"></div>';
             }
             element.innerHTML = html;
         }
@@ -62,8 +66,10 @@
     var timing = window.performance.timing;
 
     var bigBang = timing.navigationStart;
-    var previous = bigBang;
-    var tbody = document.getElementById('timing-stats');
+
+    var timingStats = [];
+
+    var loaded = false;
 
     var addTimingStats = function (names) {
 
@@ -71,23 +77,31 @@
 
         names.forEach(function (name) {
 
-            var time = 0;
+            var start, end;
 
             if (name in timing) {
-                time = timing[name];
+                start = timing[name];
             } else if ((name + 'Start') in timing) {
-                time = timing[name + 'Start'];
+                start = timing[name + 'Start'];
+
+                if ((name + 'End') in timing) {
+                    end = timing[name + 'End'];
+                }
             }
 
-            if (!time) {
+            if (!start) {
                 return;
             }
+            if (!end) {
+                end = start;
+            }
 
-            html += '<tr><td>' + name + '</td><td>' + (time - previous) + ' ms</td><td>' + (time - bigBang) + ' ms</td></tr>';
-            previous = time;
+            timingStats.push({
+                name: name,
+                start: start,
+                end: end
+            });
         });
-
-        tbody.innerHTML += html;
     };
 
     addTimingStats(['domainLookup', 'connect', 'secureConnection', 'request', 'response', 'domLoading']);
@@ -98,7 +112,86 @@
 
     window.addEventListener('load', function () {
         addTimingStats(['domComplete', 'loadEvent']);
+        loaded = true;
     }, false);
+
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+
+    var width = parseInt(canvas.clientWidth, 10);
+    var height = parseInt(canvas.clientHeight, 10);
+    var margin = 40;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    width -= margin * 2;
+    height -= margin * 2;
+
+    ctx.font = '12px arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    var scaler = function (from, to) {
+        var factor = to - from;
+        return function (value) {
+            return width * value / factor;
+        };
+    };
+
+    var draw = function () {
+
+        ctx.clearRect(0, 0, width, height);
+
+        ctx.translate(margin, margin);
+
+        ctx.strokeStyle = '#333';
+        ctx.strokeRect(0, 0, width, height);
+
+        var now = Math.max(bigBang + 1000, +(new Date));
+
+        var scale = scaler(bigBang, now);
+
+        ctx.fillStyle = '#333';
+
+        for (var t = 0; t < (now - bigBang); t += 150) {
+            ctx.fillText(t + 'ms', scale(t), height + 7);
+        }
+
+        timingStats.forEach(function (stat, i) {
+
+            var x = scale(stat.start - bigBang);
+            var y = i * 14;
+            var text = stat.name;
+
+            ctx.fillStyle = '#337ab7';
+
+            if (stat.start != stat.end) {
+                var diff = stat.end - stat.start;
+
+                text += ' (' + diff + 'ms)';
+
+                ctx.fillRect(x, y, Math.ceil(scale(diff)), 12);
+
+            } else {
+                ctx.fillRect(x, 0, 1, height);
+            }
+
+            ctx.fillStyle = '#333';
+            ctx.fillText(text, x, y + 5);
+        });
+
+        if (!loaded) {
+            window.requestAnimationFrame(draw);
+        }
+    };
+
+    window.requestAnimationFrame(draw);
+
+    window.onresize = function () {
+        // TODO: redraw canvas
+    };
 
 })(document, window);
 
