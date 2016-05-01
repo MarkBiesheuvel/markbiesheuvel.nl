@@ -34,7 +34,10 @@
                  alt="Mark Biesheuvel">
         </div>
         <div class="col-md-3">
-            <h1>Mark Biesheuvel</h1>
+            <h1>
+                Mark Biesheuvel
+                <small class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">Web application developer</small>
+            </h1>
 
             <dl class="dl-horizontal">
                 <dt>E-mail</dt>
@@ -62,69 +65,81 @@
                     </a>
                 </dd>
             </dl>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas leo ligula, pretium consequat semper
+                at, venenatis non lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+                inceptos himenaeos. Pellentesque lectus eros, sodales et lorem ut, convallis congue ipsum. Proin dui
+                nunc, finibus id turpis nec, convallis congue diam. Vestibulum ante ipsum primis in faucibus orci luctus
+                et ultrices posuere cubilia Curae; Aenean sagittis metus eget tellus fermentum condimentum. Donec id
+                augue eget felis convallis porttitor. Mauris a imperdiet eros. Proin tincidunt ipsum in egestas finibus.
+                Vestibulum vel lectus vulputate, aliquam ipsum eu, viverra mi.</p>
+            <p>Ut sed euismod nibh, ut sodales dui. Duis nec enim dapibus, egestas nunc quis, pretium metus. Quisque
+                efficitur, sem lobortis elementum laoreet, tellus diam accumsan risus, a dignissim sapien mi eu nisi.
+                Suspendisse cursus augue et magna commodo iaculis. Fusce maximus interdum urna, non ultrices nunc
+                convallis ac. Nulla consectetur semper massa nec vehicula. Duis facilisis semper malesuada. Sed ipsum
+                turpis, hendrerit ut blandit et, tempus non sapien. Quisque fermentum semper nibh eu commodo.</p>
         </div>
     </header>
 
     <hr>
 
     <section class="row">
-
         <div class="col-md-1">
-            <h2 class="section-title">CURRENT REQUEST</h2>
+            <h2 class="section-title">Work experience</h2>
         </div>
         <div class="col-md-3">
 
-            <p>
-                Page speed is very important in this mobile age. Here is a canvas drawing of how fast this page
-                loaded. These statistics are from your own browsers <code>window.performance.timing</code>.
-            </p>
+            <h3>
+                <strong><a href="http://qforma.nl" target="_blank">QForma</a></strong>
+                <small>2012 - present</small>
+            </h3>
 
-            <p>
-                The scale of this graph is fixed to 1 second to give beter comparison between reloads.
-            </p>
-
-            <canvas id="canvas" style="width:100%;height:220px"></canvas>
+            <strong>Responsibilities</strong>
+            <ul>
+                <li>Designing database structure and optimizing queries</li>
+                <li>Developing custom add-ons to customer requirements</li>
+                <li>Integration front-end (JavaScript) with back-end (PHP)</li>
+                <li>Researching new technologies and business opportunities</li>
+                <li>Operating cloud infrastructure for continuous deployment</li>
+            </ul>
+            
+            <strong>Achievements</strong>
+            <ul>
+                <li>Replaced generated code from a CMS by an optimized query to make page loads 10 times faster</li>
+                <li>Restructured cache usage of ACL to reduce memory usage per request by 80%</li>
+                <li>Developed a real-time integration between VoIP system and web app to relay customer information as calls come in</li>
+                <li>Migrated web applications to AWS to reduce hosting costs by approximately 50%</li>
+            </ul>
 
         </div>
     </section>
 
     <section class="row">
         <div class="col-md-1">
-            <h2 class="section-title">BADGES</h2>
+            <h2 class="section-title">Education</h2>
         </div>
         <div class="col-md-3">
 
-            <h3><strong><a href="https://qwiklabs.com/">Qwiklabs</a></strong></h3>
+            <h3>
+                <strong>Eindhoven University of Technology</strong>
+                <small>2009 - 2012</small>
+            </h3>
 
-            <h4>AWS</h4>
-            <div id="aws" class="icons">
-                <div><!-- The reason this div is here is so that uncss won't remove the styling on .icons>* --></div>
-            </div>
-
-            <h3><strong><a href="https://www.codeschool.com/" target="_blank">Codeschool</a></strong></h3>
-
-            <h4>JavaScript</h4>
-            <div id="javascript" class="icons">
-            </div>
-
-            <h4>Databases</h4>
-            <div id="databases" class="icons">
-            </div>
-
-            <h4>Git</h4>
-            <div id="git" class="icons">
-            </div>
-
-            <h4>CSS and Sass</h4>
-            <div id="css" class="icons">
-            </div>
+            <strong>Courses</strong>
+            <ul>
+                <li>Object Oriented Programming</li>
+                <li>Data structures</li>
+                <li>Algorithms</li>
+                <li>Datamodeling and databases</li>
+                <li>Computer networks</li>
+                <li>Functional programming</li>
+            </ul>
 
         </div>
     </section>
 
 </div>
 
-<link rel="stylesheet" href="spritesheet.css">
 <!-- build:js inline script.min.js -->
 <!-- /build -->
 </body>

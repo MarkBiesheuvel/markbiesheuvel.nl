@@ -16,6 +16,7 @@
 
 // Utility classes
 @import "utilities.less";
+@import "responsive-utilities.less";
 
 header {
   padding-top: (@padding-large-vertical * 3);
@@ -28,44 +29,14 @@ header {
   padding: @padding-large-vertical @padding-large-horizontal;
 }
 
-.grades {
-
-  td, th {
-    text-align: center;
-
-    &:nth-child(1) {
-      text-align: left;
+@media (min-width: @screen-sm-min) {
+  .dl-horizontal {
+    dt {
+      width: 80px;
     }
-  }
 
-  td {
-    &:nth-child(3) {
-      color: @brand-success;
-
-      &:empty:before {
-        color: @gray-light;
-        content: "n/a";
-      }
+    dd {
+      margin-left: 100px;
     }
-  }
-}
-
-.icons {
-
-  &:before {
-    content: " ";
-    display: table;
-  }
-
-  &:after {
-    content: " ";
-    display: table;
-    clear: both;
-  }
-
-  * {
-    float: left;
-    position: relative;
-    margin: 0.25em;
   }
 }

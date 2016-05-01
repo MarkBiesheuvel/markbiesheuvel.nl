@@ -22,11 +22,9 @@
     "grunt-curl": "*",
     "grunt-image-resize": "*",
     "grunt-processhtml": "*",
-    "grunt-spritesmith": "*",
     "grunt-template": "*",
     "grunt-uncss": "*",
-    "load-grunt-tasks": "*",
-    "slug": "*"
+    "load-grunt-tasks": "*"
   },
   "dependencies": {
     "bootstrap": "*"

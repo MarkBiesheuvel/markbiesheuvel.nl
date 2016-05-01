@@ -59,16 +59,6 @@ module.exports = function (grunt) {
             }
         },
 
-        sprite: {
-            dist: {
-                src: 'tmp/backpack/images/*.*',
-                dest: 'dist/spritesheet.png',
-                destCss: 'tmp/spritesheet.css',
-                imgPath: 'spritesheet.png',
-                algorithmOpts: {sort: false}
-            }
-        },
-
         uncss: {
             dist: {
                 files: {
@@ -80,8 +70,7 @@ module.exports = function (grunt) {
         cssmin: {
             dist: {
                 files: {
-                    'tmp/minified.css': 'tmp/tidy.css',
-                    'dist/spritesheet.css': 'tmp/spritesheet.css'
+                    'tmp/minified.css': 'tmp/tidy.css'
                 }
             }
         },
@@ -106,16 +95,6 @@ module.exports = function (grunt) {
                 files: {
                     'tmp/photo.jpg': 'src/img/photo.jpg'
                 }
-            },
-            backpack: {
-                options: {
-                    width: badgeSize,
-                    height: badgeSize,
-                    quality: 1.0,
-                    crop: true
-                },
-                src: 'src/img/backpack/*.*',
-                dest: 'tmp/backpack/images/'
             }
         },
 
@@ -124,17 +103,6 @@ module.exports = function (grunt) {
                 files: {
                     'tmp/photo.b64': 'tmp/photo.jpg'
                 }
-            }
-        },
-
-        // Fetch data from APIs
-        curl: {
-            backpackGroups: {
-                src: {
-                    url: 'https://backpack.openbadges.org/displayer/274141/groups.json',
-                    method: 'GET'
-                },
-                dest: 'tmp/backpack/groups.json'
             }
         },
 
@@ -235,86 +203,7 @@ module.exports = function (grunt) {
 
     // Load the plugins
     require('load-grunt-tasks')(grunt);
-
-    grunt.registerTask('curl:backpackBadges',
-        'Download badges for each collection',
-        function () {
-
-            var groups = grunt.file.readJSON('tmp/backpack/groups.json').groups;
-
-            var config = {
-                curl: {}
-            };
-            var tasks = [];
-
-            groups.forEach(function (group, i) {
-
-                var id = group.groupId;
-                var taskName = 'backpackBadges' + id;
-                var url = 'https://backpack.openbadges.org/displayer/274141/group/' + id + '.json';
-
-                config.curl[taskName] = {
-                    src: {
-                        url: url,
-                        method: 'GET',
-                    },
-                    dest: 'tmp/backpack/groups/' + id + '.json'
-                };
-
-                tasks.push('curl:' + taskName);
-            });
-
-            grunt.config.merge(config);
-            grunt.task.run(tasks);
-        }
-    );
-
-    grunt.registerTask('curl:backpackImages',
-        '', function () {
-
-            return; // Included in repo now
-
-            var path = require('path');
-            var fs = require('fs');
-            var slug = require('slug');
-
-            var groups = fs.readdirSync('tmp/backpack/groups');
-
-            var config = {
-                curl: {}
-            };
-            var tasks = [];
-
-            groups.forEach(function (group) {
-
-                var badges = grunt.file.readJSON('tmp/backpack/groups/' + group).badges;
-
-                badges.forEach(function (badge) {
-
-                    badge = badge.assertion.badge;
-                    var name = slug(badge.name.replace(/\s*completed?\s*/i, '').toLowerCase());
-
-                    var taskName = 'backpackImages-' + name;
-                    var url = badge.image;
-                    var ext = path.extname(url);
-
-                    config.curl[taskName] = {
-                        src: {
-                            url: url,
-                            method: 'GET',
-                        },
-                        dest: 'src/img/backpack/' + name + ext
-                    };
-
-                    tasks.push('curl:' + taskName);
-                });
-            });
-
-            grunt.config.merge(config);
-            grunt.task.run(tasks);
-        }
-    );
-
+    
     grunt.registerTask(
         'build:html+css+js',
         'Compile template to HTML and compress',
@@ -337,42 +226,15 @@ module.exports = function (grunt) {
     );
 
     grunt.registerTask(
-        'build:backpack',
-        'Download and resize badges',
-        function () {
-
-            if (!grunt.file.exists('tmp/github/groups.json')) {
-                grunt.task.run('curl:backpackGroups');
-            }
-
-            if (!grunt.file.exists('tmp/backpack/groups/')) {
-                grunt.task.run('curl:backpackBadges');
-            }
-
-            if (!grunt.file.exists('tmp/backpack/images/')) {
-                grunt.task.run('curl:backpackImages');
-            }
-
-            grunt.task.run('image_resize:badges');
-        }
-    );
-
-    grunt.registerTask(
         'build:img',
         'Resize and compress images',
         ['image_resize:lossless', 'image_resize:compressed', 'base64:dist']
     );
 
     grunt.registerTask(
-        'build:backpack',
-        '',
-        ['image_resize:backpack', 'sprite:dist',]
-    );
-
-    grunt.registerTask(
         'build',
         'Make a clean build',
-        ['clean:dist', 'clean:tmp', 'build:img', 'build:backpack', 'build:html+css+js', 'copy:dist']
+        ['clean:dist', 'clean:tmp', 'build:img', 'build:html+css+js', 'copy:dist']
     );
 
 };
