@@ -36,7 +36,9 @@
         <div class="col-md-3">
             <h1>
                 Mark Biesheuvel
-                <small class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">Web application developer</small>
+                <small class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+                    Web application developer
+                </small>
             </h1>
 
             <dl class="dl-horizontal">
@@ -85,7 +87,7 @@
 
     <section class="row">
         <div class="col-md-1">
-            <h2 class="section-title">Work experience</h2>
+            <h2 class="section-title">Employment</h2>
         </div>
         <div class="col-md-3">
 
@@ -102,17 +104,21 @@
                 <li>Researching new technologies and business opportunities</li>
                 <li>Operating cloud infrastructure for continuous deployment</li>
             </ul>
-            
+
             <strong>Achievements</strong>
             <ul>
                 <li>Replaced generated code from a CMS by an optimized query to make page loads 10 times faster</li>
                 <li>Restructured cache usage of ACL to reduce memory usage per request by 80%</li>
-                <li>Developed a real-time integration between VoIP system and web app to relay customer information as calls come in</li>
+                <li>Developed a real-time integration between VoIP system and web app to relay customer information as
+                    calls come in
+                </li>
                 <li>Migrated web applications to AWS to reduce hosting costs by approximately 50%</li>
             </ul>
 
         </div>
     </section>
+
+    <hr>
 
     <section class="row">
         <div class="col-md-1">
@@ -136,6 +142,17 @@
             </ul>
 
         </div>
+    </section>
+
+    <hr>
+
+    <section class="last">
+        <p class="text-center">
+                <span class="hidden-xs">&mdash;</span>
+                For further information about my experience please feel free to contact me at
+                <a href="mailto:mail@markbiesheuvel">mail@markbiesheuvel.nl</a>
+                <span class="hidden-xs">&mdash;</span>
+        </p>
     </section>
 
 </div>
