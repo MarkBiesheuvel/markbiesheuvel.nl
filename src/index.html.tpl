@@ -68,18 +68,17 @@
                 </dd>
             </dl>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas leo ligula, pretium consequat semper
-                at, venenatis non lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-                inceptos himenaeos. Pellentesque lectus eros, sodales et lorem ut, convallis congue ipsum. Proin dui
-                nunc, finibus id turpis nec, convallis congue diam. Vestibulum ante ipsum primis in faucibus orci luctus
-                et ultrices posuere cubilia Curae; Aenean sagittis metus eget tellus fermentum condimentum. Donec id
-                augue eget felis convallis porttitor. Mauris a imperdiet eros. Proin tincidunt ipsum in egestas finibus.
-                Vestibulum vel lectus vulputate, aliquam ipsum eu, viverra mi.</p>
-            <p>Ut sed euismod nibh, ut sodales dui. Duis nec enim dapibus, egestas nunc quis, pretium metus. Quisque
-                efficitur, sem lobortis elementum laoreet, tellus diam accumsan risus, a dignissim sapien mi eu nisi.
-                Suspendisse cursus augue et magna commodo iaculis. Fusce maximus interdum urna, non ultrices nunc
-                convallis ac. Nulla consectetur semper massa nec vehicula. Duis facilisis semper malesuada. Sed ipsum
-                turpis, hendrerit ut blandit et, tempus non sapien. Quisque fermentum semper nibh eu commodo.</p>
+            <p>
+                Web developer who is passionate about finding the right tool for the job. Eager to learn and try new
+                technologies.
+            </p>
+            <p>
+                Good at asking the right question to define the problem at hand in order to come up with the best
+                solution.
+            </p>
+            <p>
+                Open to share knowledge with peers and give easy to understand explanations for technical subjects.
+            </p>
         </div>
     </header>
 
@@ -92,12 +91,13 @@
         <div class="col-md-3">
             <div class="row">
                 <div class="col-sm-2">
-                    <h3>Languages</h3>
+                    <h3>Languages / Runtimes</h3>
                     <ul>
                         <li>PHP</li>
                         <li>JavaScript, ECMAScript 2015</li>
                         <li>SQL</li>
                         <li>Less, Sass, CSS</li>
+                        <li>Node.js</li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
