@@ -87,7 +87,59 @@
 
     <section class="row">
         <div class="col-md-1">
-            <h2 class="section-title">Employment</h2>
+            <h2 class="section-title">Technical skills</h2>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class="col-sm-2">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>PHP</li>
+                        <li>JavaScript, ECMAScript 2015</li>
+                        <li>SQL</li>
+                        <li>Less, Sass, CSS</li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h3>Frameworks / CMS / Libraries</h3>
+                    <ul>
+                        <li>Zend Framework</li>
+                        <li>pimcore</li>
+                        <li>Expression Engine</li>
+                        <li>jQuery</li>
+                        <li>Bootstrap</li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h3>
+                        Cloud services
+                        <small>AWS</small>
+                    </h3>
+                    <ul>
+                        <li>CloudFront (edge location caching)</li>
+                        <li>Lambda (event based computing)</li>
+                        <li>OpsWorks (server configuration management)</li>
+                        <li>other core services like EC2, S3, RDS, Route53</li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h3>Development tools</h3>
+                    <ul>
+                        <li>Regular Expressions</li>
+                        <li>Git</li>
+                        <li>Grunt</li>
+                        <li>Travis CI</li>
+                        <li>Yeoman</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr>
+
+    <section class="row">
+        <div class="col-md-1">
+            <h2 class="section-title">Work Experience</h2>
         </div>
         <div class="col-md-3">
 
@@ -148,10 +200,10 @@
 
     <section class="last">
         <p class="text-center">
-                <span class="hidden-xs">&mdash;</span>
-                For further information about my experience please feel free to contact me at
-                <a href="mailto:mail@markbiesheuvel">mail@markbiesheuvel.nl</a>
-                <span class="hidden-xs">&mdash;</span>
+            <span class="hidden-xs">&mdash;</span>
+            For further information about my experience please feel free to contact me at
+            <a href="mailto:mail@markbiesheuvel">mail@markbiesheuvel.nl</a>
+            <span class="hidden-xs">&mdash;</span>
         </p>
     </section>
 

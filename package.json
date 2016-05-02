@@ -19,7 +19,6 @@
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
     "grunt-base64": "*",
-    "grunt-curl": "*",
     "grunt-image-resize": "*",
     "grunt-processhtml": "*",
     "grunt-template": "*",
