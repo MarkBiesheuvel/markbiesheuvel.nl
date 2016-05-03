@@ -77,7 +77,7 @@
                 solution.
             </p>
             <p>
-                Open to share knowledge with peers and give easy to understand explanations for technical subjects.
+                Able to share knowledge with peers and gives easy to understand explanations for technical subjects.
             </p>
         </div>
     </header>
@@ -116,9 +116,10 @@
                         <small>AWS</small>
                     </h3>
                     <ul>
-                        <li>CloudFront (edge location caching)</li>
-                        <li>Lambda (event based computing)</li>
-                        <li>OpsWorks (server configuration management)</li>
+                        <li>CloudFront (global content delivery)</li>
+                        <li>Lambda (event-driven computing)</li>
+                        <li>OpsWorks (devops resource management)</li>
+                        <li>SES (transactional mail service)</li>
                         <li>other core services like EC2, S3, RDS, Route53</li>
                     </ul>
                 </div>
@@ -135,6 +136,27 @@
             </div>
         </div>
     </section>
+
+    <hr>
+
+    <section class="row">
+        <div class="col-md-1">
+            <h2 class="section-title">Certification</h2>
+        </div>
+        <div class="col-md-3">
+            <h3>Amazon Web Services</h3>
+            <ul>
+                <li>
+                    <a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
+                       target="_blank">
+                        AWS Certified Solutions Architect - Associate
+                    </a>
+                    <small class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">May 2016 - May 2018</small>
+                </li>
+            </ul>
+        </div>
+    </section>
+
     <hr>
 
     <section class="row">
