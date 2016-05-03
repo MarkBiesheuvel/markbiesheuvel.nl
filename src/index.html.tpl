@@ -36,7 +36,7 @@
         <div class="col-md-3">
             <h1>
                 Mark Biesheuvel
-                <small class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+                <small>
                     Web application developer
                 </small>
             </h1>
@@ -111,10 +111,7 @@
                     </ul>
                 </div>
                 <div class="col-sm-2">
-                    <h3>
-                        Cloud services
-                        <small>AWS</small>
-                    </h3>
+                    <h3>Amazon Web Services</h3>
                     <ul>
                         <li>CloudFront (global content delivery)</li>
                         <li>Lambda (event-driven computing)</li>
@@ -151,7 +148,7 @@
                        target="_blank">
                         AWS Certified Solutions Architect - Associate
                     </a>
-                    <small class="visible-xs-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">May 2016 - May 2018</small>
+                    <small>May 2016 - May 2018</small>
                 </li>
             </ul>
         </div>
@@ -166,7 +163,7 @@
         <div class="col-md-3">
 
             <h3>
-                <strong><a href="http://qforma.nl" target="_blank">QForma</a></strong>
+                <a href="http://qforma.nl" target="_blank">QForma</a>
                 <small>2012 - present</small>
             </h3>
 
@@ -201,7 +198,7 @@
         <div class="col-md-3">
 
             <h3>
-                <strong>Eindhoven University of Technology</strong>
+                Eindhoven University of Technology
                 <small>2009 - 2012</small>
             </h3>
 
