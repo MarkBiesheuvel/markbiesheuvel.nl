@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Mark Biesheuvel | Web application developer</title>
+    <title>Mark Biesheuvel | Back-end web developer</title>
     <meta name="author" content="Mark Biesheuvel">
     <meta name="description" content="Resume of Mark Biesheuvel, web application developer">
     <meta name="keywords" content="developer,mark,biesheuvel,web,application,api,performance,grunt">
@@ -37,7 +37,7 @@
             <h1>
                 Mark Biesheuvel
                 <small>
-                    Web application developer
+                    Back-end web developer
                 </small>
             </h1>
 
@@ -96,7 +96,6 @@
                         <li>PHP</li>
                         <li>JavaScript, ECMAScript 2015</li>
                         <li>SQL</li>
-                        <li>Less, Sass, CSS</li>
                         <li>Node.js</li>
                     </ul>
                 </div>
@@ -106,28 +105,25 @@
                         <li>Zend Framework</li>
                         <li>pimcore</li>
                         <li>Expression Engine</li>
-                        <li>jQuery</li>
-                        <li>Bootstrap</li>
+                        <li>Elasticsearch</li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
                     <h3>Amazon Web Services</h3>
                     <ul>
-                        <li>CloudFront (global content delivery)</li>
                         <li>Lambda (event-driven computing)</li>
                         <li>OpsWorks (devops resource management)</li>
                         <li>SES (transactional mail service)</li>
-                        <li>other core services like EC2, S3, RDS, Route53</li>
+                        <li>other core services like EC2, CloudFront, Route53</li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
                     <h3>Development tools</h3>
                     <ul>
-                        <li>Regular Expressions</li>
                         <li>Git</li>
+                        <li>Regular Expressions</li>
                         <li>Grunt</li>
                         <li>Travis CI</li>
-                        <li>Yeoman</li>
                     </ul>
                 </div>
             </div>
@@ -145,9 +141,7 @@
             <ul>
                 <li>
                     <a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
-                       target="_blank">
-                        AWS Certified Solutions Architect - Associate
-                    </a>
+                       target="_blank">AWS Certified Solutions Architect - Associate</a>
                     <small>May 2016 - May 2018</small>
                 </li>
             </ul>
@@ -163,8 +157,14 @@
         <div class="col-md-3">
 
             <h3>
+                <a href="https://www.deskbookers.com">Deskbookers</a>
+            </h3>
+
+            <strong>Starting in September 2016</strong>
+
+            <h3>
                 <a href="http://qforma.nl" target="_blank">QForma</a>
-                <small>2012 - present</small>
+                <small>2012 - 2016</small>
             </h3>
 
             <strong>Responsibilities</strong>
