@@ -94,8 +94,8 @@
                     <h3>Languages / Runtimes</h3>
                     <ul>
                         <li>PHP</li>
-                        <li>JavaScript, ECMAScript 2015</li>
-                        <li>SQL</li>
+                        <li>JavaScript <small>(ES2015, ES2016)</small> </li>
+                        <li>SQL <small>(MySQL, PostgreSQL, SQLite)</small></li>
                         <li>Node.js</li>
                     </ul>
                 </div>
@@ -111,10 +111,10 @@
                 <div class="col-sm-2">
                     <h3>Amazon Web Services</h3>
                     <ul>
-                        <li>Lambda (event-driven computing)</li>
-                        <li>OpsWorks (devops resource management)</li>
-                        <li>SES (transactional mail service)</li>
-                        <li>other core services like EC2, CloudFront, Route53</li>
+                        <li>Lambda <small>(event-driven computing)</small></li>
+                        <li>OpsWorks <small>(devops resource management)</small></li>
+                        <li>SES <small>(transactional mail service)</small></li>
+                        <li>Core services <small>(EC2, CloudFront, Route53)</small></li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
@@ -158,13 +158,24 @@
 
             <h3>
                 <a href="https://www.deskbookers.com">Deskbookers</a>
+                <small>September 2016 - present</small>
             </h3>
 
-            <strong>Starting in September 2016</strong>
+            <strong>Responsibilities</strong>
+            <ul>
+                <li>Developing new (back-end) features for marketplace and backoffice</li>
+                <li>Operating cloud infrastructure for continuous deployment</li>
+            </ul>
+
+            <strong>Achievements</strong>
+            <ul>
+                <li>Developed new access right system for more granular adjustability of user access</li>
+                <li>Implemented search function with Elasticsearch </li>
+            </ul>
 
             <h3>
                 <a href="http://qforma.nl" target="_blank">QForma</a>
-                <small>2012 - 2016</small>
+                <small>September 2012 - August 2016</small>
             </h3>
 
             <strong>Responsibilities</strong>
@@ -183,6 +194,7 @@
                 <li>Developed a real-time integration between VoIP system and web app to relay customer information as
                     calls come in
                 </li>
+                <li>Implemented search function for web shop with 8.000 products with Elasticsearch</li>
                 <li>Migrated web applications to AWS to reduce hosting costs by approximately 50%</li>
             </ul>
 
@@ -199,15 +211,16 @@
 
             <h3>
                 Eindhoven University of Technology
-                <small>2009 - 2012</small>
+                <small>September 2009 - August 2012</small>
             </h3>
 
             <strong>Courses</strong>
+            <small>(Including but not limited to)</small>
             <ul>
                 <li>Object Oriented Programming</li>
                 <li>Data structures</li>
                 <li>Algorithms</li>
-                <li>Datamodeling and databases</li>
+                <li>Data modeling and databases</li>
                 <li>Computer networks</li>
                 <li>Functional programming</li>
             </ul>
