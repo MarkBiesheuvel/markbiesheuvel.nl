@@ -93,7 +93,7 @@ module.exports = function (grunt) {
                     quality: 0.0
                 },
                 files: {
-                    'tmp/photo.jpg': 'src/img/photo.jpg'
+                    'tmp/photo.gif': 'src/img/photo.jpg'
                 }
             }
         },
@@ -101,7 +101,7 @@ module.exports = function (grunt) {
         base64: {
             dist: {
                 files: {
-                    'tmp/photo.b64': 'tmp/photo.jpg'
+                    'tmp/photo.b64': 'tmp/photo.gif'
                 }
             }
         },

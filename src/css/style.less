@@ -45,6 +45,14 @@ header {
   }
 }
 
+.at {
+  @media (max-width: @screen-sm-max) {
+    display: none;
+  }
+}
+
+h1,
+h2,
 h3 {
   a,
   span,
@@ -52,7 +60,7 @@ h3 {
 
     display: inline-block;
 
-    @media (max-width: @screen-xs-max) {
+    @media (max-width: @screen-sm-max) {
       display: block;
     }
   }
