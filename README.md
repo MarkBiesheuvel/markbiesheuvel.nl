@@ -8,15 +8,15 @@ Getting up and running
 
 To install all dependencies
 
-    npm install
+    yarn
 
 To make a clean build
 
-    grunt build
+    yarn build
 
 To automatically rebuild while making changes to the source
 
-    grunt watch
+    yarn watch
     
 To deploy the site
 
