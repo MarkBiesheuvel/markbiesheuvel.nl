@@ -50,13 +50,6 @@
                         mail@markbiesheuvel.nl
                     </a>
                 </dd>
-                <dt>Facebook</dt>
-                <dd>
-                    <a href="https://www.facebook.com/mark.biesheuvel"
-                       target="_blank">
-                        https://www.facebook.com/mark.biesheuvel
-                    </a>
-                </dd>
                 <dt>LinkedIn</dt>
                 <dd>
                     <a href="https://nl.linkedin.com/in/markbiesheuvel"
@@ -91,92 +84,6 @@
 
     <section class="row">
         <div class="col-md-1">
-            <h2 class="section-title">Technical skills</h2>
-        </div>
-        <div class="col-md-3">
-            <div class="row">
-                <div class="col-sm-2">
-                    <h3>Languages / Runtimes</h3>
-                    <ul>
-                        <li>
-                            PHP
-                        </li>
-                        <li>
-                            JavaScript
-                            <small>(ES2015, ES2016)</small>
-                        </li>
-                        <li>
-                            SQL
-                            <small>(MySQL, PostgreSQL, SQLite)</small>
-                        </li>
-                        <li>
-                            Node.js
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-2">
-                    <h3>Frameworks / CMS / Libraries</h3>
-                    <ul>
-                        <li>
-                            Zend Framework
-                        </li>
-                        <li>
-                            pimcore
-                        </li>
-                        <li>
-                            Expression Engine
-                        </li>
-                        <li>
-                            Elasticsearch
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-2">
-                    <h3>Amazon Web Services</h3>
-                    <ul>
-                        <li>
-                            Lambda
-                            <small>(event-driven computing)</small>
-                        </li>
-                        <li>
-                            OpsWorks
-                            <small>(devops resource management)</small>
-                        </li>
-                        <li>
-                            SES
-                            <small>(transactional mail service)</small>
-                        </li>
-                        <li>
-                            Core services
-                            <small>(EC2, CloudFront, Route53)</small>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-2">
-                    <h3>Development tools</h3>
-                    <ul>
-                        <li>
-                            Git, Mercurial
-                        </li>
-                        <li>
-                            Regular Expressions
-                        </li>
-                        <li>
-                            Grunt, Gulp
-                        </li>
-                        <li>
-                            Travis CI
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr>
-
-    <section class="row">
-        <div class="col-md-1">
             <h2 class="section-title">Certification</h2>
         </div>
         <div class="col-md-3">
@@ -197,7 +104,7 @@
 
     <section class="row">
         <div class="col-md-1">
-            <h2 class="section-title">Work Experience</h2>
+            <h2 class="section-title">Experience</h2>
         </div>
         <div class="col-md-3">
 
@@ -205,9 +112,8 @@
                 <span>Consulting Cloud Systems Engineer</span>
                 <small class="at">@</small>
                 <a href="http://www.oblivioncloudcontrol.com/" target="_blank">
-                    Oblivion Cloud Control
-                </a>
-                <small>April 2017 - present</small>
+                    Oblivion Cloud Control</a>
+                <small> April 2017 - present</small>
             </h3>
 
             <strong>Responsibilities</strong>
@@ -233,8 +139,7 @@
                 <span>Back-end Developer</span>
                 <small class="at">@</small>
                 <a href="https://www.deskbookers.com/en-gb/" target="_blank">
-                    Deskbookers
-                </a>
+                    Deskbookers</a>
                 <small>September 2016 - March 2017</small>
             </h3>
 
@@ -272,8 +177,7 @@
                 <span>Web Developer</span>
                 <small class="at">@</small>
                 <a href="http://qforma.nl" target="_blank">
-                    QForma
-                </a>
+                    QForma</a>
                 <small>September 2012 - August 2016</small>
             </h3>
 
@@ -328,8 +232,7 @@
                 <span>Computer Science</span>
                 <small class="at">@</small>
                 <a href="https://www.tue.nl/en/" target="_blank">
-                    Eindhoven University of Technology
-                </a>
+                    Eindhoven University of Technology</a>
                 <small>2009 - 2012</small>
             </h3>
 
