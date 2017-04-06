@@ -1,4 +1,4 @@
-variable "website_url" {
+variable "main_url" {
   type = "string"
 }
 
@@ -10,13 +10,18 @@ provider "aws" {
   region     = "us-east-1"
 }
 
+data "aws_acm_certificate" "certificate" {
+  domain   = "${var.main_url}"
+  statuses = ["ISSUED"]
+}
+
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "${var.website_url}"
+  bucket = "${var.main_url}"
   acl    = "public-read"
 
   tags {
     Type = "Website"
-    Url  = "${var.website_url}"
+    Url  = "${var.main_url}"
   }
 
   website {
@@ -68,12 +73,11 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
 
   tags {
     Type = "Website"
-    Url  = "${var.website_url}"
+    Url  = "${var.main_url}"
   }
 
   viewer_certificate {
-    /* TODO: create resource */
-    acm_certificate_arn            = "arn:aws:acm:us-east-1:312701731826:certificate/054196d8-6cfb-4442-96f5-9fdea2f1dd4a"
+    acm_certificate_arn            = "${data.aws_acm_certificate.certificate.arn}"
     cloudfront_default_certificate = false
     minimum_protocol_version       = "TLSv1"
     ssl_support_method             = "sni-only"
