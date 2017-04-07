@@ -6,6 +6,10 @@ variable "aliases" {
   type    = "list"
 }
 
+variable "domains" {
+  type    = "list"
+}
+
 provider "aws" {
   region     = "us-east-1"
 }
@@ -91,18 +95,20 @@ resource "aws_cloudfront_distribution" "main" {
   }
 }
 
-resource "aws_route53_zone" "main" {
-  name = "${var.url}."
+resource "aws_route53_zone" "all" {
+  count = "${length(var.domains)}"
+  name = "${element(var.domains, count.index)}."
 
   tags {
     Type = "Website"
-    Url  = "${var.url}"
+    Url  = "${element(var.domains, count.index)}"
   }
 }
 
-resource "aws_route53_record" "main_naked_domain" {
-  zone_id = "${aws_route53_zone.main.zone_id}"
-  name    = "${var.url}."
+resource "aws_route53_record" "naked_domains" {
+  count = "${aws_route53_zone.all.count}"
+  zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
+  name    = "${element(aws_route53_zone.all.*.name, count.index)}"
   type    = "A"
 
   alias {
@@ -112,28 +118,30 @@ resource "aws_route53_record" "main_naked_domain" {
   }
 }
 
-resource "aws_route53_record" "main_wildcard_domain" {
-  zone_id = "${aws_route53_zone.main.zone_id}"
-  name    = "*.${var.url}."
+resource "aws_route53_record" "wildcard_domains" {
+  count = "${aws_route53_zone.all.count}"
+  zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
+  name    = "*.${element(aws_route53_zone.all.*.name, count.index)}"
   type    = "A"
 
   alias {
-    name                   = "${aws_route53_record.main_naked_domain.name}"
-    zone_id                = "${aws_route53_record.main_naked_domain.zone_id}"
+    name                   = "${element(aws_route53_record.naked_domains.*.name, count.index)}"
+    zone_id                = "${element(aws_route53_record.naked_domains.*.zone_id, count.index)}"
     evaluate_target_health = false
   }
 }
 
-resource "aws_route53_record" "main_ns" {
-  zone_id = "${aws_route53_zone.main.zone_id}"
-  name    = "${var.url}."
+resource "aws_route53_record" "name_servers" {
+  count = "${aws_route53_zone.all.count}"
+  zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
+  name    = "${element(aws_route53_zone.all.*.name, count.index)}"
   type    = "NS"
   ttl     = "172800"
 
   records = [
-    "${aws_route53_zone.main.name_servers.0}",
-    "${aws_route53_zone.main.name_servers.1}",
-    "${aws_route53_zone.main.name_servers.2}",
-    "${aws_route53_zone.main.name_servers.3}",
+    "${element(aws_route53_zone.all.*.name_servers.0, count.index)}",
+    "${element(aws_route53_zone.all.*.name_servers.1, count.index)}",
+    "${element(aws_route53_zone.all.*.name_servers.2, count.index)}",
+    "${element(aws_route53_zone.all.*.name_servers.3, count.index)}",
   ]
 }
