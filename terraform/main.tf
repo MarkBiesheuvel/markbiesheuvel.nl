@@ -41,6 +41,21 @@ variable "certificate_arn" {
   default = "arn:aws:acm:us-east-1:312701731826:certificate/054196d8-6cfb-4442-96f5-9fdea2f1dd4a"
 }
 
+resource "aws_codecommit_repository" "main" {
+  repository_name = "${var.url}"
+  default_branch  = "master"
+}
+
+resource "aws_codecommit_trigger" "main" {
+  repository_name = "${aws_codecommit_repository.main.repository_name}"
+
+  trigger {
+    name            = "push"
+    events          = ["updateReference"]
+    destination_arn = "arn:aws:lambda:us-east-1:312701731826:function:sleepy"
+  }
+}
+
 resource "aws_s3_bucket" "main" {
   bucket = "${var.url}"
   acl    = "public-read"

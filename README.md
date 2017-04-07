@@ -3,7 +3,7 @@ markbiesheuvel.nl
 
 Just my personal website
 
-Getting up and running
+Development
 --
 
 To install all dependencies
@@ -17,7 +17,15 @@ To make a clean build
 To automatically rebuild while making changes to the source
 
     yarn watch
-    
-To deploy the site
 
-    git push
+Build
+--
+
+Configure CodeCommit remote (only once).
+See: http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-ssh-unixes.html
+
+    git remote add aws ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/markbiesheuvel.nl
+
+Push to this repo to deploy
+
+    git push aws
