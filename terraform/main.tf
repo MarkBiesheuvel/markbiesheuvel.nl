@@ -1,8 +1,8 @@
-variable "main_url" {
+variable "url" {
   type = "string"
 }
 
-variable "extra_urls" {
+variable "aliases" {
   type    = "list"
 }
 
@@ -14,8 +14,8 @@ provider "aws" {
 # Known issue: https://forums.aws.amazon.com/thread.jspa?threadID=249559
 # Can not use data tag until old certificate is deleted
 
-data "aws_acm_certificate" "certificate" {
-  domain   = "${var.main_url}"
+data "aws_acm_certificate" "main" {
+  domain   = "${var.url}"
   statuses = ["ISSUED"]
 }
 */
@@ -23,30 +23,30 @@ variable "certificate_arn" {
   default = "arn:aws:acm:us-east-1:312701731826:certificate/054196d8-6cfb-4442-96f5-9fdea2f1dd4a"
 }
 
-resource "aws_s3_bucket" "s3_bucket" {
-  bucket = "${var.main_url}"
+resource "aws_s3_bucket" "main" {
+  bucket = "${var.url}"
   acl    = "public-read"
-
-  tags {
-    Type = "Website"
-    Url  = "${var.main_url}"
-  }
 
   website {
     index_document = "index.html"
   }
+
+  tags {
+    Type = "Website"
+    Url  = "${var.url}"
+  }
 }
 
-resource "aws_cloudfront_distribution" "cloudfront_distribution" {
+resource "aws_cloudfront_distribution" "main" {
 
   enabled             = true
   is_ipv6_enabled     = true
   http_version        = "http2"
   default_root_object = "index.html"
-  aliases             = "${var.extra_urls}"
+  aliases             = "${var.aliases}"
 
   origin {
-    domain_name = "${aws_s3_bucket.s3_bucket.bucket_domain_name}"
+    domain_name = "${aws_s3_bucket.main.bucket_domain_name}"
     origin_id   = "S3"
   }
 
@@ -56,6 +56,9 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
     target_origin_id       = "S3"
     viewer_protocol_policy = "redirect-to-https"
     compress               = true
+    min_ttl                = 0
+    default_ttl            = 86400
+    max_ttl                = 31536000
 
     forwarded_values {
       query_string = false
@@ -64,11 +67,6 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
         forward = "none"
       }
     }
-
-    viewer_protocol_policy = "allow-all"
-    min_ttl                = 0
-    default_ttl            = 86400
-    max_ttl                = 31536000
   }
 
   price_class = "PriceClass_All"
@@ -79,16 +77,63 @@ resource "aws_cloudfront_distribution" "cloudfront_distribution" {
     }
   }
 
-  tags {
-    Type = "Website"
-    Url  = "${var.main_url}"
-  }
-
   viewer_certificate {
-    /* acm_certificate_arn            = "${data.aws_acm_certificate.certificate.arn}" */
+    /* acm_certificate_arn            = "${data.aws_acm_certificate.main.arn}" */
     acm_certificate_arn            = "${var.certificate_arn}"
     cloudfront_default_certificate = false
     minimum_protocol_version       = "TLSv1"
     ssl_support_method             = "sni-only"
   }
+
+  tags {
+    Type = "Website"
+    Url  = "${var.url}"
+  }
+}
+
+resource "aws_route53_zone" "main" {
+  name = "${var.url}."
+
+  tags {
+    Type = "Website"
+    Url  = "${var.url}"
+  }
+}
+
+resource "aws_route53_record" "main_naked_domain" {
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "${var.url}."
+  type    = "A"
+
+  alias {
+    name                   = "${aws_cloudfront_distribution.main.domain_name}"
+    zone_id                = "${aws_cloudfront_distribution.main.hosted_zone_id}"
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "main_wildcard_domain" {
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "*.${var.url}."
+  type    = "A"
+
+  alias {
+    name                   = "${aws_route53_record.main_naked_domain.name}"
+    zone_id                = "${aws_route53_record.main_naked_domain.zone_id}"
+    evaluate_target_health = false
+  }
+}
+
+resource "aws_route53_record" "main_ns" {
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "${var.url}."
+  type    = "NS"
+  ttl     = "172800"
+
+  records = [
+    "${aws_route53_zone.main.name_servers.0}",
+    "${aws_route53_zone.main.name_servers.1}",
+    "${aws_route53_zone.main.name_servers.2}",
+    "${aws_route53_zone.main.name_servers.3}",
+  ]
 }

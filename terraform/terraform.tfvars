@@ -1,5 +1,5 @@
-main_url = "markbiesheuvel.nl"
-extra_urls = [
+url = "markbiesheuvel.nl"
+aliases = [
   "markbiesheuvel.com",
   "biesheuvel.amsterdam",
   "*.markbiesheuvel.nl",
