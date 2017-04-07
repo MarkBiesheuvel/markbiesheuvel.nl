@@ -1,3 +1,4 @@
+repo = "https://github.com/MarkBiesheuvel/markbiesheuvel.nl.git"
 url = "markbiesheuvel.nl"
 aliases = [
   "markbiesheuvel.nl",
