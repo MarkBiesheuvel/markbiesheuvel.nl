@@ -3,16 +3,21 @@ variable "url" {
 }
 
 variable "aliases" {
-  type    = "list"
+  type = "list"
 }
 
 variable "domains" {
-  type    = "list"
+  type = "list"
 }
 
 variable "mx_records" {
   type    = "list"
   default = []
+}
+
+variable "keybase_verification" {
+  type = "map"
+  default = {}
 }
 
 provider "aws" {
@@ -102,11 +107,11 @@ resource "aws_cloudfront_distribution" "main" {
 
 resource "aws_route53_zone" "all" {
   count = "${length(var.domains)}"
-  name = "${element(var.domains, count.index)}."
+  name = "${element(var.domains, count.index)}"
 
   tags {
     Type = "Website"
-    Url  = "${element(var.domains, count.index)}"
+    Url  = "${var.url}"
   }
 }
 
@@ -159,4 +164,16 @@ resource "aws_route53_record" "mx" {
   ttl     = "86400"
 
   records = "${var.mx_records}"
+}
+
+resource "aws_route53_record" "keybase" {
+  count = "${aws_route53_zone.all.count}"
+  zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
+  name    = "${element(aws_route53_zone.all.*.name, count.index)}"
+  type    = "TXT"
+  ttl     = "86400"
+
+  records = [
+    "keybase-site-verification=${var.keybase_verification[element(aws_route53_zone.all.*.name, count.index)]}"
+  ]
 }
