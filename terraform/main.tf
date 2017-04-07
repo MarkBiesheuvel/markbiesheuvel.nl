@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 variable "url" {
   type = "string"
 }
@@ -18,10 +22,6 @@ variable "mx_records" {
 variable "keybase_verification" {
   type = "map"
   default = {}
-}
-
-provider "aws" {
-  region     = "us-east-1"
 }
 
 /*
