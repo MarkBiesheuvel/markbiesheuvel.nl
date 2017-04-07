@@ -10,6 +10,11 @@ variable "domains" {
   type    = "list"
 }
 
+variable "mx_records" {
+  type    = "list"
+  default = []
+}
+
 provider "aws" {
   region     = "us-east-1"
 }
@@ -144,4 +149,14 @@ resource "aws_route53_record" "name_servers" {
     "${element(aws_route53_zone.all.*.name_servers.2, count.index)}",
     "${element(aws_route53_zone.all.*.name_servers.3, count.index)}",
   ]
+}
+
+resource "aws_route53_record" "mx" {
+  count = "${aws_route53_zone.all.count}"
+  zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
+  name    = "${element(aws_route53_zone.all.*.name, count.index)}"
+  type    = "MX"
+  ttl     = "86400"
+
+  records = "${var.mx_records}"
 }
