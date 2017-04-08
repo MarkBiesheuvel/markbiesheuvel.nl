@@ -1,4 +1,5 @@
 .sass-cache
+.terraform
 node_modules
 nbproject
 dist
