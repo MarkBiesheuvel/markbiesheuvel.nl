@@ -200,6 +200,7 @@ resource "aws_route53_record" "keybase" {
 
 resource "aws_iam_role" "codebuild_role" {
   name = "${replace("${var.url}", ".", "-")}-codebuild-role"
+
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -216,10 +217,9 @@ resource "aws_iam_role" "codebuild_role" {
 EOF
 }
 
-resource "aws_iam_policy" "codebuild_policy" {
-  name        = "${replace("${var.url}", ".", "-")}-codebuild-policy"
-  path        = "/service-role/"
-  description = "Policy used in trust relationship with CodeBuild"
+resource "aws_iam_role_policy" "codebuild_policy" {
+  name   = "${replace("${var.url}", ".", "-")}-codebuild-policy"
+  role   = "${aws_iam_role.codebuild_role.id}"
 
   policy = <<EOF
 {
@@ -239,9 +239,12 @@ resource "aws_iam_policy" "codebuild_policy" {
     {
         "Effect": "Allow",
         "Resource": [
-            "${aws_s3_bucket.main.arn}/*"
+          "${aws_s3_bucket.main.arn}",
+          "${aws_s3_bucket.main.arn}/*"
         ],
         "Action": [
+            "s3:GetObject",
+            "s3:GetObjectVersion",
             "s3:PutObject"
         ]
     }
@@ -250,34 +253,14 @@ resource "aws_iam_policy" "codebuild_policy" {
 EOF
 }
 
-resource "aws_iam_policy_attachment" "att" {
-  name       = "${replace("${var.url}", ".", "-")}-codebuild--policy-attachment"
-  policy_arn = "${aws_iam_policy.codebuild_policy.arn}"
-  roles      = ["${aws_iam_role.codebuild_role.id}"]
-}
-
 resource "aws_codebuild_project" "main" {
   name          = "${replace("${var.url}", ".", "-")}"
   description   = "Website ${var.url}"
   build_timeout = "5"
   service_role  = "${aws_iam_role.codebuild_role.arn}"
 
-  artifacts {
-    type = "S3"
-    location = "${aws_s3_bucket.main.bucket}"
-    name = "build"
-    packaging = "NONE"
-  }
-
-  environment {
-    compute_type = "BUILD_GENERAL1_SMALL"
-    image        = "aws/codebuild/nodejs:7.0.0"
-    type         = "LINUX_CONTAINER"
-  }
-
   source {
-    type      = "GITHUB"
-    location  = "${var.repo}"
+    type      = "CODEPIPELINE"
     buildspec = <<EOF
 version: 0.1
 phases:
@@ -293,8 +276,130 @@ artifacts:
 EOF
   }
 
+  artifacts {
+    type = "CODEPIPELINE"
+    name = "build"
+    packaging = "NONE"
+  }
+
+  environment {
+    compute_type = "BUILD_GENERAL1_SMALL"
+    image        = "aws/codebuild/nodejs:7.0.0"
+    type         = "LINUX_CONTAINER"
+  }
+
   tags {
     Type = "Website"
     Url  = "${var.url}"
+  }
+}
+
+resource "aws_iam_role" "codepipeline_role" {
+  name = "${replace("${var.url}", ".", "-")}-codepipeline-role"
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "codepipeline.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "codepipeline_policy" {
+  name = "${replace("${var.url}", ".", "-")}-codepipeline-policy"
+  role = "${aws_iam_role.codepipeline_role.id}"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect":"Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion",
+        "s3:GetBucketVersioning",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "${aws_s3_bucket.main.arn}",
+        "${aws_s3_bucket.main.arn}/*"
+      ]
+    },
+    {
+        "Action": [
+            "codecommit:CancelUploadArchive",
+            "codecommit:GetBranch",
+            "codecommit:GetCommit",
+            "codecommit:GetUploadArchiveStatus",
+            "codecommit:UploadArchive"
+        ],
+        "Resource": "${aws_codecommit_repository.main.arn}",
+        "Effect": "Allow"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "codebuild:BatchGetBuilds",
+        "codebuild:StartBuild"
+      ],
+      "Resource": "${aws_codebuild_project.main.id}"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_codepipeline" "main" {
+  name = "${replace("${var.url}", ".", "-")}-codepipeline"
+  role_arn = "${aws_iam_role.codepipeline_role.arn}"
+
+  artifact_store {
+    location = "${aws_s3_bucket.main.bucket}"
+    type     = "S3"
+  }
+
+  stage {
+    name = "Source"
+
+    action {
+      name             = "Source"
+      category         = "Source"
+      owner            = "AWS"
+      provider         = "CodeCommit"
+      version          = "1"
+      output_artifacts = ["source"]
+
+      configuration {
+        RepositoryName = "${var.url}"
+        BranchName     = "master"
+      }
+    }
+  }
+
+  stage {
+    name = "Build"
+
+    action {
+      name             = "Build"
+      category         = "Build"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      input_artifacts  = ["source"]
+      output_artifacts = ["build"]
+      version          = "1"
+
+      configuration {
+        ProjectName = "${aws_codebuild_project.main.name}"
+      }
+    }
   }
 }
