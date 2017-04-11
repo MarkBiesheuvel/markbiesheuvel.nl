@@ -2,11 +2,11 @@ variable "url" {
   type = "string"
 }
 
-variable "cloudfront_domain_name" {
+variable "website_cloudfront_domain_name" {
   type = "string"
 }
 
-variable "cloudfront_zone_id" {
+variable "website_cloudfront_zone_id" {
   type = "string"
 }
 
@@ -41,8 +41,8 @@ resource "aws_route53_record" "naked_domains" {
   type    = "A"
 
   alias {
-    name                   = "${var.cloudfront_domain_name}"
-    zone_id                = "${var.cloudfront_zone_id}"
+    name                   = "${var.website_cloudfront_domain_name}"
+    zone_id                = "${var.website_cloudfront_zone_id}"
     evaluate_target_health = false
   }
 }

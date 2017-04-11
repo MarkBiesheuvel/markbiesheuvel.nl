@@ -2,13 +2,16 @@ variable "url" {
   type = "string"
 }
 
-resource "aws_s3_bucket" "artifact_store" {
-  bucket = "codepipeline-${var.url}"
-  acl    = "public-read"
+variable "name" {
+  type = "string"
+}
 
-  tags {
-    Type = "Codepipeline"
-  }
+variable "website_s3_name" {
+  type = "string"
+}
+
+variable "website_s3_arn" {
+  type = "string"
 }
 
 resource "aws_codecommit_repository" "main" {
@@ -17,7 +20,7 @@ resource "aws_codecommit_repository" "main" {
 }
 
 resource "aws_iam_role" "codebuild_role" {
-  name = "${replace("${var.url}", ".", "-")}-codebuild-role"
+  name = "${var.name}-codebuild-role"
 
   assume_role_policy = <<EOF
 {
@@ -36,7 +39,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "codebuild_policy" {
-  name   = "${replace("${var.url}", ".", "-")}-codebuild-policy"
+  name   = "${var.name}-codebuild-policy"
   role   = "${aws_iam_role.codebuild_role.id}"
 
   policy = <<EOF
@@ -57,8 +60,8 @@ resource "aws_iam_role_policy" "codebuild_policy" {
     {
         "Effect": "Allow",
         "Resource": [
-          "${aws_s3_bucket.artifact_store.arn}",
-          "${aws_s3_bucket.artifact_store.arn}/*"
+          "${var.website_s3_arn}",
+          "${var.website_s3_arn}/*"
         ],
         "Action": [
             "s3:GetObject",
@@ -72,13 +75,14 @@ EOF
 }
 
 resource "aws_codebuild_project" "main" {
-  name          = "${replace("${var.url}", ".", "-")}"
+  name          = "${var.name}-codebuild"
   description   = "Website ${var.url}"
   build_timeout = "5"
   service_role  = "${aws_iam_role.codebuild_role.arn}"
 
   source {
-    type      = "CODEPIPELINE"
+    type      = "CODECOMMIT"
+    location  = "${aws_codecommit_repository.main.clone_url_http}"
     buildspec = <<EOF
 version: 0.1
 phases:
@@ -95,7 +99,8 @@ EOF
   }
 
   artifacts {
-    type = "CODEPIPELINE"
+    type = "S3"
+    location = "${var.website_s3_name}"
     name = "build"
     packaging = "NONE"
   }
@@ -108,115 +113,5 @@ EOF
 
   tags {
     Type = "Codepipeline"
-  }
-}
-
-resource "aws_iam_role" "codepipeline_role" {
-  name = "${replace("${var.url}", ".", "-")}-codepipeline-role"
-
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "codepipeline.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-EOF
-}
-
-resource "aws_iam_role_policy" "codepipeline_policy" {
-  name = "${replace("${var.url}", ".", "-")}-codepipeline-policy"
-  role = "${aws_iam_role.codepipeline_role.id}"
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect":"Allow",
-      "Action": [
-        "s3:GetObject",
-        "s3:GetObjectVersion",
-        "s3:GetBucketVersioning",
-        "s3:PutObject"
-      ],
-      "Resource": [
-        "${aws_s3_bucket.artifact_store.arn}",
-        "${aws_s3_bucket.artifact_store.arn}/*"
-      ]
-    },
-    {
-        "Action": [
-            "codecommit:CancelUploadArchive",
-            "codecommit:GetBranch",
-            "codecommit:GetCommit",
-            "codecommit:GetUploadArchiveStatus",
-            "codecommit:UploadArchive"
-        ],
-        "Resource": "${aws_codecommit_repository.main.arn}",
-        "Effect": "Allow"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "codebuild:BatchGetBuilds",
-        "codebuild:StartBuild"
-      ],
-      "Resource": "${aws_codebuild_project.main.id}"
-    }
-  ]
-}
-EOF
-}
-
-resource "aws_codepipeline" "main" {
-  name = "${replace("${var.url}", ".", "-")}-codepipeline"
-  role_arn = "${aws_iam_role.codepipeline_role.arn}"
-
-  artifact_store {
-    location = "${aws_s3_bucket.artifact_store.bucket}"
-    type     = "S3"
-  }
-
-  stage {
-    name = "Source"
-
-    action {
-      name             = "Source"
-      category         = "Source"
-      owner            = "AWS"
-      provider         = "CodeCommit"
-      version          = "1"
-      output_artifacts = ["source"]
-
-      configuration {
-        RepositoryName = "${var.url}"
-        BranchName     = "master"
-      }
-    }
-  }
-
-  stage {
-    name = "Build"
-
-    action {
-      name             = "Build"
-      category         = "Build"
-      owner            = "AWS"
-      provider         = "CodeBuild"
-      input_artifacts  = ["source"]
-      output_artifacts = ["build"]
-      version          = "1"
-
-      configuration {
-        ProjectName = "${aws_codebuild_project.main.name}"
-      }
-    }
   }
 }

@@ -35,16 +35,19 @@ module "website" {
 }
 
 module "dns" {
-  source                 = "dns"
-  url                    = "${var.url}"
-  domains                = "${var.domains}"
-  mx_records             = "${var.mx_records}"
-  keybase_verification   = "${var.keybase_verification}"
-  cloudfront_domain_name = "${module.website.cloudfront_domain_name}"
-  cloudfront_zone_id     = "${module.website.cloudfront_zone_id}"
+  source                         = "dns"
+  url                            = "${var.url}"
+  domains                        = "${var.domains}"
+  mx_records                     = "${var.mx_records}"
+  keybase_verification           = "${var.keybase_verification}"
+  website_cloudfront_domain_name = "${module.website.cloudfront_domain_name}"
+  website_cloudfront_zone_id     = "${module.website.cloudfront_zone_id}"
 }
 
 module "codepipeline" {
-  source = "codepipeline"
-  url    = "${var.url}"
+  source          = "codepipeline"
+  url             = "${var.url}"
+  name            = "${replace("${var.url}", ".", "-")}" # Dot is not allowed in some resource names
+  website_s3_name = "${module.website.s3_name}"
+  website_s3_arn  = "${module.website.s3_arn}"
 }
