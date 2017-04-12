@@ -19,9 +19,32 @@ variable "certificate_arn" {
   default = "arn:aws:acm:us-east-1:312701731826:certificate/054196d8-6cfb-4442-96f5-9fdea2f1dd4a"
 }
 
+data "aws_iam_policy_document" "s3_policy" {
+  statement {
+    actions   = ["s3:ListBucket"]
+    resources = ["arn:aws:s3:::${var.url}"]
+
+    principals {
+      type        = "AWS"
+      identifiers = ["${aws_cloudfront_origin_access_identity.identity.iam_arn}"]
+    }
+  }
+
+  statement {
+    actions   = ["s3:GetObject"]
+    resources = ["arn:aws:s3:::${var.url}/*"]
+
+    principals {
+      type        = "AWS"
+      identifiers = ["${aws_cloudfront_origin_access_identity.identity.iam_arn}"]
+    }
+  }
+}
+
 resource "aws_s3_bucket" "website" {
   bucket = "${var.url}"
-  acl    = "public-read"
+  acl    = "private"
+  policy = "${data.aws_iam_policy_document.s3_policy.json}"
 
   website {
     index_document = "index.html"
@@ -33,10 +56,9 @@ resource "aws_s3_bucket" "website" {
   }
 }
 
-/*
- TODO: restrict bucket access
- https://www.terraform.io/docs/providers/aws/r/cloudfront_origin_access_identity.html
-*/
+resource "aws_cloudfront_origin_access_identity" "identity" {
+}
+
 resource "aws_cloudfront_distribution" "website" {
   enabled             = true
   is_ipv6_enabled     = true
@@ -49,6 +71,10 @@ resource "aws_cloudfront_distribution" "website" {
     domain_name = "${aws_s3_bucket.website.bucket_domain_name}"
     origin_id   = "S3"
     origin_path = ""
+
+    s3_origin_config {
+      origin_access_identity = "${aws_cloudfront_origin_access_identity.identity.cloudfront_access_identity_path}"
+    }
   }
 
   default_cache_behavior {
