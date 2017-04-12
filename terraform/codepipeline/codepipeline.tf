@@ -6,17 +6,18 @@ variable "name" {
   type = "string"
 }
 
-variable "website_s3_name" {
-  type = "string"
-}
-
-variable "website_s3_arn" {
-  type = "string"
-}
-
 resource "aws_codecommit_repository" "main" {
   repository_name = "${var.url}"
   default_branch  = "master"
+}
+
+resource "aws_s3_bucket" "artifact_store" {
+  bucket = "${var.name}-builds"
+  acl    = "private"
+
+  tags {
+    Type = "Codepipeline"
+  }
 }
 
 resource "aws_iam_role" "codebuild_role" {
@@ -52,22 +53,31 @@ resource "aws_iam_role_policy" "codebuild_policy" {
         "*"
       ],
       "Action": [
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents"
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
       ]
     },
     {
-        "Effect": "Allow",
-        "Resource": [
-          "${var.website_s3_arn}",
-          "${var.website_s3_arn}/*"
-        ],
-        "Action": [
-            "s3:GetObject",
-            "s3:GetObjectVersion",
-            "s3:PutObject"
-        ]
+      "Effect": "Allow",
+      "Resource": [
+        "${aws_s3_bucket.artifact_store.arn}",
+        "${aws_s3_bucket.artifact_store.arn}/*"
+      ],
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion",
+        "s3:PutObject"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:codecommit:us-east-1:312701731826:markbiesheuvel.nl"
+      ],
+      "Action": [
+        "codecommit:GitPull"
+      ]
     }
   ]
 }
@@ -100,7 +110,7 @@ EOF
 
   artifacts {
     type = "S3"
-    location = "${var.website_s3_name}"
+    location = "${aws_s3_bucket.artifact_store.bucket}"
     name = "build"
     packaging = "NONE"
   }

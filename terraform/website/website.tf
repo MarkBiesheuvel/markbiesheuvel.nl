@@ -33,6 +33,10 @@ resource "aws_s3_bucket" "website" {
   }
 }
 
+/*
+ TODO: restrict bucket access
+ https://www.terraform.io/docs/providers/aws/r/cloudfront_origin_access_identity.html
+*/
 resource "aws_cloudfront_distribution" "website" {
   enabled             = true
   is_ipv6_enabled     = true
@@ -44,7 +48,7 @@ resource "aws_cloudfront_distribution" "website" {
   origin {
     domain_name = "${aws_s3_bucket.website.bucket_domain_name}"
     origin_id   = "S3"
-    origin_path = "/build"
+    origin_path = ""
   }
 
   default_cache_behavior {
