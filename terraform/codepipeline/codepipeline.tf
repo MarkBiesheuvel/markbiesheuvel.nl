@@ -20,68 +20,59 @@ resource "aws_s3_bucket" "artifact_store" {
   }
 }
 
-resource "aws_iam_role" "codebuild_role" {
-  name = "${var.name}-codebuild-role"
+data "aws_iam_policy_document" "codebuild_role_policy_document" {
+  statement {
+    actions = ["sts:AssumeRole"]
 
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "codebuild.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
+    principals {
+      type        = "Service"
+      identifiers = ["codebuild.amazonaws.com"]
     }
-  ]
+  }
 }
-EOF
+
+resource "aws_iam_role" "codebuild_role" {
+  name               = "${var.name}-codebuild-role"
+  assume_role_policy = "${data.aws_iam_policy_document.codebuild_role_policy_document.json}"
+}
+
+data "aws_iam_policy_document" "codebuild_policy_document" {
+  statement {
+    resources = [
+      "*",
+    ]
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+    ]
+  }
+
+  statement {
+    resources = [
+      "${aws_s3_bucket.artifact_store.arn}/*",
+    ]
+    actions = [
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:PutObject",
+    ]
+  }
+
+  statement {
+    resources = [
+      "${aws_codecommit_repository.main.arn}",
+    ]
+    actions = [
+      "codecommit:GitPull",
+    ]
+  }
 }
 
 resource "aws_iam_role_policy" "codebuild_policy" {
   name   = "${var.name}-codebuild-policy"
   role   = "${aws_iam_role.codebuild_role.id}"
-
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Resource": [
-        "*"
-      ],
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Resource": [
-        "${aws_s3_bucket.artifact_store.arn}",
-        "${aws_s3_bucket.artifact_store.arn}/*"
-      ],
-      "Action": [
-        "s3:GetObject",
-        "s3:GetObjectVersion",
-        "s3:PutObject"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Resource": [
-        "arn:aws:codecommit:us-east-1:312701731826:markbiesheuvel.nl"
-      ],
-      "Action": [
-        "codecommit:GitPull"
-      ]
-    }
-  ]
-}
-EOF
+  policy = "${data.aws_iam_policy_document.codebuild_policy_document.json}"
 }
 
 resource "aws_codebuild_project" "main" {
@@ -93,19 +84,7 @@ resource "aws_codebuild_project" "main" {
   source {
     type      = "CODECOMMIT"
     location  = "${aws_codecommit_repository.main.clone_url_http}"
-    buildspec = <<EOF
-version: 0.1
-phases:
-  build:
-    commands:
-      - npm install -g yarn
-      - yarn
-      - yarn build
-artifacts:
-  files:
-    - dist/*
-  discard-paths: yes
-EOF
+    buildspec = "${file("${path.module}/buildspec.yml")}"
   }
 
   artifacts {

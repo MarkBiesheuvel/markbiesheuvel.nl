@@ -2,10 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-variable "repo" {
-  type = "string"
-}
-
 variable "url" {
   type = "string"
 }
