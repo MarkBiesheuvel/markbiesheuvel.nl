@@ -1,0 +1,11 @@
+version: 0.1
+phases:
+  build:
+    commands:
+      - npm install -g yarn
+      - yarn
+      - yarn build
+artifacts:
+  files:
+    - dist/*
+  discard-paths: yes
