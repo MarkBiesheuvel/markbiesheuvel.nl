@@ -137,15 +137,6 @@ resource "aws_iam_role" "deploy_role" {
 data "aws_iam_policy_document" "deploy_policy_document" {
   statement {
     resources = [
-      "${aws_s3_bucket.artifact_store.arn}",
-    ]
-    actions = [
-      "s3:ListBucket",
-    ]
-  }
-
-  statement {
-    resources = [
       "${aws_s3_bucket.artifact_store.arn}/*",
     ]
     actions = [
@@ -170,7 +161,7 @@ resource "aws_iam_role_policy" "deploy_policy" {
 }
 
 resource "aws_lambda_function" "deploy" {
-  function_name    = "${var.name}-post-build"
+  function_name    = "${var.name}-deploy"
   role             = "${aws_iam_role.deploy_role.arn}"
   timeout          = 10
   runtime          = "nodejs6.10"
@@ -180,10 +171,7 @@ resource "aws_lambda_function" "deploy" {
 
   environment {
     variables = {
-      destination_bucket = "${var.website_s3_name}"
-      destination_path = "/"
-      source_bucket = "${aws_s3_bucket.artifact_store.bucket}"
-      source_path = "${var.build_path}/"
+      destinationBucket = "${var.website_s3_name}"
     }
   }
 }
