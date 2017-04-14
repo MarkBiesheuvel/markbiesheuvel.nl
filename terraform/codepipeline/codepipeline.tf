@@ -60,7 +60,6 @@ data "aws_iam_policy_document" "codebuild_policy_document" {
       "logs:PutLogEvents",
     ]
   }
-
   statement {
     resources = [
       "${aws_s3_bucket.artifact_store.arn}/*",
@@ -69,15 +68,6 @@ data "aws_iam_policy_document" "codebuild_policy_document" {
       "s3:GetObject",
       "s3:GetObjectVersion",
       "s3:PutObject",
-    ]
-  }
-
-  statement {
-    resources = [
-      "${aws_codecommit_repository.main.arn}",
-    ]
-    actions = [
-      "codecommit:GitPull",
     ]
   }
 }
@@ -95,15 +85,13 @@ resource "aws_codebuild_project" "main" {
   service_role  = "${aws_iam_role.codebuild_role.arn}"
 
   source {
-    type      = "CODECOMMIT"
-    location  = "${aws_codecommit_repository.main.clone_url_http}"
+    type      = "CODEPIPELINE"
     buildspec = "${file("${path.module}/buildspec.yml")}"
   }
 
   artifacts {
-    type = "S3"
-    location = "${aws_s3_bucket.artifact_store.bucket}"
-    name = "${var.build_path}"
+    type = "CODEPIPELINE"
+    name = "build"
     packaging = "NONE"
   }
 
@@ -115,6 +103,137 @@ resource "aws_codebuild_project" "main" {
 
   tags {
     Type = "Codepipeline"
+  }
+}
+
+data "aws_iam_policy_document" "codepipeline_role_policy_document" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["codepipeline.amazonaws.com"]
+    }
+  }
+}
+
+resource "aws_iam_role" "codepipeline_role" {
+  name               = "${replace("${var.url}", ".", "-")}-codepipeline-role"
+  assume_role_policy = "${data.aws_iam_policy_document.codepipeline_role_policy_document.json}"
+}
+
+data "aws_iam_policy_document" "codepipeline_policy_document" {
+  statement {
+    resources = [
+      "${aws_s3_bucket.artifact_store.arn}",
+      "${aws_s3_bucket.artifact_store.arn}/*",
+    ]
+    actions = [
+      "s3:GetObject",
+      "s3:GetObjectVersion",
+      "s3:GetBucketVersioning",
+      "s3:PutObject",
+    ]
+  }
+  statement {
+    resources = [
+      "${aws_codecommit_repository.main.arn}",
+    ]
+    actions = [
+      "codecommit:CancelUploadArchive",
+      "codecommit:GetBranch",
+      "codecommit:GetCommit",
+      "codecommit:GetUploadArchiveStatus",
+      "codecommit:UploadArchive",
+    ]
+  }
+  statement {
+    resources = [
+      "${aws_codebuild_project.main.id}"
+    ]
+    actions = [
+      "codebuild:BatchGetBuilds",
+      "codebuild:StartBuild",
+    ]
+  }
+  statement {
+    resources = [
+      "arn:aws:lambda:*",
+    ]
+    actions = [
+      "lambda:InvokeFunction",
+      "lambda:ListFunctions",
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "codepipeline_policy" {
+  name = "${replace("${var.url}", ".", "-")}-codepipeline-policy"
+  role = "${aws_iam_role.codepipeline_role.id}"
+
+  policy = "${data.aws_iam_policy_document.codepipeline_policy_document.json}"
+}
+
+resource "aws_codepipeline" "main" {
+  name = "${replace("${var.url}", ".", "-")}-codepipeline"
+  role_arn = "${aws_iam_role.codepipeline_role.arn}"
+
+  artifact_store {
+    location = "${aws_s3_bucket.artifact_store.bucket}"
+    type     = "S3"
+  }
+
+  stage {
+    name = "Source"
+
+    action {
+      name             = "Source"
+      category         = "Source"
+      owner            = "AWS"
+      provider         = "CodeCommit"
+      version          = "1"
+      output_artifacts = ["source"]
+
+      configuration {
+        RepositoryName = "${var.url}"
+        BranchName     = "master"
+      }
+    }
+  }
+
+  stage {
+    name = "Build"
+
+    action {
+      name             = "Build"
+      category         = "Build"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      input_artifacts  = ["source"]
+      output_artifacts = ["build"]
+      version          = "1"
+
+      configuration {
+        ProjectName = "${aws_codebuild_project.main.name}"
+      }
+    }
+  }
+
+  stage {
+    name = "Invoke"
+
+    action {
+      name             = "Invoke"
+      category         = "Invoke"
+      owner            = "AWS"
+      provider         = "Lambda"
+      input_artifacts  = ["build"]
+      version          = "1"
+
+      configuration {
+        FunctionName = "${aws_lambda_function.deploy.function_name}"
+      }
+    }
   }
 }
 
@@ -143,13 +262,21 @@ data "aws_iam_policy_document" "deploy_policy_document" {
       "s3:GetObject",
     ]
   }
-
   statement {
     resources = [
       "${var.website_s3_arn}/*",
     ]
     actions = [
       "s3:PutObject"
+    ]
+  }
+  statement {
+    resources = [
+      "arn:aws:codepipeline:*",
+    ]
+    actions = [
+      "codepipeline:PutJobSuccessResult",
+      "codepipeline:PutJobFailureResult",
     ]
   }
 }
