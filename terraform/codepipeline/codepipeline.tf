@@ -158,7 +158,7 @@ data "aws_iam_policy_document" "codepipeline_policy_document" {
   }
   statement {
     resources = [
-      "arn:aws:lambda:*",
+      "*",
     ]
     actions = [
       "lambda:InvokeFunction",
@@ -290,6 +290,7 @@ resource "aws_iam_role_policy" "deploy_policy" {
 resource "aws_lambda_function" "deploy" {
   function_name    = "${var.name}-deploy"
   role             = "${aws_iam_role.deploy_role.arn}"
+  memory_size      = 1024
   timeout          = 10
   runtime          = "nodejs6.10"
   handler          = "index.handler"
