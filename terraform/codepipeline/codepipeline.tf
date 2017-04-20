@@ -52,7 +52,7 @@ resource "aws_iam_role" "codebuild_role" {
 data "aws_iam_policy_document" "codebuild_policy_document" {
   statement {
     resources = [
-      "*",
+      "arn:aws:logs:*:*:*",
     ]
     actions = [
       "logs:CreateLogGroup",
@@ -256,6 +256,16 @@ resource "aws_iam_role" "deploy_role" {
 data "aws_iam_policy_document" "deploy_policy_document" {
   statement {
     resources = [
+      "arn:aws:logs:*:*:*",
+    ]
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+    ]
+  }
+  statement {
+    resources = [
       "${aws_s3_bucket.artifact_store.arn}/*",
     ]
     actions = [
@@ -272,7 +282,7 @@ data "aws_iam_policy_document" "deploy_policy_document" {
   }
   statement {
     resources = [
-      "arn:aws:codepipeline:*",
+      "*",
     ]
     actions = [
       "codepipeline:PutJobSuccessResult",
