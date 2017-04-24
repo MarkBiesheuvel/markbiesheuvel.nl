@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Mark Biesheuvel | Back-end web developer</title>
+    <title>Mark Biesheuvel | Cloud Engineer</title>
     <meta name="author" content="Mark Biesheuvel">
     <meta name="description"
           content="Resume of Mark Biesheuvel, Cloud Engineer">
