@@ -56,8 +56,7 @@ resource "aws_s3_bucket" "website" {
   }
 }
 
-resource "aws_cloudfront_origin_access_identity" "identity" {
-}
+resource "aws_cloudfront_origin_access_identity" "identity" {}
 
 resource "aws_cloudfront_distribution" "website" {
   enabled             = true

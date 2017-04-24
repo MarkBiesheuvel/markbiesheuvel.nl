@@ -93,6 +93,6 @@ resource "aws_route53_record" "keybase" {
   ttl     = "86400"
 
   records = [
-    "keybase-site-verification=${var.keybase_verification[element(aws_route53_zone.all.*.name, count.index)]}"
+    "keybase-site-verification=${var.keybase_verification[element(aws_route53_zone.all.*.name, count.index)]}",
   ]
 }

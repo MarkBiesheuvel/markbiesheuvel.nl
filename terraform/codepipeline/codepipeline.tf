@@ -15,7 +15,7 @@ variable "website_s3_arn" {
 }
 
 variable "build_path" {
-  type = "string"
+  type    = "string"
   default = "build"
 }
 
@@ -54,16 +54,19 @@ data "aws_iam_policy_document" "codebuild_policy_document" {
     resources = [
       "arn:aws:logs:*:*:*",
     ]
+
     actions = [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
       "logs:PutLogEvents",
     ]
   }
+
   statement {
     resources = [
       "${aws_s3_bucket.artifact_store.arn}/*",
     ]
+
     actions = [
       "s3:GetObject",
       "s3:GetObjectVersion",
@@ -90,8 +93,8 @@ resource "aws_codebuild_project" "main" {
   }
 
   artifacts {
-    type = "CODEPIPELINE"
-    name = "build"
+    type      = "CODEPIPELINE"
+    name      = "build"
     packaging = "NONE"
   }
 
@@ -128,6 +131,7 @@ data "aws_iam_policy_document" "codepipeline_policy_document" {
       "${aws_s3_bucket.artifact_store.arn}",
       "${aws_s3_bucket.artifact_store.arn}/*",
     ]
+
     actions = [
       "s3:GetObject",
       "s3:GetObjectVersion",
@@ -135,10 +139,12 @@ data "aws_iam_policy_document" "codepipeline_policy_document" {
       "s3:PutObject",
     ]
   }
+
   statement {
     resources = [
       "${aws_codecommit_repository.main.arn}",
     ]
+
     actions = [
       "codecommit:CancelUploadArchive",
       "codecommit:GetBranch",
@@ -147,19 +153,23 @@ data "aws_iam_policy_document" "codepipeline_policy_document" {
       "codecommit:UploadArchive",
     ]
   }
+
   statement {
     resources = [
-      "${aws_codebuild_project.main.id}"
+      "${aws_codebuild_project.main.id}",
     ]
+
     actions = [
       "codebuild:BatchGetBuilds",
       "codebuild:StartBuild",
     ]
   }
+
   statement {
     resources = [
       "*",
     ]
+
     actions = [
       "lambda:InvokeFunction",
       "lambda:ListFunctions",
@@ -175,7 +185,7 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
 }
 
 resource "aws_codepipeline" "main" {
-  name = "${replace("${var.url}", ".", "-")}-codepipeline"
+  name     = "${replace("${var.url}", ".", "-")}-codepipeline"
   role_arn = "${aws_iam_role.codepipeline_role.arn}"
 
   artifact_store {
@@ -223,12 +233,12 @@ resource "aws_codepipeline" "main" {
     name = "Invoke"
 
     action {
-      name             = "Invoke"
-      category         = "Invoke"
-      owner            = "AWS"
-      provider         = "Lambda"
-      input_artifacts  = ["build"]
-      version          = "1"
+      name            = "Invoke"
+      category        = "Invoke"
+      owner           = "AWS"
+      provider        = "Lambda"
+      input_artifacts = ["build"]
+      version         = "1"
 
       configuration {
         FunctionName = "${aws_lambda_function.deploy.function_name}"
@@ -258,32 +268,39 @@ data "aws_iam_policy_document" "deploy_policy_document" {
     resources = [
       "arn:aws:logs:*:*:*",
     ]
+
     actions = [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
       "logs:PutLogEvents",
     ]
   }
+
   statement {
     resources = [
       "${aws_s3_bucket.artifact_store.arn}/*",
     ]
+
     actions = [
       "s3:GetObject",
     ]
   }
+
   statement {
     resources = [
       "${var.website_s3_arn}/*",
     ]
+
     actions = [
-      "s3:PutObject"
+      "s3:PutObject",
     ]
   }
+
   statement {
     resources = [
       "*",
     ]
+
     actions = [
       "codepipeline:PutJobSuccessResult",
       "codepipeline:PutJobFailureResult",
