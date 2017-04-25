@@ -315,9 +315,9 @@ resource "aws_iam_role_policy" "deploy_policy" {
 }
 
 data "archive_file" "lambda_zip" {
-    type        = "zip"
-    source_dir  = "${path.module}/deploy"
-    output_path = "${path.module}/deploy.zip"
+  type        = "zip"
+  source_dir  = "${path.module}/deploy"
+  output_path = "${path.module}/deploy.zip"
 }
 
 resource "aws_lambda_function" "deploy" {
