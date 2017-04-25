@@ -314,6 +314,12 @@ resource "aws_iam_role_policy" "deploy_policy" {
   policy = "${data.aws_iam_policy_document.deploy_policy_document.json}"
 }
 
+data "archive_file" "lambda_zip" {
+    type        = "zip"
+    source_dir  = "${path.module}/deploy"
+    output_path = "${path.module}/deploy.zip"
+}
+
 resource "aws_lambda_function" "deploy" {
   function_name    = "${var.name}-deploy"
   role             = "${aws_iam_role.deploy_role.arn}"
@@ -322,7 +328,7 @@ resource "aws_lambda_function" "deploy" {
   runtime          = "nodejs6.10"
   handler          = "index.handler"
   filename         = "${path.module}/deploy.zip"
-  source_code_hash = "${base64sha256(file("${path.module}/deploy.zip"))}"
+  source_code_hash = "${data.archive_file.lambda_zip.output_base64sha256}"
 
   environment {
     variables = {

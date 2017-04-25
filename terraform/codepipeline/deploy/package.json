@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "unzip": "^0.1.11"
+  }
+}
