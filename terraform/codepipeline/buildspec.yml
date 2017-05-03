@@ -1,10 +1,17 @@
 version: 0.1
 phases:
+  install:
+    commands:
+      - "curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -"
+      - "echo \"deb http://dl.yarnpkg.com/debian/ stable main\" | sudo tee /etc/apt/sources.list.d/yarn.list"
+      - "apt-get update -y"
+      - "apt-get install -y graphicsmagick yarn"
+  pre_build:
+    commands:
+      - "yarn install"
   build:
     commands:
-      - npm install -g yarn
-      - yarn
-      - yarn build
+      - "yarn build"
 artifacts:
   files:
     - dist/*
