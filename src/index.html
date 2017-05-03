@@ -18,9 +18,7 @@
           content="Resume of Mark Biesheuvel, Cloud Engineer">
     <link rel="canonical" href="https://markbiesheuvel.nl"/>
 
-    <!-- build:css inline minified.css -->
-    <link rel="stylesheet" href="compiled.css">
-    <!-- /build -->
+    <link rel="stylesheet" href="style.less">
 </head>
 <body>
 
@@ -28,9 +26,9 @@
 
     <header class="row">
         <div class="col-md-1">
-            <img src="data:image/gif;base64,<%= photo %>"
-                 width="<%= photoSize %>"
-                 height="<%= photoSize %>"
+            <img src="photo.jpg"
+                 width="262"
+                 height="262"
                  id="photo"
                  class="img-responsive img-rounded"
                  alt="Mark Biesheuvel">
@@ -264,7 +262,6 @@
 
 </div>
 
-<!-- build:js inline script.min.js -->
-<!-- /build -->
+<script src="script.js"></script>
 </body>
 </html>
