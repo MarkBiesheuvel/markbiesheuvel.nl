@@ -20,8 +20,7 @@
     "gulp-less": "^3.3.0",
     "gulp-uglify": "^2.1.2",
     "gulp-uncss": "^1.0.6",
-    "pump": "^1.0.2",
-    "yargs": "^7.1.0"
+    "pump": "^1.0.2"
   },
   "dependencies": {
     "bootstrap": "^3.3.7"
