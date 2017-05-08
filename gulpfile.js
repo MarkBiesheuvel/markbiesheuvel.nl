@@ -1,10 +1,13 @@
 
 const gulp = require('gulp')
+const babel = require('gulp-babel')
 const csso = require('gulp-csso')
 const htmlmin = require('gulp-htmlmin')
 const resize = require('gulp-image-resize')
 const inline = require('gulp-inline')
+const jsonminify = require('gulp-jsonminify')
 const less = require('gulp-less')
+const livereload = require('gulp-livereload')
 const uncss = require('gulp-uncss')
 const uglify = require('gulp-uglify')
 const pump = require('pump')
@@ -14,18 +17,38 @@ const source = 'src'
 const destination = 'dist'
 
 // Globs
-const imgSource = `${source}/*.jpg`
-const htmlSource = `${source}/*.html`
-const jsSource = `${source}/*.js`
 const cssSource = `${source}/*.less`
-const othersSource = [`${source}/*.*`, `!${htmlSource}`, `!${jsSource}`, `!${cssSource}`]
+const htmlSource = `${source}/*.html`
+const imgSource = `${source}/*.jpg`
+const jsonSource = `${source}/*.json`
+const jsSource = `${source}/*.js`
+const othersSource = [
+  `${source}/*.*`,
+  `!${cssSource}`,
+  `!${htmlSource}`,
+  `!${jsonSource}`,
+  `!${jsSource}`
+]
 
 const copy = () => {
   // Task
   return (callback) => {
     pump([
       gulp.src(othersSource),
-      gulp.dest(destination)
+      gulp.dest(destination),
+      livereload()
+    ], callback)
+  }
+}
+
+const json = () => {
+  // Task
+  return (callback) => {
+    pump([
+      gulp.src(jsonSource),
+      jsonminify(),
+      gulp.dest(destination),
+      livereload()
     ], callback)
   }
 }
@@ -35,6 +58,7 @@ const html = (includeUncss = true) => {
   const collapseWhitespace = true
   const base = source
   const js = [
+    () => babel({ presets: ['es2015'] }),
     () => uglify()
   ]
   const img = [
@@ -59,7 +83,8 @@ const html = (includeUncss = true) => {
       gulp.src(htmlSource),
       inline({ base, js, css, img }),
       htmlmin({ collapseWhitespace }),
-      gulp.dest(destination)
+      gulp.dest(destination),
+      livereload()
     ], callback)
   }
 }
@@ -67,13 +92,16 @@ const html = (includeUncss = true) => {
 const watch = () => {
   // Task
   return () => {
+    livereload.listen()
     gulp.watch(othersSource, ['copy'])
+    gulp.watch(jsonSource, ['json'])
     gulp.watch([htmlSource, jsSource, cssSource, imgSource], ['html.fast'])
   }
 }
 
 gulp.task('copy', copy())
+gulp.task('json', json())
 gulp.task('html.slow', html(true))
 gulp.task('html.fast', html(false))
 gulp.task('watch', watch())
-gulp.task('build', [ 'copy', 'html.slow' ])
+gulp.task('build', [ 'copy', 'json', 'html.slow' ])

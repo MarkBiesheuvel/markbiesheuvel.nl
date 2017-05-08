@@ -1,0 +1,122 @@
+[
+  {
+    "title": "Certification",
+    "items": [
+      {
+        "title": "AWS Certified Solutions Architect - Associate",
+        "href": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
+        "location": false,
+        "period": "May 2016 - May 2018",
+        "lists": [
+          {
+            "title": "Exam concepts",
+            "lines": [
+              "Designing and deploying scalable, highly available, and fault tolerant systems on AWS",
+              "Selecting the appropriate AWS service based on data, compute, database, or security requirements",
+              "Identifying appropriate use of AWS architectural best practices",
+              "Estimating AWS costs and identifying cost control mechanisms"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Experience",
+    "items": [
+      {
+        "title": "Consulting Cloud Systems Engineer",
+        "href": "http://www.oblivioncloudcontrol.com/",
+        "location": "Oblivion Cloud Control",
+        "period": "April 2017 - present",
+        "lists": [
+          {
+            "title": "Responsibilities",
+            "lines": [
+              "Advicing, designing, maintaining and optimizing cloud environment of our clients",
+              "Configuring and developing automated and scalable infrastructures",
+              "Determining a short and long term strategy with our clients to reach their innovative goals",
+              "Translating business challenges from clients to technical solutions"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Back-end Developer",
+        "href": "https://www.deskbookers.com/en-gb/",
+        "location": "Deskbookers",
+        "period": "September 2016 - March 2017",
+        "lists": [
+          {
+            "title": "Responsibilities",
+            "lines": [
+              "Developing new (back-end) features for marketplace and backoffice",
+              "Operating cloud infrastructure for continuous deployment"
+            ]
+          },
+          {
+            "title": "Achievements",
+            "lines": [
+              "Developed new access right system for more granular adjustability of user access",
+              "Improved integration with bookkeeping software to reduce workload of Finance department by 5h a week",
+              "Implemented search function with Elasticsearch",
+              "Improved speed of calculations on tree structure by 100 times"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Web Developer",
+        "href": "https://www.nobears.nl/",
+        "location": "QForma (NoBears)",
+        "period": "September 2012 - August 2016",
+        "lists": [
+          {
+            "title": "Responsibilities",
+            "lines": [
+              "Designing database structure and optimizing queries",
+              "Developing custom add-ons to customer requirements",
+              "Integrating front-end (JavaScript) with back-end (PHP)",
+              "Researching new technologies and business opportunities",
+              "Operating cloud infrastructure for continuous deployment"
+            ]
+          },
+          {
+            "title": "Achievements",
+            "lines": [
+              "Replaced generated code from a CMS by an optimized query to make page loads 10 times faster",
+              "Restructured cache usage of ACL to reduce memory usage per request by 80%",
+              "Developed a real-time integration between VoIP system and web app to relay customer information as calls come in",
+              "Implemented search function for web shop with 8.000 products with Elasticsearch",
+              "Migrated web applications to AWS to reduce hosting costs by approximately 50%"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Education",
+    "items": [
+      {
+        "title": "Computer Science",
+        "href": "https://www.tue.nl/en/",
+        "location": "Eindhoven University of Technology",
+        "period": "2009 - 2012",
+        "lists": [
+          {
+            "title": "Courses",
+            "lines": [
+              "Object oriented programming",
+              "Functional programming",
+              "Data structures",
+              "Algorithms",
+              "Data modeling and databases",
+              "Computer networks"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
