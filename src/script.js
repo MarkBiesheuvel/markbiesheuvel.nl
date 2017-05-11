@@ -2,11 +2,14 @@
   // Get an element by its role
   const $ = (parent, role) => parent.querySelector(`[role=${role}]`)
 
-  // Apply settings to an element
-  const apply = (element, settings = {}) => {
-    for (let property in settings) {
-      element[property] = settings[property]
-    }
+  // Sets the text content of an element
+  const text = (element, text) => {
+    element.textContent = text
+  }
+
+  // Sets the href of an element
+  const href = (element, href) => {
+    element.href = href
   }
 
   // Removes an element from the DOM
@@ -19,9 +22,64 @@
     existing.parentElement.appendChild(element)
   }
 
+  // Templating
+  const template = (original, things, callback) => {
+    things.forEach((thing) => {
+      const clone = original.cloneNode(true)
+      callback(clone, thing)
+      append(original, clone)
+    })
+    remove(original)
+  }
+
+  // Renders a line of text
+  const line = (element, content) => {
+    text(element, content)
+  }
+
+  // Renders a list of lines
+  const list = (element, content) => {
+    text($(element, 'title'), content.title)
+
+    // Renders the lines
+    template($(element, 'line'), content.lines, line)
+  }
+
+  // Renders an item containing multiple lists
+  const item = (element, content) => {
+    if (content.location) {
+      text($(element, 'title'), content.title)
+      text($(element, 'link'), content.location)
+    } else {
+      remove($(element, 'title'))
+      remove($(element, 'at'))
+      text($(element, 'link'), content.title)
+    }
+    href($(element, 'link'), content.href)
+    text($(element, 'period'), content.period)
+
+    // Render the lists
+    template($(element, 'list'), content.lists, list)
+  }
+
+  // Renders a section
+  const section = (element, content) => {
+    element.style.display = 'block'
+    text($(element, 'title'), content.title)
+
+    // Render the items
+    template($(element, 'item'), content.items, item)
+  }
+
+  // Renders the page
+  const page = (element, content) => {
+    // Renders the sections
+    template($(element, 'section'), content, section)
+  }
+
   // Lazy load images
   window.addEventListener('load', () => {
-    const images = document.querySelectorAll('img')
+    const images = $(document, 'img')
     images.forEach((image) => {
       image.src = image.dataset.src
     })
@@ -33,68 +91,10 @@
   request.send(null)
   request.onreadystatechange = () => {
     if (request.readyState === 4) {
-      const sections = JSON.parse(request.responseText)
-
-      // Template stuff
-      // TODO: develop function for common pattern of seleting an (template) element, looping over something, cloning it, appending it and finally removing it
-      const $section = $(document, 'section')
-      sections.forEach((section) => {
-        const $clone = $section.cloneNode(true)
-        $clone.style.display = 'block'
-        apply($($clone, 'title'), {
-          textContent: section.title
-        })
-
-        const $item = $($clone, 'item')
-        section.items.forEach((item) => {
-          const $clone2 = $item.cloneNode(true)
-          apply($($clone2, 'period'), {
-            textContent: item.period
-          })
-          if (item.location) {
-            apply($($clone2, 'link'), {
-              textContent: item.location,
-              href: item.href
-            })
-            apply($($clone2, 'title'), {
-              textContent: item.title
-            })
-          } else {
-            apply($($clone2, 'link'), {
-              textContent: item.title,
-              href: item.href
-            })
-            remove($($clone2, 'title'))
-            remove($($clone2, 'at'))
-          }
-          append($item, $clone2)
-
-          const $list = $($clone2, 'list')
-          item.lists.forEach((list) => {
-            const $clone3 = $list.cloneNode(true)
-            apply($($clone3, 'title'), {
-              textContent: list.title
-            })
-            const $line = $($clone3, 'line')
-            list.lines.forEach((line) => {
-              const $clone4 = $line.cloneNode(true)
-              console.log(line)
-              apply($clone4, {
-                textContent: line
-              })
-              append($line, $clone4)
-            })
-            remove($line)
-            append($list, $clone3)
-          })
-          remove($list)
-        })
-        remove($item)
-
-        append($section, document.createElement('hr'))
-        append($section, $clone)
-      })
-      remove($section)
+      // Parse the response
+      const response = JSON.parse(request.responseText)
+      // Render the page
+      page(document, response)
     }
   }
 })(document)
