@@ -4,6 +4,7 @@ const AWS = require('aws-sdk')
 const s3 = new AWS.S3({
   signatureVersion: 'v4'
 })
+const cloudfront = new AWS.CloudFront()
 const codepipeline = new AWS.CodePipeline()
 
 exports.handler = (event, context, callback) => {
@@ -63,6 +64,16 @@ exports.handler = (event, context, callback) => {
     })
     .on('close', () => {
       Promise.all(promises).then(responses => {
+        cloudfront.createInvalidation({
+          DistributionId: 'E1SAIJBW9JIAHH',
+          InvalidationBatch: {
+            CallerReference: `${Date.now()}`,
+            Paths: {
+              Quantity: 1,
+              Items: ['/*']
+            }
+          }
+        }, () => {})
         codepipeline.putJobSuccessResult({
           jobId: id
         }, callback)
