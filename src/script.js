@@ -1,4 +1,4 @@
-((document) => {
+((document, window) => {
   // Get an element by its role
   const $ = (parent, role) => parent.querySelector(`[role=${role}]`)
 
@@ -22,11 +22,38 @@
     existing.parentElement.appendChild(element)
   }
 
+  // Fade in
+  const fadeIn = (element, i) => {
+    const duration = 600
+    let start = null
+    let opacity = 0
+
+    const inner = (timestamp) => {
+      if (start === null) {
+        start = timestamp
+      }
+      const progress = timestamp - start
+
+      if (progress < duration) {
+        element.style.opacity = progress / duration
+        window.requestAnimationFrame(inner)
+      } else {
+        element.style.opacity = 1
+      }
+    }
+
+    element.style.display = 'block'
+    element.style.opacity = opacity
+    setTimeout(() => {
+      window.requestAnimationFrame(inner)
+    }, i * duration)
+  }
+
   // Templating
   const template = (original, things, callback) => {
-    things.forEach((thing) => {
+    things.forEach((thing, index) => {
       const clone = original.cloneNode(true)
-      callback(clone, thing)
+      callback(clone, thing, index)
       append(original, clone)
     })
     remove(original)
@@ -63,12 +90,14 @@
   }
 
   // Renders a section
-  const section = (element, content) => {
-    element.style.display = 'block'
+  const section = (element, content, index) => {
     text($(element, 'title'), content.title)
 
     // Render the items
     template($(element, 'item'), content.items, item)
+
+    // Fade in
+    fadeIn(element, index)
   }
 
   // Renders the page
@@ -79,10 +108,8 @@
 
   // Lazy load images
   window.addEventListener('load', () => {
-    const images = $(document, 'img')
-    images.forEach((image) => {
-      image.src = image.dataset.src
-    })
+    const image = $(document, 'img')
+    image.src = image.dataset.src
   })
 
   // Get data with AJAX request
@@ -97,4 +124,4 @@
       page(document, response)
     }
   }
-})(document)
+})(document, window)
