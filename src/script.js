@@ -1,4 +1,7 @@
 ((document, window) => {
+  // Calculate delta between a and b assuming b is smaller
+  const delta = (a, b) => (b < a) ? (a - b) : 0
+
   // Get an element by its role
   const $ = (parent, role) => parent.querySelector(`[role=${role}]`)
 
@@ -24,29 +27,40 @@
 
   // Fade in
   const fadeIn = (element, i) => {
-    const duration = 600
-    let start = null
+    // Store style in variable for easy access
+    const style = element.style
+
+    // Let each element fade in over 300ms
+    const duration = 300
+    // Get time since the page started to load
+    const now = window.performance.now()
+    // Stager the elements over the same duration and let the first element
+    //  start after the same duration since the page started to loaded
+    const delay = (i * duration) + delta(duration, now)
+    // Calculate start in advance
+    const start = now + delay
+
+    // Starting with zero opacity and slowly incrementing to one
     let opacity = 0
-
+    // Inner loop to slowly increment opacity
     const inner = (timestamp) => {
-      if (start === null) {
-        start = timestamp
-      }
-      const progress = timestamp - start
-
+      const progress = delta(timestamp, start)
+      // Check if we are done or we need to request another frame
       if (progress < duration) {
-        element.style.opacity = progress / duration
+        style.opacity = progress / duration
         window.requestAnimationFrame(inner)
       } else {
-        element.style.opacity = 1
+        style.opacity = 1
       }
     }
 
-    element.style.display = 'block'
-    element.style.opacity = opacity
+    // Start with basic styling
+    style.display = 'block'
+    style.opacity = opacity
+    // Set the delay
     setTimeout(() => {
       window.requestAnimationFrame(inner)
-    }, i * duration)
+    }, delay)
   }
 
   // Templating
