@@ -38,6 +38,13 @@
               "Determining a short and long term strategy with our clients to reach their innovative goals",
               "Translating business challenges from clients to technical solutions"
             ]
+          },
+          {
+            "title": "Achievements",
+            "lines": [
+              "Developed automated compliance checks based on security standards",
+              "Developed pipeline to build and distrubute custom machine images to multiple accounts"
+            ]
           }
         ]
       },
