@@ -14,6 +14,10 @@ variable "website_s3_arn" {
   type = "string"
 }
 
+variable "website_cloudfront_arn" {
+  type = "string"
+}
+
 variable "build_path" {
   type    = "string"
   default = "build"
@@ -293,6 +297,16 @@ data "aws_iam_policy_document" "deploy_policy_document" {
 
     actions = [
       "s3:PutObject",
+    ]
+  }
+
+  statement {
+    resources = [
+      "*",
+    ]
+
+    actions = [
+      "cloudfront:CreateInvalidation",
     ]
   }
 

@@ -17,7 +17,9 @@ exports.handler = (event, context, callback) => {
     Bucket: bucketName,
     Key: objectKey
   }, (err, response) => {
-    if (err) callback(err)
+    if (err) {
+      callback(err)
+    }
 
     const promises = []
     const readStream = new stream.PassThrough()
@@ -73,10 +75,11 @@ exports.handler = (event, context, callback) => {
               Items: ['/*']
             }
           }
-        }, () => {})
-        codepipeline.putJobSuccessResult({
-          jobId: id
-        }, callback)
+        }, (err, response) => {
+          codepipeline.putJobSuccessResult({
+            jobId: id
+          }, callback)
+        })
       }).catch(err => {
         callback(err)
       })
