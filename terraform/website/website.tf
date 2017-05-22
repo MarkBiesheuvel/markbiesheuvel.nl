@@ -1,24 +1,3 @@
-variable "url" {
-  type = "string"
-}
-
-variable "aliases" {
-  type = "list"
-}
-
-/*
-# Known issue: https://forums.aws.amazon.com/thread.jspa?threadID=249559
-# Can not use data tag until old certificate is deleted
-
-data "aws_acm_certificate" "main" {
-  domain   = "${var.url}"
-  statuses = ["ISSUED"]
-}
-*/
-variable "certificate_arn" {
-  default = "arn:aws:acm:us-east-1:312701731826:certificate/054196d8-6cfb-4442-96f5-9fdea2f1dd4a"
-}
-
 data "aws_iam_policy_document" "s3_policy" {
   statement {
     actions   = ["s3:ListBucket"]
@@ -113,20 +92,4 @@ resource "aws_cloudfront_distribution" "website" {
     Type = "Website"
     Url  = "${var.url}"
   }
-}
-
-output "s3_name" {
-  value = "${aws_s3_bucket.website.bucket}"
-}
-
-output "s3_arn" {
-  value = "${aws_s3_bucket.website.arn}"
-}
-
-output "cloudfront_domain_name" {
-  value = "${aws_cloudfront_distribution.website.domain_name}"
-}
-
-output "cloudfront_zone_id" {
-  value = "${aws_cloudfront_distribution.website.hosted_zone_id}"
 }
