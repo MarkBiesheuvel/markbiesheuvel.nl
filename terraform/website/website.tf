@@ -1,3 +1,8 @@
+data "aws_acm_certificate" "main" {
+  domain   = "${var.url}"
+  statuses = ["ISSUED"]
+}
+
 data "aws_iam_policy_document" "s3_policy" {
   statement {
     actions   = ["s3:ListBucket"]
@@ -81,8 +86,7 @@ resource "aws_cloudfront_distribution" "website" {
   }
 
   viewer_certificate {
-    /* acm_certificate_arn            = "${data.aws_acm_certificate.main.arn}" */
-    acm_certificate_arn            = "${var.certificate_arn}"
+    acm_certificate_arn            = "${data.aws_acm_certificate.main.arn}"
     cloudfront_default_certificate = false
     minimum_protocol_version       = "TLSv1"
     ssl_support_method             = "sni-only"
