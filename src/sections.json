@@ -18,6 +18,23 @@
             ]
           }
         ]
+      },
+      {
+        "title": "AWS Certified Developer - Associate",
+        "href": "https://aws.amazon.com/certification/certified-developer-associate/",
+        "location": false,
+        "period": "May 2017 - May 2019",
+        "lists": [
+          {
+            "title": "Exam concepts",
+            "lines": [
+              "Picking the right AWS services for the application",
+              "Leveraging AWS SDKs to interact with AWS services from your application",
+              "Writing code that optimizes performance of AWS services used by your application",
+              "Code-level application security (IAM roles, credentials, encryption, etc.)"
+            ]
+          }
+        ]
       }
     ]
   },
