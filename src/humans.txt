@@ -10,6 +10,7 @@
 # THANKS / TECHNOLOGY
 
     http://getbootstrap.com/
-    http://gruntjs.com/
-    https://travis-ci.org/
+    http://gulpjs.com/
+    https://github.com/
+    https://www.terraform.io/
     https://aws.amazon.com/
