@@ -2,17 +2,22 @@ version: 0.1
 phases:
   install:
     commands:
+      - "echo Install started on `date`"
       - "curl -sS http://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -"
       - "echo \"deb http://dl.yarnpkg.com/debian/ stable main\" | sudo tee /etc/apt/sources.list.d/yarn.list"
       - "apt-get update -y"
       - "apt-get install -y graphicsmagick yarn"
   pre_build:
     commands:
+      - "echo Pre-build started on `date`"
       - "yarn install"
   build:
     commands:
+      - "echo Build started on `date`"
       - "yarn build"
-artifacts:
-  files:
-    - dist/*
-  discard-paths: yes
+  post_build:
+    commands:
+      - "echo Post-build started on `date`"
+      - "aws s3 sync --delete --sse AES256 ./dist s3://$S3_BUCKET/"
+      - "aws configure set preview.cloudfront true"
+      - "aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths /"

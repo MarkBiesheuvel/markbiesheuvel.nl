@@ -41,9 +41,10 @@ module "dns" {
 }
 
 module "codepipeline" {
-  source          = "codepipeline"
-  url             = "${var.url}"
-  name            = "${replace("${var.url}", ".", "-")}" # Dot is not allowed in some resource names
-  website_s3_name = "${module.website.s3_name}"
-  website_s3_arn  = "${module.website.s3_arn}"
+  source                             = "codepipeline"
+  url                                = "${var.url}"
+  name                               = "${replace("${var.url}", ".", "-")}"
+  website_s3_name                    = "${module.website.s3_name}"
+  website_s3_arn                     = "${module.website.s3_arn}"
+  website_cloudfront_distribution_id = "${module.website.cloudfront_distribution_id}"
 }
