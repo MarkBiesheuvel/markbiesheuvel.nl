@@ -43,10 +43,13 @@ data "aws_iam_policy_document" "codebuild_policy_document" {
 
   statement {
     resources = [
+      "${aws_s3_bucket.artifact_store.arn}",
       "${aws_s3_bucket.artifact_store.arn}/*",
     ]
 
     actions = [
+      "s3:ListBucket",
+      "s3:ListObjects",
       "s3:GetObject",
       "s3:GetObjectVersion",
       "s3:PutObject",
@@ -65,7 +68,7 @@ data "aws_iam_policy_document" "codebuild_policy_document" {
       "s3:GetObject",
       "s3:GetObjectVersion",
       "s3:PutObject",
-      "s3:DeleteObject"
+      "s3:DeleteObject",
     ]
   }
 
@@ -175,17 +178,6 @@ data "aws_iam_policy_document" "codepipeline_policy_document" {
     actions = [
       "codebuild:BatchGetBuilds",
       "codebuild:StartBuild",
-    ]
-  }
-
-  statement {
-    resources = [
-      "*",
-    ]
-
-    actions = [
-      "lambda:InvokeFunction",
-      "lambda:ListFunctions",
     ]
   }
 }
