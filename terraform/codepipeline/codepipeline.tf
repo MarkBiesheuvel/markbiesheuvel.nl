@@ -210,7 +210,7 @@ resource "aws_codepipeline" "main" {
       output_artifacts = ["source"]
 
       configuration {
-        RepositoryName = "${var.url}"
+        RepositoryName = "${aws_codecommit_repository.main.repository_name}"
         BranchName     = "master"
       }
     }
