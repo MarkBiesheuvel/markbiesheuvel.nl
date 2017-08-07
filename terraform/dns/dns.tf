@@ -59,7 +59,7 @@ resource "aws_route53_record" "mx" {
   records = "${var.mx_records}"
 }
 
-resource "aws_route53_record" "keybase" {
+resource "aws_route53_record" "txt" {
   count   = "${aws_route53_zone.all.count}"
   zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
   name    = "${element(aws_route53_zone.all.*.name, count.index)}"
@@ -68,5 +68,6 @@ resource "aws_route53_record" "keybase" {
 
   records = [
     "keybase-site-verification=${var.keybase_verification[element(aws_route53_zone.all.*.name, count.index)]}",
+    "google-site-verification=${var.google_verification[element(aws_route53_zone.all.*.name, count.index)]}",
   ]
 }
