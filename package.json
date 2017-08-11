@@ -23,7 +23,7 @@
     "gulp-less": "^3.3.0",
     "gulp-livereload": "^3.8.1",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^2.1.2",
+    "gulp-uglify": "^3.0.0",
     "gulp-uncss": "^1.0.6",
     "pump": "^1.0.2"
   },
