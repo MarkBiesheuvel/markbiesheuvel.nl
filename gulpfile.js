@@ -8,6 +8,7 @@ const inline = require('gulp-inline')
 const jsonminify = require('gulp-jsonminify')
 const less = require('gulp-less')
 const livereload = require('gulp-livereload')
+const rename = require('gulp-rename')
 const uncss = require('gulp-uncss')
 const uglify = require('gulp-uglify')
 const pump = require('pump')
@@ -25,6 +26,7 @@ const jsSource = `${source}/*.js`
 const othersSource = [
   `${source}/*.*`,
   `!${cssSource}`,
+  `!${imgSource}`,
   `!${htmlSource}`,
   `!${jsonSource}`,
   `!${jsSource}`
@@ -35,6 +37,19 @@ const copy = () => {
   return (callback) => {
     pump([
       gulp.src(othersSource),
+      gulp.dest(destination),
+      livereload()
+    ], callback)
+  }
+}
+
+const img = ({width, height, suffix = ''}) => {
+  // Task
+  return (callback) => {
+    pump([
+      gulp.src(imgSource),
+      resize({width, height, quality: 1, format: 'jpg'}),
+      rename({suffix}),
       gulp.dest(destination),
       livereload()
     ], callback)
@@ -53,26 +68,24 @@ const json = () => {
   }
 }
 
-const html = (includeUncss = true) => {
+const html = ({includeUncss, width, height}) => {
   // Settings
-  const collapseWhitespace = true
-  const base = source
   const js = [
     () => babel({ presets: ['es2015'] }),
     () => uglify()
   ]
   const img = [
-    () => resize({ width: 64, height: 64, quality: 0, format: 'gif' })
+    () => resize({width, height, quality: 0, format: 'gif'})
   ]
   const css = [
-    () => less({ paths: 'node_modules/bootstrap/less' }),
+    () => less({paths: 'node_modules/bootstrap/less'}),
     () => csso()
   ]
 
   // Add uncss to the list
   if (includeUncss) {
     css.push(
-      () => uncss({ html: [htmlSource] }),
+      () => uncss({html: [htmlSource]}),
       css.pop()
     )
   }
@@ -81,8 +94,8 @@ const html = (includeUncss = true) => {
   return (callback) => {
     pump([
       gulp.src(htmlSource),
-      inline({ base, js, css, img }),
-      htmlmin({ collapseWhitespace }),
+      inline({base: source, css, img, js}),
+      htmlmin({collapseWhitespace: true}),
       gulp.dest(destination),
       livereload()
     ], callback)
@@ -95,13 +108,20 @@ const watch = () => {
     livereload.listen()
     gulp.watch(othersSource, ['copy'])
     gulp.watch(jsonSource, ['json'])
+    gulp.watch(imgSource, ['img'])
     gulp.watch([htmlSource, jsSource, cssSource, imgSource], ['html.fast'])
   }
 }
 
+const imageSize = 262
+const retinaImageSize = imageSize * 2
+const thumbnailImageSize = Math.ceil(imageSize / 4)
 gulp.task('copy', copy())
 gulp.task('json', json())
-gulp.task('html.slow', html(true))
-gulp.task('html.fast', html(false))
+gulp.task('img.normal', img({width: imageSize, height: imageSize}))
+gulp.task('img.retina', img({width: retinaImageSize, height: retinaImageSize, suffix: '-2x'}))
+gulp.task('img', ['img.normal', 'img.retina'])
+gulp.task('html.slow', html({includeUncss: true, width: thumbnailImageSize, height: thumbnailImageSize}))
+gulp.task('html.fast', html({includeUncss: false, width: thumbnailImageSize, height: thumbnailImageSize}))
 gulp.task('watch', watch())
-gulp.task('build', [ 'copy', 'json', 'html.slow' ])
+gulp.task('build', ['copy', 'img', 'json', 'html.slow'])
