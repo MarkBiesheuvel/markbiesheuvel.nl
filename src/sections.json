@@ -71,7 +71,7 @@
           {
             "title": "Responsibilities",
             "lines": [
-              "Advicing, designing, maintaining and optimizing cloud environment of our clients",
+              "Advising, designing, maintaining and optimizing cloud environment of our clients",
               "Configuring and developing automated and scalable infrastructures",
               "Determining a short and long term strategy with our clients to reach their innovative goals",
               "Translating business challenges from clients to technical solutions"
@@ -80,7 +80,7 @@
           {
             "title": "Achievements",
             "lines": [
-              "Developed pipeline to build and distrubute custom machine images to multiple accounts",
+              "Developed pipeline to build and distribute custom machine images to multiple accounts",
               "Developed automated compliance checks based on security standards",
               "Developed pipeline to build Docker images from Git repository and deploy to container cluster"
             ]
@@ -105,8 +105,8 @@
             "lines": [
               "Developed new access right system for more granular adjustability of user access",
               "Improved integration with bookkeeping software to reduce workload of Finance department by 5h a week",
-              "Implemented search function with Elasticsearch",
-              "Improved speed of calculations on tree structure by 100 times"
+              "Implemented search function with Elasticsearch to solve problems with geographical aggregations",
+              "Solved bug in category tree structure to reduce query time from more than 20s to 0.2s"
             ]
           }
         ]
@@ -130,11 +130,11 @@
           {
             "title": "Achievements",
             "lines": [
-              "Replaced generated code from a CMS by an optimized query to make page loads 10 times faster",
-              "Restructured cache usage of ACL to reduce memory usage per request by 80%",
-              "Developed a real-time integration between VoIP system and web app to relay customer information as calls come in",
-              "Implemented search function for web shop with 8.000 products with Elasticsearch",
-              "Migrated web applications to AWS to reduce hosting costs by approximately 50%"
+              "Replaced generated code from a CMS by an optimized query to reduce page load time from 8s to 0.8s",
+              "Restructured cache usage of ACL to reduce base memory usage per request from 80MB to 16MB",
+              "Developed integration between VoIP system and web app to relay customer information based on caller ID",
+              "Implemented Elasticsearch for web shop with 8.000 products in customer specific catalogs",
+              "Migrated web applications from shared hosting at multiple external parties to AWS"
             ]
           }
         ]
