@@ -34,12 +34,24 @@ resource "aws_route53_record" "wildcard_domains" {
   }
 }
 
+resource "aws_route53_record" "gcloud" {
+  count   = "${aws_route53_zone.all.count}"
+  zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
+  name    = "gcloud.${element(aws_route53_zone.all.*.name, count.index)}"
+  type    = "CNAME"
+  ttl     = 86400
+
+  records = [
+    "c.storage.googleapis.com.",
+  ]
+}
+
 resource "aws_route53_record" "name_servers" {
   count   = "${aws_route53_zone.all.count}"
   zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
   name    = "${element(aws_route53_zone.all.*.name, count.index)}"
   type    = "NS"
-  ttl     = "172800"
+  ttl     = 172800
 
   records = [
     "${element(aws_route53_zone.all.*.name_servers.0, count.index)}",
@@ -54,7 +66,7 @@ resource "aws_route53_record" "mx" {
   zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
   name    = "${element(aws_route53_zone.all.*.name, count.index)}"
   type    = "MX"
-  ttl     = "86400"
+  ttl     = 86400
 
   records = "${var.mx_records}"
 }
@@ -64,7 +76,7 @@ resource "aws_route53_record" "txt" {
   zone_id = "${element(aws_route53_zone.all.*.zone_id, count.index)}"
   name    = "${element(aws_route53_zone.all.*.name, count.index)}"
   type    = "TXT"
-  ttl     = "86400"
+  ttl     = 86400
 
   records = [
     "keybase-site-verification=${var.keybase_verification[element(aws_route53_zone.all.*.name, count.index)]}",

@@ -37,6 +37,17 @@ resource "aws_s3_bucket" "website" {
   }
 }
 
+resource "google_storage_bucket" "website" {
+  name          = "gcloud.${var.url}"
+  location      = "US"
+  storage_class = "MULTI_REGIONAL"
+
+  website {
+    main_page_suffix = "index.html"
+    not_found_page   = "404.html"
+  }
+}
+
 resource "aws_cloudfront_origin_access_identity" "identity" {}
 
 resource "aws_cloudfront_distribution" "website" {
