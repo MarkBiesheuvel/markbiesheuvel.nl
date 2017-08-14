@@ -79,7 +79,7 @@ const html = ({includeUncss, width, height}) => {
   ]
   const css = [
     () => less({paths: 'node_modules/bootstrap/less'}),
-    () => csso()
+    () => csso({comments: false})
   ]
 
   // Add uncss to the list
@@ -95,7 +95,14 @@ const html = ({includeUncss, width, height}) => {
     pump([
       gulp.src(htmlSource),
       inline({base: source, css, img, js}),
-      htmlmin({collapseWhitespace: true}),
+      htmlmin({
+        collapseWhitespace: true,
+        removeAttributeQuotes: true,
+        removeOptionalTags: true,
+        removeRedundantAttributes: true,
+        sortAttributes: true,
+        sortClassName: true
+      }),
       gulp.dest(destination),
       livereload()
     ], callback)
