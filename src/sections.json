@@ -80,9 +80,9 @@
           {
             "title": "Achievements",
             "lines": [
-              "Developed pipeline to build and distribute custom machine images to multiple accounts",
-              "Developed automated compliance checks based on security standards",
-              "Developed pipeline to build Docker images from Git repository and deploy to container cluster"
+              "Developed CI/CD pipeline to build and distribute custom machine images across multiple accounts",
+              "Implemented automated compliance checks based on security framework",
+              "Developed CI/CD pipeline to build Docker images from Git repository and deploy to container cluster"
             ]
           }
         ]
