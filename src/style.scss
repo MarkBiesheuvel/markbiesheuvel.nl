@@ -1,0 +1,19 @@
+$grid-columns: 4;
+$blue: #3e4fad;
+$line-height-base: 1.4;
+$font-size-base: .875rem;
+$h3-font-size: 1.5rem;
+$small-font-size: 65%;
+
+// We're using bootstrap v4-dev since v4.0.0-beta didn't contain the default flag for $paragraph-margin-bottom
+// https://github.com/twbs/bootstrap/pull/23420
+$paragraph-margin-bottom: .5rem;
+
+@import "functions";
+@import "variables";
+@import "mixins";
+@import "print";
+@import "reboot";
+@import "type";
+@import "grid";
+@import "utilities";

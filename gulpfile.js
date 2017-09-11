@@ -6,11 +6,11 @@ const htmlmin = require('gulp-htmlmin')
 const resize = require('gulp-image-resize')
 const inline = require('gulp-inline')
 const jsonminify = require('gulp-jsonminify')
-const less = require('gulp-less')
 const livereload = require('gulp-livereload')
 const rename = require('gulp-rename')
-const uncss = require('gulp-uncss')
+const sass = require('gulp-sass')
 const uglify = require('gulp-uglify')
+const uncss = require('gulp-uncss')
 const pump = require('pump')
 
 // Directories
@@ -18,7 +18,7 @@ const source = 'src'
 const destination = 'dist'
 
 // Globs
-const cssSource = `${source}/*.less`
+const cssSource = `${source}/*.scss`
 const htmlSource = `${source}/*.html`
 const imgSource = `${source}/*.jpg`
 const jsonSource = `${source}/*.json`
@@ -78,7 +78,7 @@ const html = ({includeUncss, width, height}) => {
     () => resize({width, height, quality: 0, format: 'gif'})
   ]
   const css = [
-    () => less({paths: 'node_modules/bootstrap/less'}),
+    () => sass({includePaths: ['node_modules/bootstrap/scss']}),
     () => csso({comments: false})
   ]
 
