@@ -1,4 +1,5 @@
 data "aws_acm_certificate" "main" {
+  provider = "aws.global"
   domain   = "${var.url}"
   statuses = ["ISSUED"]
 }
@@ -6,8 +7,8 @@ data "aws_acm_certificate" "main" {
 data "aws_iam_policy_document" "s3_policy" {
   statement {
     resources = [
-      "arn:aws:s3:::${var.url}",
-      "arn:aws:s3:::${var.url}/*",
+      "${aws_s3_bucket.website.arn}",
+      "${aws_s3_bucket.website.arn}/*",
     ]
 
     actions = [
@@ -23,9 +24,9 @@ data "aws_iam_policy_document" "s3_policy" {
 }
 
 resource "aws_s3_bucket" "website" {
-  bucket = "${var.url}"
-  acl    = "private"
-  policy = "${data.aws_iam_policy_document.s3_policy.json}"
+  bucket        = "${var.name}-website-hosting"
+  acl           = "private"
+  force_destroy = true
 
   website {
     index_document = "index.html"
@@ -35,6 +36,11 @@ resource "aws_s3_bucket" "website" {
     Type = "Website"
     Url  = "${var.url}"
   }
+}
+
+resource "aws_s3_bucket_policy" "s3_policy" {
+  bucket = "${aws_s3_bucket.website.id}"
+  policy = "${data.aws_iam_policy_document.s3_policy.json}"
 }
 
 resource "google_storage_bucket" "website" {

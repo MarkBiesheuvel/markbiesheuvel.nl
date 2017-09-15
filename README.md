@@ -24,7 +24,7 @@ Build
 Configure CodeCommit remote (only once).
 See: http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-ssh-unixes.html
 
-    git remote add aws ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/markbiesheuvel.nl
+    git remote add aws ssh://git-codecommit.eu-central-1.amazonaws.com/v1/repos/markbiesheuvel.nl
 
 Push to this repo to deploy
 

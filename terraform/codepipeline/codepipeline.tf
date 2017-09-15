@@ -4,8 +4,17 @@ resource "aws_codecommit_repository" "main" {
 }
 
 resource "aws_s3_bucket" "artifact_store" {
-  bucket = "${var.name}-builds"
-  acl    = "private"
+  bucket        = "${var.name}-build-artifacts"
+  acl           = "private"
+  force_destroy = true
+
+  lifecycle_rule {
+    enabled = true
+
+    expiration {
+      days = 7
+    }
+  }
 
   tags {
     Type = "Codepipeline"

@@ -1,6 +1,7 @@
 module "website" {
   source  = "website"
   url     = "${var.url}"
+  name    = "${replace("${var.url}", ".", "-")}"
   aliases = "${var.aliases}"
 }
 
