@@ -1,6 +1,12 @@
+resource "aws_route53_delegation_set" "main" {
+  reference_name = "Main"
+}
+
 resource "aws_route53_zone" "all" {
   count = "${length(var.domains)}"
   name  = "${element(var.domains, count.index)}"
+
+  delegation_set_id = "${aws_route53_delegation_set.main.id}"
 
   tags {
     Type = "Website"
