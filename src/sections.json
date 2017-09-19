@@ -3,56 +3,23 @@
     "title": "Certification",
     "items": [
       {
-        "title": "AWS Certified Solutions Architect - Associate",
-        "href": "https://aws.amazon.com/certification/certified-solutions-architect-associate/",
+        "title": "Amazon Web Services Certification",
+        "href": "https://aws.amazon.com/certification/our-certifications/",
         "location": false,
-        "period": "May 2016 - May 2018",
+        "period": false,
         "lists": [
           {
-            "title": "Exam concepts",
+            "title": "Specialty level",
             "lines": [
-              "Designing and deploying scalable, highly available, and fault tolerant systems on AWS",
-              "Lift and shift of an existing on-premises application to AWS",
-              "Ingress and egress of data to and from AWS",
-              "Selecting the appropriate AWS service based on data, compute, database, or security requirements",
-              "Identifying appropriate use of AWS architectural best practices",
-              "Estimating AWS costs and identifying cost control mechanisms"
+              "AWS Certified Advanced Networking - Specialty"
             ]
-          }
-        ]
-      },
-      {
-        "title": "AWS Certified Developer - Associate",
-        "href": "https://aws.amazon.com/certification/certified-developer-associate/",
-        "location": false,
-        "period": "May 2017 - May 2019",
-        "lists": [
+          },
           {
-            "title": "Exam concepts",
+            "title": "Associate level",
             "lines": [
-              "Picking the right AWS services for the application",
-              "Leveraging AWS SDKs to interact with AWS services from your application",
-              "Writing code that optimizes performance of AWS services used by your application",
-              "Code-level application security (IAM roles, credentials, encryption, etc.)"
-            ]
-          }
-        ]
-      },
-      {
-        "title": "AWS Certified SysOps Administrator - Associate",
-        "href": "https://aws.amazon.com/certification/certified-sysops-admin-associate/",
-        "location": false,
-        "period": "May 2017 - May 2019",
-        "lists": [
-          {
-            "title": "Exam concepts",
-            "lines": [
-              "Deploying, managing, and operating scalable, highly available, and fault tolerant systems on AWS",
-              "Migrating an existing on-premises application to AWS",
-              "Implementing and controlling the flow of data to and from AWS",
-              "Selecting the appropriate AWS service based on compute, data, or security requirements",
-              "Identifying appropriate use of AWS architectural best practices",
-              "Estimating AWS usage costs and identifying operational cost control mechanisms"
+              "AWS Certified Solutions Architect - Associate",
+              "AWS Certified Developer - Associate",
+              "AWS Certified SysOps Administrator - Associate"
             ]
           }
         ]

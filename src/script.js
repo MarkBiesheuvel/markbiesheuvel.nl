@@ -88,6 +88,7 @@
 
   // Renders an item containing multiple lists
   const item = (element, content) => {
+
     if (content.location) {
       text($(element, 'title'), content.title)
       text($(element, 'link'), content.location)
@@ -97,7 +98,10 @@
       text($(element, 'link'), content.title)
     }
     href($(element, 'link'), content.href)
-    text($(element, 'period'), content.period)
+
+    if (content.period) {
+      text($(element, 'period'), content.period)
+    }
 
     // Render the lists
     template($(element, 'list'), content.lists, list)
