@@ -47,9 +47,10 @@
           {
             "title": "Achievements",
             "lines": [
-              "Developed CI/CD pipeline to build and distribute custom machine images across multiple accounts",
-              "Implemented automated compliance checks based on security framework",
-              "Developed CI/CD pipeline to build Docker images from Git repository and deploy to container cluster"
+              "Enabled developers within a national bank to migrate their first application to public cloud",
+              "Automated build process of custom machine images and distribution across multiple accounts",
+              "Developed framework to monitor and report compliance in real-time across workloads",
+              "Automated both build process of Docker images and deployment into cluster"
             ]
           }
         ]
@@ -63,16 +64,16 @@
           {
             "title": "Responsibilities",
             "lines": [
-              "Developing new (back-end) features for marketplace and backoffice",
+              "Developing new back-end features for marketplace and backoffice",
               "Operating cloud infrastructure for continuous deployment"
             ]
           },
           {
             "title": "Achievements",
             "lines": [
-              "Developed new access right system for more granular adjustability of user access",
-              "Improved integration with bookkeeping software to reduce workload of Finance department by 5h a week",
-              "Implemented search function with Elasticsearch to solve problems with geographical aggregations",
+              "Developed access right system for more granular adjustability of user permissions",
+              "Improved integration with our bookkeeping software to reduce workload of Finance department by 5h/week",
+              "Implemented search function with Elasticsearch to solve issues with geographical aggregations",
               "Solved bug in category tree structure to reduce query time from more than 20s to 0.2s"
             ]
           }
@@ -87,9 +88,9 @@
           {
             "title": "Responsibilities",
             "lines": [
-              "Designing database structure and optimizing queries",
-              "Developing custom add-ons to customer requirements",
-              "Integrating front-end (JavaScript) with back-end (PHP)",
+              "Designing database structure and optimizing SQL queries",
+              "Developing custom modules based on customer requirements",
+              "Integrating JavaScript front-end with PHP back-end",
               "Researching new technologies and business opportunities",
               "Operating cloud infrastructure for continuous deployment"
             ]
@@ -97,7 +98,7 @@
           {
             "title": "Achievements",
             "lines": [
-              "Replaced generated code from a CMS by an optimized query to reduce page load time from 8s to 0.8s",
+              "Replaced PHP code from a CMS by an optimized SQL query to reduce page load time from 8s to 0.8s",
               "Restructured cache usage of ACL to reduce base memory usage per request from 80MB to 16MB",
               "Developed integration between VoIP system and web app to relay customer information based on caller ID",
               "Implemented Elasticsearch for web shop with 8.000 products in customer specific catalogs",
