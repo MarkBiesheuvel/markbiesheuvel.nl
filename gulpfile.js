@@ -9,6 +9,7 @@ const jsonminify = require('gulp-jsonminify')
 const livereload = require('gulp-livereload')
 const rename = require('gulp-rename')
 const sass = require('gulp-sass')
+const svgmin = require('gulp-svgmin')
 const uglify = require('gulp-uglify')
 const uncss = require('gulp-uncss')
 const pump = require('pump')
@@ -16,20 +17,23 @@ const pump = require('pump')
 // Directories
 const source = 'src'
 const destination = 'dist'
+const imagesDestination = `${destination}/images`
 
 // Globs
 const cssSource = `${source}/*.scss`
 const htmlSource = `${source}/*.html`
-const imgSource = `${source}/*.jpg`
+const imgSource = `${source}/images/*.png`
 const jsonSource = `${source}/*.json`
 const jsSource = `${source}/*.js`
+const svgSource = `${source}/images/*.svg`
 const othersSource = [
   `${source}/*.*`,
   `!${cssSource}`,
   `!${imgSource}`,
   `!${htmlSource}`,
   `!${jsonSource}`,
-  `!${jsSource}`
+  `!${jsSource}`,
+  `!${svgSource}`,
 ]
 
 const copy = () => {
@@ -48,9 +52,9 @@ const img = ({width, height, suffix = ''}) => {
   return (callback) => {
     pump([
       gulp.src(imgSource),
-      resize({width, height, quality: 1, format: 'jpg'}),
+      resize({width, height, quality: 1, format: 'png'}),
       rename({suffix}),
-      gulp.dest(destination),
+      gulp.dest(imagesDestination),
       livereload()
     ], callback)
   }
@@ -68,19 +72,17 @@ const json = () => {
   }
 }
 
-const html = ({includeUncss, width, height}) => {
+const html = ({includeUncss}) => {
   // Settings
   const js = [
     () => babel({ presets: ['es2015'] }),
     () => uglify()
   ]
-  const img = [
-    () => resize({width, height, quality: 0, format: 'gif'})
-  ]
   const css = [
     () => sass({includePaths: ['node_modules/bootstrap/scss']}),
     () => csso({comments: false})
   ]
+  const disabledTypes = ['img', 'svg']
 
   // Add uncss to the list
   if (includeUncss) {
@@ -94,7 +96,12 @@ const html = ({includeUncss, width, height}) => {
   return (callback) => {
     pump([
       gulp.src(htmlSource),
-      inline({base: source, css, img, js}),
+      inline({
+        base: source,
+        css,
+        js,
+        disabledTypes
+      }),
       htmlmin({
         collapseWhitespace: true,
         removeAttributeQuotes: true,
@@ -109,6 +116,18 @@ const html = ({includeUncss, width, height}) => {
   }
 }
 
+const svg = () => {
+  // Task
+  return (callback) => {
+    pump([
+      gulp.src(svgSource),
+      svgmin({}),
+      gulp.dest(imagesDestination),
+      livereload()
+    ], callback)
+  }
+}
+
 const watch = () => {
   // Task
   return () => {
@@ -116,6 +135,7 @@ const watch = () => {
     gulp.watch(othersSource, ['copy'])
     gulp.watch(jsonSource, ['json'])
     gulp.watch(imgSource, ['img'])
+    gulp.watch(svgSource, ['svg'])
     gulp.watch([htmlSource, jsSource, cssSource, imgSource], ['html.fast'])
   }
 }
@@ -128,7 +148,10 @@ gulp.task('json', json())
 gulp.task('img.normal', img({width: imageSize, height: imageSize}))
 gulp.task('img.retina', img({width: retinaImageSize, height: retinaImageSize, suffix: '-2x'}))
 gulp.task('img', ['img.normal', 'img.retina'])
-gulp.task('html.slow', html({includeUncss: true, width: thumbnailImageSize, height: thumbnailImageSize}))
-gulp.task('html.fast', html({includeUncss: false, width: thumbnailImageSize, height: thumbnailImageSize}))
+gulp.task('html.slow', html({includeUncss: true}))
+gulp.task('html.fast', html({includeUncss: false}))
+gulp.task('svg', svg())
 gulp.task('watch', watch())
-gulp.task('build', ['copy', 'img', 'json', 'html.slow'])
+
+// Everything together
+gulp.task('build', ['copy', 'img', 'json', 'html.slow', 'svg'])

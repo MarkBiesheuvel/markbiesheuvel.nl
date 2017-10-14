@@ -15,6 +15,11 @@
     element.href = href
   }
 
+  // Set the src of an element
+  const src = (element, src) => {
+    element.src = src
+  }
+
   // Removes an element from the DOM
   const remove = (element) => {
     element.parentElement.removeChild(element)
@@ -98,6 +103,7 @@
       text($(element, 'link'), content.title)
     }
     href($(element, 'link'), content.href)
+    src($(element, 'img'), `images/${content.img}`)
 
     if (content.period) {
       text($(element, 'period'), content.period)

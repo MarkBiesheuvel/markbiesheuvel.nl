@@ -4,6 +4,7 @@
     "items": [
       {
         "title": "Amazon Web Services Certification",
+        "img": "aws_certified.svg",
         "href": "https://www.certmetrics.com/amazon/public/transcript.aspx?transcript=21F31M4CK2FQ1GCY",
         "location": false,
         "period": false,
@@ -31,6 +32,7 @@
     "items": [
       {
         "title": "Consulting Cloud Systems Engineer",
+        "img": "oblcc.png",
         "href": "http://www.oblivioncloudcontrol.com/",
         "location": "Oblivion Cloud Control",
         "period": "April 2017 - present",
@@ -57,6 +59,7 @@
       },
       {
         "title": "Back-end Developer",
+        "img": "deskbookers.svg",
         "href": "https://www.deskbookers.com/en-gb/",
         "location": "Deskbookers",
         "period": "September 2016 - March 2017",
@@ -81,6 +84,7 @@
       },
       {
         "title": "Web Developer",
+        "img": "qforma.svg",
         "href": "https://www.nobears.nl/",
         "location": "QForma (NoBears)",
         "period": "September 2012 - August 2016",
@@ -114,6 +118,7 @@
     "items": [
       {
         "title": "Computer Science",
+        "img": "tue.svg",
         "href": "https://www.tue.nl/en/",
         "location": "Eindhoven University of Technology",
         "period": "2009 - 2012",

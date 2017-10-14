@@ -15,5 +15,38 @@ $paragraph-margin-bottom: .5rem;
 @import "print";
 @import "reboot";
 @import "type";
+@import "images";
 @import "grid";
 @import "utilities";
+
+.hr {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+
+  & > span {
+    position: relative;
+    display: inline-block;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 100vw;
+      height: 1px;
+      background: $gray-400;
+    }
+
+    &:before {
+      right: 100%;
+      margin-right: 1rem;
+    }
+
+    &:after {
+      left: 100%;
+      margin-left: 1rem;
+    }
+  }
+}
