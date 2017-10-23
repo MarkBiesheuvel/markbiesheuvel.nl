@@ -31,6 +31,6 @@
     "pump": "^1.0.2"
   },
   "dependencies": {
-    "bootstrap": "twbs/bootstrap#77777b3"
+    "bootstrap": "v4.0.0-beta.2"
   }
 }
