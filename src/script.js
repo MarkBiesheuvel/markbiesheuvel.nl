@@ -130,17 +130,6 @@
     template($(element, 'section'), content, section)
   }
 
-  // Lazy load images
-  window.addEventListener('load', () => {
-    const image = $(document, 'img')
-    let src = image.dataset.src
-    // Load different version for retina displays
-    if (window.devicePixelRatio > 1) {
-      src = src.replace(/(.+)\./, '$1-2x.')
-    }
-    image.src = src
-  })
-
   // Get data with AJAX request
   const request = new window.XMLHttpRequest()
   request.open('GET', 'sections.json')
