@@ -40,9 +40,9 @@
           {
             "title": "Responsibilities",
             "lines": [
-              "Advising, designing, maintaining and optimizing cloud environment of our clients",
+              "Advising, designing, maintaining and optimizing cloud environments of our clients",
               "Configuring and developing automated and scalable infrastructures",
-              "Determining a short and long term strategy with our clients to reach their innovative goals",
+              "Determining a short and long-term strategy with our clients to reach their innovative goals",
               "Translating business challenges from clients to technical solutions"
             ]
           },
@@ -67,7 +67,7 @@
           {
             "title": "Responsibilities",
             "lines": [
-              "Developing new back-end features for marketplace and backoffice",
+              "Developing new back-end features for marketplace and back office",
               "Operating cloud infrastructure for continuous deployment"
             ]
           },
@@ -105,7 +105,7 @@
               "Replaced PHP code from a CMS by an optimized SQL query to reduce page load time from 8s to 0.8s",
               "Restructured cache usage of ACL to reduce base memory usage per request from 80MB to 16MB",
               "Developed integration between VoIP system and web app to relay customer information based on caller ID",
-              "Implemented Elasticsearch for web shop with 8.000 products in customer specific catalogs",
+              "Implemented Elasticsearch for webshop with 8.000 products in customer-specific catalogs",
               "Migrated web applications from shared hosting at multiple external parties to AWS"
             ]
           }
