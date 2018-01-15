@@ -805,13 +805,12 @@ clap@^1.0.9:
     chalk "^1.1.3"
 
 class-utils@^0.3.5:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.5.tgz#17e793103750f9627b2176ea34cfd1b565903c80"
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
   dependencies:
     arr-union "^3.1.0"
     define-property "^0.2.5"
     isobject "^3.0.0"
-    lazy-cache "^2.0.2"
     static-extend "^0.1.1"
 
 clean-css@4.1.x:
@@ -875,9 +874,13 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.12.x, commander@^2.9.0, commander@~2.12.1:
+commander@2.12.x:
   version "2.12.2"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
+
+commander@^2.9.0, commander@~2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
 
 commander@~2.9.0:
   version "2.9.0"
@@ -960,9 +963,9 @@ css-select@~1.2.0:
     domutils "1.5.1"
     nth-check "~1.0.1"
 
-css-tree@1.0.0-alpha25:
-  version "1.0.0-alpha25"
-  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha25.tgz#1bbfabfbf6eeef4f01d9108ff2edd0be2fe35597"
+css-tree@1.0.0-alpha.27:
+  version "1.0.0-alpha.27"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha.27.tgz#f211526909c7dc940843d83b9376ed98ddb8de47"
   dependencies:
     mdn-data "^1.0.0"
     source-map "^0.5.3"
@@ -972,10 +975,10 @@ css-what@2.1:
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd"
 
 csso@^3.0.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/csso/-/csso-3.4.0.tgz#57b27ef553cccbf5aa964c641748641e9af113f3"
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/csso/-/csso-3.5.0.tgz#acdbba5719e2c87bc801eadc032764b2e4b9d4e7"
   dependencies:
-    css-tree "1.0.0-alpha25"
+    css-tree "1.0.0-alpha.27"
 
 csso@~2.3.1:
   version "2.3.2"
@@ -1060,8 +1063,8 @@ delegates@^1.0.0:
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
 
 depd@~1.1.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.1.tgz#5783b4e1c459f06fa5ca27f991f3d06e7a310359"
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
 
 deprecated@^0.0.1:
   version "0.0.1"
@@ -1133,8 +1136,8 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
 end-of-stream@^1.1.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.0.tgz#7a90d833efda6cfa6eac0f4949dbb0fad3a63206"
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"
   dependencies:
     once "^1.4.0"
 
@@ -1224,8 +1227,8 @@ extend@^3.0.0, extend@~3.0.0, extend@~3.0.1:
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
 
 extglob@^2.0.2:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/extglob/-/extglob-2.0.3.tgz#55e019d0c95bf873949c737b7e5172dba84ebb29"
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/extglob/-/extglob-2.0.4.tgz#ad00fe4dc612a9232e8718711dc5cb5ab0285543"
   dependencies:
     array-unique "^0.3.2"
     define-property "^1.0.0"
@@ -1596,11 +1599,11 @@ gulp-babel@^7.0.0:
     vinyl-sourcemaps-apply "^0.2.0"
 
 gulp-csso@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-csso/-/gulp-csso-3.0.0.tgz#13d0add6663f4ca398f4d414ff8dcc349b219b2c"
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/gulp-csso/-/gulp-csso-3.0.1.tgz#3c160364491e32f2ecefd5d531cf7724f1afb7f0"
   dependencies:
     csso "^3.0.0"
-    gulp-util "^3.0.6"
+    plugin-error "^0.1.2"
     vinyl-sourcemaps-apply "^0.2.1"
 
 gulp-gm@~0.0.3:
@@ -1640,11 +1643,11 @@ gulp-inline@^0.1.3:
     through2 "^2.0.3"
 
 gulp-jsonminify@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-jsonminify/-/gulp-jsonminify-1.0.0.tgz#c42b68812c657e6e0a12e93c2aa217b3eb38c70a"
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/gulp-jsonminify/-/gulp-jsonminify-1.1.0.tgz#3b3c787f252ab42bbd7f355c7629665357e88d1a"
   dependencies:
-    gulp-util "~3.0.4"
     jsonminify "~0.2.3"
+    plugin-error "^0.1.2"
     through2 "~0.6.5"
 
 gulp-livereload@^3.8.1:
@@ -1712,7 +1715,7 @@ gulp-util@^2.2.14:
     through2 "^0.5.0"
     vinyl "^0.2.1"
 
-gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.2, gulp-util@^3.0.4, gulp-util@^3.0.6, gulp-util@^3.0.7, gulp-util@~3.0.4, gulp-util@~3.0.6:
+gulp-util@^3.0, gulp-util@^3.0.0, gulp-util@^3.0.2, gulp-util@^3.0.4, gulp-util@^3.0.7, gulp-util@~3.0.6:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -2306,8 +2309,8 @@ linerstream@^0.1.4:
   resolved "https://registry.yarnpkg.com/linerstream/-/linerstream-0.1.4.tgz#5de7bf69faa2b0f9d85e8332099b70e419a845d5"
 
 livereload-js@^2.2.0:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/livereload-js/-/livereload-js-2.2.2.tgz#6c87257e648ab475bc24ea257457edcc1f8d0bc2"
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/livereload-js/-/livereload-js-2.2.3.tgz#1abe1221e16ba9cf48a0afeade35331d49c4d9f1"
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -2684,8 +2687,8 @@ meow@^3.3.0, meow@^3.7.0:
     trim-newlines "^1.0.0"
 
 micromatch@^3.0.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-3.1.4.tgz#bb812e741a41f982c854e42b421a7eac458796f4"
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-3.1.5.tgz#d05e168c206472dfbca985bfef4f57797b4cd4ba"
   dependencies:
     arr-diff "^4.0.0"
     array-unique "^0.3.2"
@@ -2791,8 +2794,8 @@ nan@^2.3.2:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.8.0.tgz#ed715f3fe9de02b57a5e6252d90a96675e1f085a"
 
 nanomatch@^1.2.5:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.6.tgz#f27233e97c34a8706b7e781a4bc611c957a81625"
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.7.tgz#53cd4aa109ff68b7f869591fdc9d10daeeea3e79"
   dependencies:
     arr-diff "^4.0.0"
     array-unique "^0.3.2"
@@ -3902,10 +3905,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 uglify-js@3.3.x, uglify-js@^3.0.5:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.3.tgz#66f9b57f7dda913ad9f48a21b12e4e7377fdaf40"
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.3.7.tgz#28463e7c7451f89061d2b235e30925bf5625e14d"
   dependencies:
-    commander "~2.12.1"
+    commander "~2.13.0"
     source-map "~0.6.1"
 
 unc-path-regex@^0.1.2:
