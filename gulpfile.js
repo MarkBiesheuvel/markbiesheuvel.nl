@@ -3,11 +3,9 @@ const gulp = require('gulp')
 const babel = require('gulp-babel')
 const csso = require('gulp-csso')
 const htmlmin = require('gulp-htmlmin')
-const resize = require('gulp-image-resize')
 const inline = require('gulp-inline')
 const jsonminify = require('gulp-jsonminify')
 const livereload = require('gulp-livereload')
-const rename = require('gulp-rename')
 const sass = require('gulp-sass')
 const svgmin = require('gulp-svgmin')
 const uglify = require('gulp-uglify')
@@ -22,14 +20,12 @@ const imagesDestination = `${destination}/images`
 // Globs
 const cssSource = `${source}/*.scss`
 const htmlSource = `${source}/*.html`
-const imgSource = `${source}/images/*.png`
 const jsonSource = `${source}/*.json`
 const jsSource = `${source}/*.js`
 const svgSource = `${source}/images/*.svg`
 const othersSource = [
   `${source}/*.*`,
   `!${cssSource}`,
-  `!${imgSource}`,
   `!${htmlSource}`,
   `!${jsonSource}`,
   `!${jsSource}`,
@@ -42,19 +38,6 @@ const copy = () => {
     pump([
       gulp.src(othersSource),
       gulp.dest(destination),
-      livereload()
-    ], callback)
-  }
-}
-
-const img = ({width, height, suffix = ''}) => {
-  // Task
-  return (callback) => {
-    pump([
-      gulp.src(imgSource),
-      resize({width, height, quality: 1, format: 'png'}),
-      rename({suffix}),
-      gulp.dest(imagesDestination),
       livereload()
     ], callback)
   }
@@ -134,9 +117,8 @@ const watch = () => {
     livereload.listen()
     gulp.watch(othersSource, ['copy'])
     gulp.watch(jsonSource, ['json'])
-    gulp.watch(imgSource, ['img'])
     gulp.watch(svgSource, ['svg'])
-    gulp.watch([htmlSource, jsSource, cssSource, imgSource], ['html.fast'])
+    gulp.watch([htmlSource, jsSource, cssSource], ['html.fast'])
   }
 }
 
@@ -145,13 +127,10 @@ const retinaImageSize = imageSize * 2
 const thumbnailImageSize = Math.ceil(imageSize / 4)
 gulp.task('copy', copy())
 gulp.task('json', json())
-gulp.task('img.normal', img({width: imageSize, height: imageSize}))
-gulp.task('img.retina', img({width: retinaImageSize, height: retinaImageSize, suffix: '-2x'}))
-gulp.task('img', ['img.normal', 'img.retina'])
 gulp.task('html.slow', html({includeUncss: true}))
 gulp.task('html.fast', html({includeUncss: false}))
 gulp.task('svg', svg())
 gulp.task('watch', watch())
 
 // Everything together
-gulp.task('build', ['copy', 'img', 'json', 'html.slow', 'svg'])
+gulp.task('build', ['copy', 'json', 'html.slow', 'svg'])
