@@ -88,7 +88,6 @@ const html = ({includeUncss}) => {
       htmlmin({
         collapseWhitespace: true,
         removeAttributeQuotes: true,
-        removeOptionalTags: true,
         removeRedundantAttributes: true,
         sortAttributes: true,
         sortClassName: true
