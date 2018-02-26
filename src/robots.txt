@@ -1,3 +1,4 @@
 # robotstxt.org/
 
+Sitemap: https://biesheuvel.farm/sitemap.xml
 User-agent: *
