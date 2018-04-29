@@ -49,10 +49,10 @@
           {
             "title": "Achievements",
             "lines": [
-              "Enabled developers within a national bank to migrate their first application to public cloud",
+              "Enabled developers within an enterprise to migrate multiple applications to public cloud",
               "Automated build process of custom machine images and distribution across multiple accounts",
-              "Developed framework to monitor and report compliance in real-time across workloads",
-              "Automated both build process of Docker images and deployment into cluster"
+              "Developed framework to monitor and report security compliance in real-time across workloads",
+              "Implemented continuous integration and deployment of Docker containers for a start-up"
             ]
           }
         ]
@@ -68,6 +68,7 @@
             "title": "Responsibilities",
             "lines": [
               "Developing new back-end features for marketplace and back office",
+              "Resolving performance and functional issues within code base",
               "Operating cloud infrastructure for continuous deployment"
             ]
           },
@@ -75,9 +76,9 @@
             "title": "Achievements",
             "lines": [
               "Developed access right system for more granular adjustability of user permissions",
-              "Improved integration with our bookkeeping software to reduce workload of Finance department by 5h/week",
+              "Improved integration with bookkeeping software to reduce workload of Finance department by 5h/week",
               "Implemented search function with Elasticsearch to solve issues with geographical aggregations",
-              "Solved bug in category tree structure to reduce query time from more than 20s to 0.2s"
+              "Solved bug in category tree structure to reduce query time from >20s to 0.2s"
             ]
           }
         ]

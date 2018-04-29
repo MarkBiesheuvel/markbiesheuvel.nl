@@ -29,7 +29,7 @@ const othersSource = [
   `!${htmlSource}`,
   `!${jsonSource}`,
   `!${jsSource}`,
-  `!${svgSource}`,
+  `!${svgSource}`
 ]
 
 const copy = () => {
