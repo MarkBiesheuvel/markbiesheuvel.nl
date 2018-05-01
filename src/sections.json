@@ -10,6 +10,12 @@
         "period": false,
         "lists": [
           {
+            "title": "Professional level",
+            "lines": [
+              "AWS Certified Solutions Architect - Professional"
+            ]
+          },
+          {
             "title": "Specialty level",
             "lines": [
               "AWS Certified Advanced Networking - Specialty"
