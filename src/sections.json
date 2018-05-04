@@ -28,6 +28,12 @@
               "AWS Certified Developer - Associate",
               "AWS Certified SysOps Administrator - Associate"
             ]
+          },
+          {
+            "title": "Foundational level",
+            "lines": [
+              "AWS Certified Cloud Practitioner"
+            ]
           }
         ]
       }
