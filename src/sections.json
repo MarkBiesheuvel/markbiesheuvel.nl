@@ -10,19 +10,26 @@
         "period": false,
         "lists": [
           {
-            "title": "Professional level",
+            "title": "Training Partner",
+            "lines": [
+              "AWS Authorized Instructor Champion",
+              "AWS Authorized Instructor"
+            ]
+          },
+          {
+            "title": "Professional",
             "lines": [
               "AWS Certified Solutions Architect - Professional"
             ]
           },
           {
-            "title": "Specialty level",
+            "title": "Specialty",
             "lines": [
               "AWS Certified Advanced Networking - Specialty"
             ]
           },
           {
-            "title": "Associate level",
+            "title": "Associate",
             "lines": [
               "AWS Certified Solutions Architect - Associate",
               "AWS Certified Developer - Associate",
@@ -30,7 +37,7 @@
             ]
           },
           {
-            "title": "Foundational level",
+            "title": "Foundational",
             "lines": [
               "AWS Certified Cloud Practitioner"
             ]
