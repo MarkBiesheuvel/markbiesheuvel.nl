@@ -1,53 +1,5 @@
 [
   {
-    "title": "Certification",
-    "items": [
-      {
-        "title": "Amazon Web Services Certification",
-        "img": "aws_certified.svg",
-        "href": "https://www.certmetrics.com/amazon/public/transcript.aspx?transcript=21F31M4CK2FQ1GCY",
-        "location": false,
-        "period": false,
-        "lists": [
-          {
-            "title": "Training Partner",
-            "lines": [
-              "AWS Authorized Instructor Champion",
-              "AWS Authorized Instructor"
-            ]
-          },
-          {
-            "title": "Professional",
-            "lines": [
-              "AWS Certified Solutions Architect - Professional"
-            ]
-          },
-          {
-            "title": "Specialty",
-            "lines": [
-              "AWS Certified Advanced Networking - Specialty",
-              "AWS Certified Security – Specialty"
-            ]
-          },
-          {
-            "title": "Associate",
-            "lines": [
-              "AWS Certified Solutions Architect - Associate",
-              "AWS Certified Developer - Associate",
-              "AWS Certified SysOps Administrator - Associate"
-            ]
-          },
-          {
-            "title": "Foundational",
-            "lines": [
-              "AWS Certified Cloud Practitioner"
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     "title": "Experience",
     "items": [
       {
@@ -135,10 +87,58 @@
     ]
   },
   {
+    "title": "Certification",
+    "items": [
+      {
+        "title": "Amazon Web Services Certification",
+        "img": "aws_certified.svg",
+        "href": "https://www.certmetrics.com/amazon/public/transcript.aspx?transcript=21F31M4CK2FQ1GCY",
+        "location": false,
+        "period": false,
+        "lists": [
+          {
+            "title": "Training Partner",
+            "lines": [
+              "AWS Authorized Instructor Champion",
+              "AWS Authorized Instructor"
+            ]
+          },
+          {
+            "title": "Professional",
+            "lines": [
+              "AWS Certified Solutions Architect - Professional"
+            ]
+          },
+          {
+            "title": "Specialty",
+            "lines": [
+              "AWS Certified Advanced Networking - Specialty",
+              "AWS Certified Security – Specialty"
+            ]
+          },
+          {
+            "title": "Associate",
+            "lines": [
+              "AWS Certified Solutions Architect - Associate",
+              "AWS Certified Developer - Associate",
+              "AWS Certified SysOps Administrator - Associate"
+            ]
+          },
+          {
+            "title": "Foundational",
+            "lines": [
+              "AWS Certified Cloud Practitioner"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
     "title": "Education",
     "items": [
       {
-        "title": "Computer Science",
+        "title": "Bachelor of Computer Science",
         "img": "tue.svg",
         "href": "https://www.tue.nl/en/",
         "location": "Eindhoven University of Technology",
