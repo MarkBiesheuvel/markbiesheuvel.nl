@@ -14,6 +14,7 @@
             "lines": [
               "Advising, designing, maintaining and optimizing cloud environments of our clients",
               "Configuring and developing automated and scalable infrastructures",
+              "Delivering technical trainings and workshop to developers and architects",
               "Determining a short and long-term strategy with our clients to reach their innovative goals",
               "Translating business challenges from clients to technical solutions"
             ]
@@ -21,10 +22,11 @@
           {
             "title": "Achievements",
             "lines": [
-              "Enabled developers within an enterprise to migrate multiple applications to public cloud",
-              "Automated build process of custom machine images and distribution across multiple accounts",
+              "Implemented a dependency graph to parallelize deployments resulting in a 6x improvement",
               "Developed framework to monitor and report security compliance in real-time across workloads",
-              "Implemented continuous integration and deployment of Docker containers for a start-up"
+              "Implemented continuous integration and deployment pipeline for Docker containers",
+              "Enabled developers within an enterprise to migrate multiple applications to public cloud",
+              "Automated build and distribution process of custom machine images across multiple accounts"
             ]
           }
         ]
