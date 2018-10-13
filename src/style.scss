@@ -16,6 +16,12 @@ $paragraph-margin-bottom: .5rem;
 @import "utilities";
 @import "print";
 
+.logo {
+  max-width: 255px;
+  width: 100%;
+  height: auto;
+}
+
 .hr {
   display: block;
   text-align: center;
