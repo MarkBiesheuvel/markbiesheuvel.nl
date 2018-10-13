@@ -82,7 +82,7 @@ const watch = () => {
   livereload.listen()
   gulp.watch(othersSource, ['copy'])
   gulp.watch(svgSource, ['svg'])
-  gulp.watch([htmlSource, jsSource, cssSource], ['html'])
+  gulp.watch([htmlSource, cssSource], ['html'])
 }
 
 const imageSize = 262
