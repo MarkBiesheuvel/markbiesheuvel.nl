@@ -25,16 +25,16 @@ const othersSource = [
   `!${svgSource}`
 ]
 
-const copy = (callback) => {
+gulp.task('copy', callback => {
   // Task
   pump([
     gulp.src(othersSource),
     gulp.dest(destination),
     livereload()
   ], callback)
-}
+})
 
-const html = (callback) => {
+gulp.task('html', callback => {
   // Settings
   const css = [
     () => sass({includePaths: ['node_modules/bootstrap/scss']}),
@@ -65,9 +65,9 @@ const html = (callback) => {
     gulp.dest(destination),
     livereload()
   ], callback)
-}
+})
 
-const svg = (callback) => {
+gulp.task('svg', callback => {
   // Task
   pump([
     gulp.src(svgSource),
@@ -75,23 +75,15 @@ const svg = (callback) => {
     gulp.dest(imagesDestination),
     livereload()
   ], callback)
-}
+})
 
-const watch = () => {
+gulp.task('watch', () => {
   // Task
   livereload.listen()
   gulp.watch(othersSource, ['copy'])
   gulp.watch(svgSource, ['svg'])
   gulp.watch([htmlSource, cssSource], ['html'])
-}
-
-const imageSize = 262
-const retinaImageSize = imageSize * 2
-const thumbnailImageSize = Math.ceil(imageSize / 4)
-gulp.task('copy', copy)
-gulp.task('html', html)
-gulp.task('svg', svg)
-gulp.task('watch', watch)
+})
 
 // Everything together
 gulp.task('build', ['copy', 'html', 'svg'])
