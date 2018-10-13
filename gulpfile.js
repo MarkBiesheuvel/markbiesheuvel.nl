@@ -4,9 +4,11 @@ const csso = require('gulp-csso')
 const htmlmin = require('gulp-htmlmin')
 const inline = require('gulp-inline')
 const livereload = require('gulp-livereload')
+const posthtml = require('gulp-posthtml')
 const sass = require('gulp-sass')
 const svgmin = require('gulp-svgmin')
 const uncss = require('gulp-uncss')
+const minifyClassnames = require('posthtml-minify-classnames')
 const pump = require('pump')
 
 // Directories
@@ -62,6 +64,9 @@ gulp.task('html', callback => {
       sortAttributes: true,
       sortClassName: true
     }),
+    posthtml([
+      minifyClassnames()
+    ]),
     gulp.dest(destination),
     livereload()
   ], callback)
