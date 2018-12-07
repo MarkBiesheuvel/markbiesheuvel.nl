@@ -25,6 +25,9 @@
     "posthtml-minify-classnames": "^0.2.1",
     "pump": "^3.0.0"
   },
+  "resolutions": {
+    "**/event-stream": "^4.0.1"
+  },
   "dependencies": {
     "bootstrap": "^4.1.1"
   }
