@@ -1,5 +1,5 @@
 
-const gulp = require('gulp')
+const { src, dest, parallel, watch } = require('gulp')
 const csso = require('gulp-csso')
 const htmlmin = require('gulp-htmlmin')
 const inline = require('gulp-inline')
@@ -27,17 +27,15 @@ const othersSource = [
   `!${svgSource}`
 ]
 
-gulp.task('copy', callback => {
-  // Task
-  pump([
-    gulp.src(othersSource),
-    gulp.dest(destination),
+const copyTask = (callback) => {
+  return pump([
+    src(othersSource),
+    dest(destination),
     livereload()
   ], callback)
-})
+}
 
-gulp.task('html', callback => {
-  // Settings
+const htmlTask = (callback) => {
   const css = [
     () => sass({includePaths: ['node_modules/bootstrap/scss']}),
     () => uncss({html: [htmlSource]}),
@@ -45,9 +43,8 @@ gulp.task('html', callback => {
   ]
   const disabledTypes = ['img', 'svg']
 
-  // Task
   pump([
-    gulp.src(htmlSource),
+    src(htmlSource),
     inline({
       base: source,
       css,
@@ -67,28 +64,30 @@ gulp.task('html', callback => {
     posthtml([
       minifyClassnames()
     ]),
-    gulp.dest(destination),
+    dest(destination),
     livereload()
   ], callback)
-})
+}
 
-gulp.task('svg', callback => {
-  // Task
+const svgTask = (callback) => {
   pump([
-    gulp.src(svgSource),
+    src(svgSource),
     svgmin({}),
-    gulp.dest(imagesDestination),
+    dest(imagesDestination),
     livereload()
   ], callback)
-})
+}
 
-gulp.task('watch', () => {
-  // Task
+const watchTask = (callback) => {
   livereload.listen()
-  gulp.watch(othersSource, ['copy'])
-  gulp.watch(svgSource, ['svg'])
-  gulp.watch([htmlSource, cssSource], ['html'])
-})
+  watch(othersSource, copyTask)
+  watch(svgSource, svgTask)
+  watch([htmlSource, cssSource], htmlTask)
+  callback()
+}
+
+const buildTask = parallel(copyTask, htmlTask, svgTask)
 
 // Everything together
-gulp.task('build', ['copy', 'html', 'svg'])
+exports.watch = watchTask
+exports.build = buildTask
