@@ -21,7 +21,7 @@ const cssSource = `${source}/*.scss`
 const htmlSource = `${source}/*.html`
 const svgSource = `${source}/images/*.svg`
 const othersSource = [
-  `${source}/*.*`,
+  `${source}/**/*`,
   `!${cssSource}`,
   `!${htmlSource}`,
   `!${svgSource}`
