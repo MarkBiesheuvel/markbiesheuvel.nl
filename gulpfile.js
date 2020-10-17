@@ -1,14 +1,20 @@
 
+// Gulp dependencies
 const { src, dest, parallel, watch } = require('gulp')
-const csso = require('gulp-csso')
 const htmlmin = require('gulp-htmlmin')
 const inline = require('gulp-inline')
 const livereload = require('gulp-livereload')
+const postcss = require('gulp-postcss')
 const posthtml = require('gulp-posthtml')
 const sass = require('gulp-sass')
 const svgmin = require('gulp-svgmin')
-const uncss = require('gulp-uncss')
+
+// postcss and posthtml dependencies
+const cssnano = require('cssnano')
 const minifyClassnames = require('posthtml-minify-classnames')
+const uncss = require('postcss-uncss')
+
+// other dependencies
 const pump = require('pump')
 
 // Directories
@@ -38,8 +44,10 @@ const copyTask = (callback) => {
 const htmlTask = (callback) => {
   const css = [
     () => sass({includePaths: ['node_modules/bootstrap/scss']}),
-    () => uncss({html: [htmlSource]}),
-    () => csso({comments: false})
+    () => postcss([
+      uncss({html: [htmlSource]}),
+      cssnano()
+    ]),
   ]
   const disabledTypes = ['img', 'svg']
 
