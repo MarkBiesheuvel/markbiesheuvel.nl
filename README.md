@@ -17,7 +17,7 @@ yarn build
 
 To automatically rebuild while making changes to the source
 ```bash
-    yarn watch
+yarn watch
 ```
 
 # Build
