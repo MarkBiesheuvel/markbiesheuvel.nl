@@ -6,7 +6,7 @@ const inline = require('gulp-inline')
 const livereload = require('gulp-livereload')
 const postcss = require('gulp-postcss')
 const posthtml = require('gulp-posthtml')
-const sass = require('gulp-sass')
+const sass = require('gulp-sass')(require('sass'))
 const svgmin = require('gulp-svgmin')
 
 // postcss and posthtml dependencies
