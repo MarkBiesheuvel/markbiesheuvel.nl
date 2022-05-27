@@ -1,27 +1,46 @@
+// See https://getbootstrap.com/docs/5.1/customize/sass/
+
+// Variables
 $grid-columns: 4;
 $blue: #3e4fad;
 $line-height-base: 1.4;
 $font-size-base: .875rem;
-$h3-font-size: 1.5rem;
 $small-font-size: 65%;
 $paragraph-margin-bottom: .5rem;
+$link-color: $blue;
+$link-decoration: none;
+$link-hover-decoration: underline;
 
+// Configuration
 @import "functions";
 @import "variables";
 @import "mixins";
+@import "utilities";
+
+// Mixins
+@mixin img-fluid {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+// Layout & components
+@import "root";
 @import "reboot";
 @import "type";
 @import "images";
+@import "containers";
 @import "grid";
-@import "utilities";
-@import "print";
 
-.logo {
-  max-width: 225px;
-  width: 100%;
-  height: auto;
-  padding-top: $spacer;
-  padding-bottom: $spacer;
+// Helpers
+@import "helpers";
+
+// Utilities
+@import "utilities/api";
+
+// Custom styling
+small {
+  font-weight: $font-weight-normal;
 }
 
 .hr {
@@ -40,18 +59,18 @@ $paragraph-margin-bottom: .5rem;
       position: absolute;
       top: 50%;
       width: 100vw;
-      height: 1px;
-      background: $gray-400;
+      height: $border-width;
+      background: $gray-300;
     }
 
     &:before {
       right: 100%;
-      margin-right: 1rem;
+      margin-right: $spacer;
     }
 
     &:after {
       left: 100%;
-      margin-left: 1rem;
+      margin-left: $spacer;
     }
   }
 }

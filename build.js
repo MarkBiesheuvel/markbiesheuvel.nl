@@ -110,6 +110,9 @@ const templateHtml = async (html, css) => {
   return ejs.render(html, {
     css
   }, {
+    openDelimiter: '{',
+    closeDelimiter: '}',
+    delimiter: '%',
     async: true
   })
 }
@@ -174,7 +177,6 @@ const initTask = removeFiles(destination)
     // TODO: minify SVG
     const copyTask = Promise.all([
       'favicon.ico',
-      'humans.txt',
       'robots.txt',
       'sitemap.xml',
       'images/aws_certified.svg',

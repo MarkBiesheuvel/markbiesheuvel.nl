@@ -1,6 +1,6 @@
 {
   "name": "markbiesheuvel.nl",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Personal website of Mark Biesheuvel",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "build": "node build.js"
   },
   "dependencies": {
-    "bootstrap": "^4.6.1"
+    "bootstrap": "^5.1.3"
   },
   "devDependencies": {
     "ejs": "^3.1.8",
