@@ -98,7 +98,8 @@ const removeUnusedCss = async (css, html) => {
       ],
       css: [
         { raw: css }
-      ]
+      ],
+      variables: true
     }).then(([result]) => {
       resolve(result.css)
     })
@@ -121,10 +122,13 @@ const templateHtml = async (html, css, resume) => {
 const minifyHtml = async (html) => {
   return new Promise((resolve, reject) => {
     // For options, see https://github.com/kangax/html-minifier
+    // For options, see https://github.com/clean-css/clean-css
     html = htmlMinifier.minify(html, {
-      minifyCSS: true,
+      minifyCSS: {
+        level: 2
+      },
       collapseWhitespace: true,
-      conservativeCollapse: false,
+      collapseInlineTagWhitespace: true,
       removeComments: true,
       removeAttributeQuotes: true,
       removeEmptyAttributes: true,
