@@ -105,10 +105,11 @@ const removeUnusedCss = async (css, html) => {
   })
 }
 
-const templateHtml = async (html, css) => {
+const templateHtml = async (html, css, resume) => {
   // For options, see https://github.com/mde/ejs
   return ejs.render(html, {
-    css
+    css,
+    resume
   }, {
     openDelimiter: '{',
     closeDelimiter: '}',
@@ -160,11 +161,15 @@ const initTask = removeFiles(destination)
     // Compile SASS, remove unused CSS, include into HTML and minify
     const htmlTask = Promise.all([
       extractFile(`${source}/style.scss`),
-      extractFile(`${source}/index.html`)
-    ]).then(([css, html]) => {
+      extractFile(`${source}/index.html`),
+      extractFile(`${source}/resume.json`),
+    ]).then(([css, html, resume]) => {
+      // Need to parse JSON first
+      resume = JSON.parse(resume)
+
       return compileSass(css)
         .then(css => removeUnusedCss(css, html))
-        .then(css => templateHtml(html, css))
+        .then(css => templateHtml(html, css, resume))
         .then(html => minifyHtml(html))
         .then(html => writeFile(`${destination}/index.html`, html))
         .then(() => {

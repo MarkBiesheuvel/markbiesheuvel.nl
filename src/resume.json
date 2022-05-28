@@ -1,0 +1,131 @@
+{
+  "jobs": [
+    {
+      "company": {
+        "name": "Optimizely",
+        "url": "https://www.optimizely.com/",
+        "image": "images/optimizely.svg",
+        "location": "Amsterdam, Netherlands",
+        "description": "Optimizely is the leader in experimentation, A/B testing, and Experience Optimization (EXO)."
+      },
+      "positions": [
+        {
+          "title": "Solutions Architect",
+          "duration": "April 2022 - Present"
+        }
+      ],
+      "description": "Helping customers implement and get value out of Optimizely products. Leading key discussions and considerations around change programs from both a business and technical perspective. Assisting internal sales teams in responses to RFPs and technical requirements documents. Developing opportunities for customer-facing enterprise architecture engagements.",
+      "achievements": []
+    },
+    {
+      "company": {
+        "name": "Amazon Web Services",
+        "url": "https://aws.amazon.com/",
+        "image": "images/aws.svg",
+        "location": "Amsterdam, Netherlands",
+        "description": "Amazon Web Services (AWS) is the leader in Cloud Infrastructure & Platform Services."
+      },
+      "positions": [
+        {
+          "title": "Senior Technical Instructor",
+          "duration": "April 2021 - March 2022"
+        },
+        {
+          "title": "Technical Instructor",
+          "duration": "June 2019 - March 2021"
+        }
+      ],
+      "description": "Delivered instructor-led classroom training to technical audiences. Acted as subject matter experts (SME) for the broader training team regarding technical topics or content. Assisted in developing & maintaining technical training content, lab exercises, presentations, and accompanying materials.",
+      "achievements": [
+        "Delivered classroom training to thousands of students.",
+        "Attained average instructor CSAT of 4.62 out of 5 across a wide range of courses.",
+        "Developed Python script to aggregate training reports, saving 2 days per month of manual work.",
+        "Created and delivered two short webinars to a total of 600 customers."
+      ]
+    },
+    {
+      "company": {
+        "name": "Oblivion Cloud Control",
+        "url": "https://oblcc.com/",
+        "image": "images/oblcc.svg",
+        "location": "Amsterdam, Netherlands",
+        "description": "Oblivion Cloud Control is an AWS Premier Consulting Partner. It has since been acquired by Xebia Group."
+      },
+      "positions": [
+        {
+          "title": "Cloud Consultant & Engineer",
+          "duration": "April 2017 - May 2019"
+        }
+      ],
+      "description": "Developed automated and scalable infrastructures on AWS. Delivered technical training and workshops to developers and architects. Translated business challenges from our clients to technical solutions.",
+      "achievements": [
+        "Implemented dependency graph to parallelize deployments resulting in a 6× improvement.",
+        "Automated build process of custom machine images and distribution across multiple accounts.",
+        "Reduced compliance reporting job from more than 30 minutes to less than 10 seconds.",
+        "Implemented CI/CD pipeline for Docker containers so that developers can test their code quicker."
+      ]
+    },
+    {
+      "company": {
+        "name": "Deskbookers",
+        "url": "https://www.deskbookers.com/en-gb/home",
+        "image": "images/deskbookers.svg",
+        "location": "Amsterdam, Netherlands",
+        "description": "Deskbookers is an online marketplace to book and pay for meeting rooms. It has since been acquired by Spacebase."
+      },
+      "positions": [
+        {
+          "title": "Back-end Developer",
+          "duration": "September 2016 - March 2017"
+        }
+      ],
+      "description": "Developed new features in PHP web application and resolved performance and functional issues. Deployed software releases to cloud infrastructure.",
+      "achievements": [
+        "Developed access right system for more granular adjustability of user permissions.",
+        "Improved integration with bookkeeping software to reduce workload of Finance department by 5h/week.",
+        "Implemented search function with Elasticsearch to solve issues with geographical aggregations.",
+        "Solved bug in category tree structure to reduce query time from >20s to 0.2s."
+      ]
+    },
+    {
+      "company": {
+        "name": "QForma",
+        "url": "https://web.archive.org/web/20161007035133/http:/qforma.nl/",
+        "image": "images/qforma.svg",
+        "location": "Oisterwijk, Netherlands",
+        "description": "QForma was a local web agency. It has since merged with Tirato to form NOBEARS."
+      },
+      "positions": [
+        {
+          "title": "Web Developer",
+          "duration": "September 2012 - August 2016"
+        }
+      ],
+      "description": "Developed custom PHP web applications and CMS powered websites for customers. Responsible for MySQL databases, back-end applications, and integrations with front-end. Planned and executed migration from managed hosting providers to the AWS cloud.",
+      "achievements": [
+        "Replaced code from CMS with a handwritten SQL query to reduce page load time from 8s to 0.8s.",
+        "Restructured cache usage of ACL to reduce base memory usage per request from 80MB to 16MB.",
+        "Developed an integration with VoIP system to display customer information from CRM in real-time.",
+        "Improved product search for web shop with 8,000 products with Elasticsearch.",
+        "Migrated web applications to AWS to reduce hosting costs by approximately 50%."
+      ]
+    }
+  ],
+  "educations": [
+    {
+      "school": {
+        "name": "Eindhoven University of Technology",
+        "url": "https://www.tue.nl/en/",
+        "image": "images/tue.svg",
+        "location": "Eindhoven, Netherlands"
+      },
+      "majors": [
+        {
+          "title": "Bachelor of Computer Science",
+          "duration": "September 2009 - August 2012"
+        }
+      ],
+      "description": "Curriculum included Object-Oriented Programming, Functional Programming, Data Structures, Algorithms, Discrete Mathematics, Human-Computer Interaction, Operating Systems, and Computer Networks."
+    }
+  ]
+}
