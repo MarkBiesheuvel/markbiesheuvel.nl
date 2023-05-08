@@ -4,24 +4,17 @@ Just my personal website
 
 ## Development
 
-
 To install all dependencies:
 ```bash
-yarn
+npm install
 ```
 
 To make a clean build:
 ```bash
-yarn build
+npm run build
 ```
 
-To automatically rebuild while making changes to the source
-```bash
-yarn watch
-```
-
-# Build
-
+## CI/CD
 
 Configure CodeCommit remote (only once).
 See: http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-ssh-unixes.html

@@ -59,7 +59,7 @@
       ],
       "description": "Developed automated and scalable infrastructures on AWS. Delivered technical training and workshops to developers and architects. Translated business challenges from our clients to technical solutions.",
       "achievements": [
-        "Implemented dependency graph to parallelize deployments resulting in a 6× improvement.",
+        "Implemented dependency graph to parallelize deployments resulting in a 6&times; improvement.",
         "Automated build process of custom machine images and distribution across multiple accounts.",
         "Reduced compliance reporting job from more than 30 minutes to less than 10 seconds.",
         "Implemented CI/CD pipeline for Docker containers so that developers can test their code quicker."
@@ -68,7 +68,7 @@
     {
       "company": {
         "name": "Deskbookers",
-        "url": "https://www.deskbookers.com/en-gb/home",
+        "url": "https://www.deskbookers.com/en-gb/",
         "image": "images/deskbookers.svg",
         "location": "Amsterdam, Netherlands",
         "description": "Deskbookers is an online marketplace to book and pay for meeting rooms. It has since been acquired by Spacebase."
@@ -81,10 +81,10 @@
       ],
       "description": "Developed new features in PHP web application and resolved performance and functional issues. Deployed software releases to cloud infrastructure.",
       "achievements": [
-        "Developed access right system for more granular adjustability of user permissions.",
+        "Developed access control system for more granular control over user permissions.",
         "Improved integration with bookkeeping software to reduce workload of Finance department by 5h/week.",
         "Implemented search function with Elasticsearch to solve issues with geographical aggregations.",
-        "Solved bug in category tree structure to reduce query time from >20s to 0.2s."
+        "Solved bug in category tree structure to reduce query time from &gt;20s to 0.2s."
       ]
     },
     {
