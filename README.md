@@ -20,7 +20,7 @@ Configure CodeCommit remote (only once).
 See: http://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-ssh-unixes.html
 
 ```bash
-git remote add aws ssh://git-codecommit.eu-central-1.amazonaws.com/v1/repos/personal-website
+git remote add aws https://git-codecommit.eu-central-1.amazonaws.com/v1/repos/personalwebsite
 ```
 
 Push to this repo to deploy
