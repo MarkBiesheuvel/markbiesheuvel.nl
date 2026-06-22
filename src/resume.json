@@ -10,6 +10,7 @@
       },
       "positions": [
         {
+<<<<<<< HEAD
           "title": "Lead Solutions Architect",
           "duration": "January 2025 - Present"
         },
@@ -20,6 +21,14 @@
         {
           "title": "Solutions Architect",
           "duration": "April 2022 - August 2023"
+=======
+          "title": "Senior Solutions Architect",
+          "duration": "April 2023 - Present"
+        },
+        {
+          "title": "Solutions Architect",
+          "duration": "April 2022 - March 2023"
+>>>>>>> d195be4 (Update logos)
         }
       ],
       "description": "Helping customers implement and get value out of Optimizely products. Leading key discussions and considerations around change programs from both a business and technical perspective. Assisting internal sales teams in responses to RFPs and technical requirements documents. Developing opportunities for customer-facing enterprise architecture engagements.",
