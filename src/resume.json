@@ -10,7 +10,6 @@
       },
       "positions": [
         {
-<<<<<<< HEAD
           "title": "Lead Solutions Architect",
           "duration": "January 2025 - Present"
         },
@@ -21,18 +20,14 @@
         {
           "title": "Solutions Architect",
           "duration": "April 2022 - August 2023"
-=======
-          "title": "Senior Solutions Architect",
-          "duration": "April 2023 - Present"
-        },
-        {
-          "title": "Solutions Architect",
-          "duration": "April 2022 - March 2023"
->>>>>>> d195be4 (Update logos)
         }
       ],
-      "description": "Helping customers implement and get value out of Optimizely products. Leading key discussions and considerations around change programs from both a business and technical perspective. Assisting internal sales teams in responses to RFPs and technical requirements documents. Developing opportunities for customer-facing enterprise architecture engagements.",
-      "achievements": []
+      "description": "Technical lead for a portfolio of customers ranging from SMBs to global enterprises, across retail, banking, gaming, media, education and B2B software, covering Web Experimentation, Feature Experimentation, Personalization and Optimizely Analytics. Run technical discovery, onboarding, training and implementation support, and act as the escalation point between customers and Optimizely's product teams.",
+      "achievements": [
+        "Onboarded and enabled 250+ customers since 2022, typically running 20+ engagements in parallel.",
+        "Took on 50 new customers in six months after Google Optimize shut down in 2023, double the usual workload, during the biggest platform migration wave in the industry.",
+        "Turned around at-risk accounts by resolving complex technical challenges, from data discrepancies and tracking bugs to site performance and API scalability, helping secure their renewals."
+      ]
     },
     {
       "company": {
